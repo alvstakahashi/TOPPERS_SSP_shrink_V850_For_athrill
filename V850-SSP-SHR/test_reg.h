@@ -1,7 +1,7 @@
 #ifndef _TEST_REG_H_
 #define _TEST_REG_H_
 
-#include "cpu_config.h"
+//#include "cpu_config.h"
 
 /*
  * 汎用レジスタの位置づけ

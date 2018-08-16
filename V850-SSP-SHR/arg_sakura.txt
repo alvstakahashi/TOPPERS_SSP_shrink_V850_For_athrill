@@ -1,2 +1,2 @@
--Y=40 ./main.c
+-Y=9 ./vector.S
 
