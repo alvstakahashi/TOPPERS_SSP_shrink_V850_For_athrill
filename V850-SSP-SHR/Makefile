@@ -1,7 +1,6 @@
 ROOT_PATH 		:= ..
-ATHRILL_ROOT	:= $(ROOT_PATH)/../../trunk/src
 BUILD_PATH		:= .
-CPU_CONFIG_PATH	:= $(ATHRILL_ROOT)/config/target/v850esfk3
+SSP_ROOT		:= $(BUILD_PATH)
 
 
 TARGET	:= test_main.elf
@@ -29,9 +28,12 @@ LDFLAGS	:= -nostdlib -T $(LDSCRIPT)
 TEST_PATH := .
 
 IFLAGS	:= -I.
-IFLAGS	+= -I./list
-IFLAGS	+= -I$(ROOT_PATH)/common
-IFLAGS	+= -I$(CPU_CONFIG_PATH)
+#IFLAGS	+= -I./list
+#IFLAGS	+= -I$(ROOT_PATH)/common
+#IFLAGS	+= -I$(CPU_CONFIG_PATH)
+IFLAGS	+= -I$(SSP_ROOT)/ssp
+IFLAGS	+= -I$(SSP_ROOT)/include
+IFLAGS	+= -I$(SSP_ROOT)/arch/V850
 
 VPATH	:= $(ROOT_PATH)/common
 VPATH	+= $(TEST_PATH)

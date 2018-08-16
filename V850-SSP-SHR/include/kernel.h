@@ -71,12 +71,6 @@
  *  データ型の定義
  */
 
-/*
- *  ビットパターンやオブジェクト番号の型定義
- */
-typedef	uint_t		INTNO;		/* 割込み番号 */
-typedef	uint_t		INHNO;		/* 割込みハンドラ番号 */
-typedef	uint_t		EXCNO;		/* CPU例外ハンドラ番号 */
 
 /*
  *  処理単位の型定義

@@ -69,6 +69,9 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
+// tool_stddef.h に記述
+//#define Inline	static inline		/* インライン関数 */
+
 /*
  *  C言語/EC++でthrow()に対処するための定義
  */
@@ -280,5 +283,16 @@ typedef	struct acvct {				/* アクセス許可ベクタ */
 #else /* UINT_MAX < LONG_MAX */
 #define TMAX_RELTIM		((RELTIM) LONG_MAX)
 #endif /* UINT_MAX < LONG_MAX */
+
+
+
+/*
+ *  ビットパターンやオブジェクト番号の型定義
+ */
+// kernel.h に記述あり
+//typedef	uint_t		FLGPTN;		/* イベントフラグのビットパターン */
+//typedef	uint_t		INTNO;		/* 割込み番号 */
+//typedef	uint_t		INHNO;		/* 割込みハンドラ番号 */
+//typedef	uint_t		EXCNO;		/* CPU例外ハンドラ番号 */
 
 #endif /* TOPPERS_T_STDDEF_H */

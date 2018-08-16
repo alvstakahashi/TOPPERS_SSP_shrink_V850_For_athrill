@@ -53,7 +53,9 @@
 //#include <sil.h>
 #include <t_stddef.h>
 #include "v850esfk3.h"
+#include "target_kernel.h"
 #include "chip_timer.h"
+#include "kernel.h"
 
 //・高分解能タイマの現時点の値を保持する変数（hrtcnt_current，HRTCNT型）
 //　を用意する．

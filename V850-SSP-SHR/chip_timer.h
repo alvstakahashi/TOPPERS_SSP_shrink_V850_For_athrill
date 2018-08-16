@@ -50,142 +50,15 @@
 
 #include <t_stddef.h>
 #include "v850esfk3.h"
-
+#include "target_kernel.h"
 
 //#include <sil.h>
 
 typedef uint32_t HRTCNT;
 
-#define	TIC_NUME		1
-/*
- *  割込み番号(INTTAA2CC0)
- */
-#define TIMER_DTIM_INTNO  (22)
+//terget_kernel.hで記述
+//#define	TIC_NUME		1
 
-/*
- *  タイマ割込みハンドラ登録のための定数
- */
-#define INHNO_TIMER		TIMER_DTIM_INTNO	/* 割込みハンドラ番号 */
-#define INTNO_TIMER		TIMER_DTIM_INTNO	/* 割込み番号 */
-//#define INTPRI_TIMER	(TMAX_INTPRI - 1)	/* 割込み優先度 */
-//#define INTATR_TIMER	TA_NULL				/* 割込み属性 */
-
-/*
- *	割込み制御レジスタの番地を算出するためのマクロ
- *
- *	割込み制御レジスタは割込み番号順に並んでいるため，
- *	ベースアドレスからのオフセットでアドレスを求めることができる．
- */
-
-#define INTREG_BASE				(0xFFFFF110)
-#define INTREG_ADDRESS(intno)	(INTREG_BASE + ((intno) * 2U))
-
-
-extern uint16_t disint_table[IMR_SIZE];
-
-
-Inline void
-sil_wrb_mem(uint8_t *mem, uint8_t data)
-{
-	*((volatile uint8_t *) mem) = data;
-}
-Inline uint8_t
-sil_reb_mem(const uint8_t *mem)
-{
-	uint8_t	data;
-
-	data = *((const volatile uint8_t *) mem);
-	return(data);
-}
-/*
- *  16ビット単位の読出し／書込み
- */
-
-Inline uint16_t
-sil_reh_mem(const uint16_t *mem)
-{
-	uint16_t	data;
-
-	data = *((const volatile uint16_t *) mem);
-	return(data);
-}
-Inline void
-sil_wrh_mem(uint16_t *mem, uint16_t data)
-{
-	*((volatile uint16_t *) mem) = data;
-}
-
-/*
- *  割込み要求禁止フラグのセット
- *
- *  割込み属性が設定されていない割込み要求ラインに対して割込み要求禁止
- *  フラグをクリアしようとした場合には，falseを返す．
- */
-Inline bool_t
-x_disable_int(INTNO intno)
-{
-	uint32_t intreg_addr = INTREG_ADDRESS(intno);
-	
-//	if(!VALID_INTNO_DISINT(intno))
-//	{
-//		return false;
-//	}
-	
-	/* 6bit目をセット */
-	sil_wrb_mem((void *)intreg_addr , 
-		sil_reb_mem((void *)intreg_addr) | (0x01U << 6));
-	/* 割込み禁止状態ビットをセット */
-	disint_table[(intno / 16u)] |= (1u << (intno % 16u));
-	
-	return(true);
-}
-
-
-/*
- *  割込み要求禁止フラグの解除
- *
- *  割込み属性が設定されていない割込み要求ラインに対して割込み要求禁止
- *  フラグをクリアしようとした場合には，falseを返す．
- */
-
-Inline bool_t
-x_enable_int(INTNO intno)
-{
-	uint32_t intreg_addr = INTREG_ADDRESS(intno);
-	
-//	if(!VALID_INTNO_DISINT(intno))
-//	{
-//		return false;
-//	}
-	
-	/* 6bit目をクリア */
-	sil_wrb_mem((void *)intreg_addr , 
-		sil_reb_mem((void *)intreg_addr) & ~(0x01U << 6));
-	/* 割込み禁止状態ビットをクリア */
-	disint_table[(intno / 16u)] &= ~(1u << (intno % 16u));
-	
-	return(true);
-}
-
-
-
-/*
- *  割込み要求のクリア
- */
-Inline void
-x_clear_int(INTNO intno)
-{
-	uint32_t intreg_addr = INTREG_ADDRESS(intno);
-	
-//	if(!VALID_INTNO_DISINT(intno))
-//	{
-//		return ;
-//	}
-	
-	/* 7bit目をクリア */
-	sil_wrb_mem((void *)intreg_addr , 
-		sil_reb_mem((void *)intreg_addr) & ~(0x01U << 7));
-}
 
 
 
