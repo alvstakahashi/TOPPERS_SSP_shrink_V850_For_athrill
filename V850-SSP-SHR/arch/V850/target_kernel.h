@@ -70,13 +70,14 @@
 #define Inline	static __inline__	/* インライン関数 */
 #endif
 
+#ifdef TOPPERS_V850
 /*
  *  ビットパターンやオブジェクト番号の型定義
  */
 typedef	uint_t		INTNO;		/* 割込み番号 */
 typedef	uint_t		INHNO;		/* 割込みハンドラ番号 */
 typedef	uint_t		EXCNO;		/* CPU例外ハンドラ番号 */
-
+#endif
 /*
  *  プロセッサで共通な定義
  */
