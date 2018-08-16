@@ -53,6 +53,7 @@
 //#include <sil.h>
 #include <t_stddef.h>
 #include "v850esfk3.h"
+#include "kernel_impl.h"
 #include "target_kernel.h"
 #include "chip_timer.h"
 #include "kernel.h"
@@ -311,7 +312,9 @@ target_hrt_handler(void)
 	/*
 	 *  高分解能タイマ割込みを処理する．
 	 */
-	//signal_time();
+	//signal_time()
+	_kernel_handler(isig_tim);
+;
 }
 //・target_hrt_get_currentは，hrtcnt_currentの値を返す．
 HRTCNT target_hrt_get_current(void)

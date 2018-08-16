@@ -15,6 +15,6 @@ _start:
 	jarl _data_init, lp
 
 	ei
-	jarl	 _main, r31
+	jarl	 _setup, r31
 	halt
 .end

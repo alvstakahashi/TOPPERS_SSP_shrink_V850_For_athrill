@@ -1,3 +1,12 @@
+#include <kernel.h>
+#include "kernel_cfg.h"
+
+#include <stdio.h>
+#include <stdint.h>
+
+#include "kernel_impl.h"
+#include "target_kernel.h"
+
 #include "test_serial.h"
 #include "test_reg.h"
 #include "section.h"
@@ -5,16 +14,44 @@
 #include <string.h>
 #include "timer.h"
 
+#define TAMIYA_NO_IMPREMENT
+
+volatile int count = 0;
+
 unsigned char stack_data[STACK_SIZE] __attribute__ ((section(".bss_noclr")));
 
 unsigned char mmap_data[1024] __attribute__ ((section(".mmap_section")));
 
 static int gl_variable;
 
+int setup(void)
+{
+	timer_init();
+
+	sta_ker();
+
+	while(1);
+}
+
+void task1(intptr_t arg)
+{}
+void task2(intptr_t arg)
+{}
+
+#ifdef TAMIYA_NO_IMPREMENT
+void cyclic_handler(intptr_t exinf)
+{
+}
+void alarm_handler(intptr_t exinf)
+{
+}
+void alarm_handler2(intptr_t exinf)
+{
+}
+#endif
 
 int main(void)
 {
-	timer_init();
 
 	printf("Hello World!!\n");
 

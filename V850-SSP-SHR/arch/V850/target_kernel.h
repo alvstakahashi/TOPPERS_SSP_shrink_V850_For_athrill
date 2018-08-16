@@ -225,45 +225,12 @@ x_clear_int(INTNO intno)
 		sil_reb_mem((void *)intreg_addr) & ~(0x01U << 7));
 }
 
-#if 0
-//----------------------以下　見直しまだ---------------------------------
-#define	set_task_stack(x)	__asm__( "mov sp,%[Rs1]"::[Rs1]"r"(x))
+/* tcb_table[0].p_tinib->stk → sp */
+//	sld.w	TINIB_stk[ep], sp
+#define	set_task_stack(x)	__asm__( "mov  %[Rs1],sp"::[Rs1]"r"(x))
 
-#define	interrpt_IN()		do { \
-								__asm__("ldr	r0, =0x000000d3;msr cpsr_c,r0;":::"r0");\
-								__asm__("push {lr};":::);\
-                               } while(0)
-
-
-#define interrpt_OUT()		do { \
-								__asm__("pop  {lr};":::);\
-								__asm__("ldr	r0, =0x000000d2;msr cpsr_c,r0;":::"r0");\
-                               } while(0)
-
-
-
-#define disable_IRQ()		__asm__("mrs	r0, cpsr;ldr	r1,	=0x80;orr r0, r0, r1;msr	cpsr_c, r0;":::"r0","r1")
-#define enable_IRQ()		__asm__("mrs	r0, cpsr;ldr	r1,	=0x80;bic r0, r0, #0x80;;msr	cpsr_c, r0;":::"r0")
-
-#define	ipl_maskClear()	
-
-
-#define saveCTX()	__asm__("stmfd sp!, {r5-r10};":::)
-#define loadCTX()	__asm__("ldmfd sp!, {r5-r10};":::)
-
-Inline int getmode(void)
-{
-	int status;
-	__asm__("mrs	%[Rd], cpsr":[Rd]"=r"(status));
-	return(status);
-}
-
-
-Inline bool_t sence_mode(void)		// 割り込みロック（不可）のとき真
-{
-	return(( bool_t )((getmode() & 0x80) != 0));
-}
-
+#define disable_IRQ()		__asm__("di")
+#define enable_IRQ()		__asm__("ei")
 
 #define t_lock_cpu()	disable_IRQ()
 #define i_lock_cpu()	disable_IRQ()
@@ -280,6 +247,9 @@ Inline bool_t sence_mode(void)		// 割り込みロック（不可）のとき真
 
 #define t_unlock_cpu()	enable_IRQ()
 #define i_unlock_cpu()	enable_IRQ()
+
+
+#define	ipl_maskClear()	
 
 /*
  *  デフォルトの非タスクコンテキスト用のスタック領域の定義
@@ -299,6 +269,44 @@ Inline void idle_loop(void)
 	t_unlock_cpu();
 	t_lock_cpu();
 }
+
+
+#if 0
+//----------------------以下　見直しまだ---------------------------------
+/* tcb_table[0].p_tinib->stk → sp */
+//	sld.w	TINIB_stk[ep], sp
+
+
+#define	interrpt_IN()		do { \
+								__asm__("ldr	r0, =0x000000d3;msr cpsr_c,r0;":::"r0");\
+								__asm__("push {lr};":::);\
+                               } while(0)
+
+
+#define interrpt_OUT()		do { \
+								__asm__("pop  {lr};":::);\
+								__asm__("ldr	r0, =0x000000d2;msr cpsr_c,r0;":::"r0");\
+                               } while(0)
+
+
+#define saveCTX()	__asm__("stmfd sp!, {r5-r10};":::)
+#define loadCTX()	__asm__("ldmfd sp!, {r5-r10};":::)
+
+Inline int getmode(void)
+{
+	int status;
+	__asm__("mrs	%[Rd], cpsr":[Rd]"=r"(status));
+	return(status);
+}
+
+
+Inline bool_t sence_mode(void)		// 割り込みロック（不可）のとき真
+{
+	return(( bool_t )((getmode() & 0x80) != 0));
+}
+
+
+
 
 /*
  *  プロセッサステータスレジスタ(PSW)の現在値の読出し
@@ -321,6 +329,8 @@ Inline bool_t sense_context( void )
 	/*  ネストカウンタ0より大なら非タスクコンテキスト  */
 	return ( intnest > 0U );
 }
+
+
 #endif
 
 
