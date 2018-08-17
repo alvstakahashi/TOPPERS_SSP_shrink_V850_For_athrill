@@ -17,10 +17,12 @@ OBJS	+= chip_timer.o
 OBJS	+= interrupt_asm.o
 OBJS	+= main.o
 
+OBJS 	+= ssp/kernel_cfg.o ssp/startup.o ssp/task.o ssp/task_manage.o
+OBJS	+= ssp/alarm.o ssp/cyclic.o ssp/time_event.o
 
 CFLAGS	:= -O0 -mdisable-callt -mno-app-regs -mtda=0
-CFLAGS	+= -gdwarf-2 -Wall -Wno-unused-label -Wpointer-arith  -mv850e2 -Wa,-mno-bcond17 -msoft-float -Wa,-mwarn-signed-overflow -Wa,-mwarn-unsigned-overflow
-
+CFLAGS	+= -gdwarf-2  -Wno-unused-label -Wpointer-arith  -mv850e2 -Wa,-mno-bcond17 -msoft-float -Wa,-mwarn-signed-overflow -Wa,-mwarn-unsigned-overflow
+CFLAGS	+= -g
 
 LDSCRIPT = $(BUILD_PATH)/v850esfk3.ld
 LDFLAGS	:= -nostdlib -T $(LDSCRIPT)
@@ -42,10 +44,10 @@ LIBS := -lm -lgcc -lc
 
 
 %.o: %.S
-	$(CC) -c $(IFLAGS) $(CFLAGS) $<
+	$(CC) -c $(IFLAGS) $(CFLAGS) $< -o $@
 
 %.o: %.c
-	$(CC) -c $(IFLAGS) $(CFLAGS) $<
+	$(CC) -c $(IFLAGS) $(CFLAGS) $< -o $@
 
 all: $(OBJS)
 	$(LINK) $(CFLAGS) $(LDFLAGS) -o $(TARGET) $(OBJS) -Wl,-Map,$(TARGET).map $(LIBS)

@@ -34,9 +34,15 @@ int setup(void)
 }
 
 void task1(intptr_t arg)
-{}
+{
+	printf("Hello task1!!\n");
+
+}
 void task2(intptr_t arg)
-{}
+{
+	printf("Hello task2!!\n");
+
+}
 
 #ifdef TAMIYA_NO_IMPREMENT
 void cyclic_handler(intptr_t exinf)

@@ -58,9 +58,14 @@
 #ifndef TOPPERS_TARGET_KERNEL_H
 #define TOPPERS_TARGET_KERNEL_H
 
+
 #undef		TOPPERS_RX62N			//RX62N
 #undef		TOPPERS_RPI				//Raspberry PI
 #define		TOPPERS_V850			// V850
+
+#ifdef TOPPERS_V850
+#include "v850esfk3.h"
+#endif
 
 #ifdef TOPPERS_V850
 #define Inline	static inline		/* インライン関数 */
@@ -270,6 +275,62 @@ Inline void idle_loop(void)
 	t_lock_cpu();
 }
 
+/*
+ *  さらに非スクラッチレジスタを退避する
+ *
+ *    |------------------|<- 割込み発生時のSP - 80
+ * 40 |        r2        |
+ *    |------------------|
+ * 36 |       r20        |
+ *    |------------------|
+ * 32 |       r21        |
+ *    |------------------|
+ * 28 |       r22        |
+ *    |------------------|
+ * 24 |       r23        |
+ *    |------------------|
+ * 20 |       r24        |
+ *    |------------------|
+ * 16 |       r25        |
+ *    |------------------|
+ * 12 |       r26        |
+ *    |------------------|
+ *  8 |       r27        |
+ *    |------------------|
+ *  4 |       r28        |
+ *    |------------------|
+ *  0 |       r29        |
+ *    |------------------|<- 割込み発生時のSP - 80 - 44
+ */      
+#define saveCTX()			do { \
+								__asm__("add		-4 , sp;":::);\
+								__asm__("st.w		r2 , 0[sp];":::);\
+								__asm__("PREPARE	{R20,R21,R22,R23,R24,R25,R26,R27,R28,R29},10;":::);\
+                            } while(0)
+
+#define loadCTX()			do { \
+								__asm__("DISPOSE	10,{R20,R21,R22,R23,R24,R25,R26,R27,R28,R29};":::);\
+								__asm__("ld.w		0[sp] , r2;":::);\
+								__asm__("add		4 , sp;":::);\
+                            } while(0)
+
+/*
+ *  コンテキストの参照
+ *
+ *  割込みの戻り先がタスクかどうかを判断するために intnest
+ *  を使用している．これを用いてコンテキストを判断する．
+ */
+
+Inline bool_t sense_context( void )
+{
+	/*  ネストカウンタ0より大なら非タスクコンテキスト  */
+//	return ( intnest > 0U );
+	return 0;
+
+}
+
+#define t_sense_lock()	sense_context()
+#define i_sense_lock()	sense_context()
 
 #if 0
 //----------------------以下　見直しまだ---------------------------------
@@ -287,48 +348,6 @@ Inline void idle_loop(void)
 								__asm__("pop  {lr};":::);\
 								__asm__("ldr	r0, =0x000000d2;msr cpsr_c,r0;":::"r0");\
                                } while(0)
-
-
-#define saveCTX()	__asm__("stmfd sp!, {r5-r10};":::)
-#define loadCTX()	__asm__("ldmfd sp!, {r5-r10};":::)
-
-Inline int getmode(void)
-{
-	int status;
-	__asm__("mrs	%[Rd], cpsr":[Rd]"=r"(status));
-	return(status);
-}
-
-
-Inline bool_t sence_mode(void)		// 割り込みロック（不可）のとき真
-{
-	return(( bool_t )((getmode() & 0x80) != 0));
-}
-
-
-
-
-/*
- *  プロセッサステータスレジスタ(PSW)の現在値の読出し
- */
- 
-
-#define t_sense_lock()	sence_mode()
-#define i_sense_lock()	sence_mode()
-
-
-/*
- *  コンテキストの参照
- *
- *  RXでは，割込みの戻り先がタスクかどうかを判断するために intnest
- *  を使用している．これを用いてコンテキストを判断する．
- */
-
-Inline bool_t sense_context( void )
-{
-	/*  ネストカウンタ0より大なら非タスクコンテキスト  */
-	return ( intnest > 0U );
-}
 
 
 #endif

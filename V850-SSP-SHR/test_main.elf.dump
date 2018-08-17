@@ -61,7 +61,7 @@ Disassembly of section .vector:
 	...
  1d0:	80 07 12 07 	jr	8e2 <_default_int_handler>
 	...
- 1e0:	80 07 40 10 	jr	1220 <_interrupt>
+ 1e0:	80 07 50 10 	jr	1230 <_interrupt>
 	...
  1f0:	80 07 f2 06 	jr	8e2 <_default_int_handler>
 	...
@@ -256,13 +256,13 @@ Disassembly of section .text:
 
 000007d0 <__text>:
      7d0:	e0 07 60 01 	di	
-     7d4:	40 1e ff 06 	movhi	1791, r0, sp
-     7d8:	23 1e a0 70 	movea	28832, sp, sp
+     7d4:	40 1e 00 07 	movhi	1792, r0, sp
+     7d8:	23 1e 10 84 	movea	-31728, sp, sp
      7dc:	03 1e 00 04 	addi	1024, sp, sp
-     7e0:	80 ff 64 0b 	jarl	1344 <_bss_clear>, lp
-     7e4:	80 ff a8 0b 	jarl	138c <_data_init>, lp
+     7e0:	80 ff 36 0c 	jarl	1416 <_bss_clear>, lp
+     7e4:	80 ff 7a 0c 	jarl	145e <_data_init>, lp
      7e8:	e0 87 60 01 	ei	
-     7ec:	80 ff 1c 0b 	jarl	1308 <_main>, lp
+     7ec:	80 ff 2c 0b 	jarl	1318 <_setup>, lp
      7f0:	e0 07 20 01 	halt	
 	...
 
@@ -459,7 +459,7 @@ Disassembly of section .text:
      a0a:	6a 00       	jmp	[r10]
      a0c:	3d 57 01 00 	ld.w	0[r29], r10
      a10:	84 52       	shr	4, r10
-     a12:	2c 06 8c 70 	mov	0x6ff708c, r12
+     a12:	2c 06 d8 75 	mov	0x6ff75d8, r12
      a16:	ff 06 
      a18:	0a 58       	mov	r10, r11
      a1a:	ca 59       	add	r10, r11
@@ -476,7 +476,7 @@ Disassembly of section .text:
      a38:	cb 00       	zxh	r11
      a3a:	4c 59       	and	r12, r11
      a3c:	cb 66 ff ff 	andi	65535, r11, r12
-     a40:	2b 06 8c 70 	mov	0x6ff708c, r11
+     a40:	2b 06 d8 75 	mov	0x6ff75d8, r11
      a44:	ff 06 
      a46:	ca 51       	add	r10, r10
      a48:	cb 51       	add	r11, r10
@@ -674,7 +674,7 @@ Disassembly of section .text:
      c58:	6a 00       	jmp	[r10]
      c5a:	3d 57 01 00 	ld.w	0[r29], r10
      c5e:	84 52       	shr	4, r10
-     c60:	2c 06 8c 70 	mov	0x6ff708c, r12
+     c60:	2c 06 d8 75 	mov	0x6ff75d8, r12
      c64:	ff 06 
      c66:	0a 58       	mov	r10, r11
      c68:	ca 59       	add	r10, r11
@@ -691,7 +691,7 @@ Disassembly of section .text:
      c86:	cb 00       	zxh	r11
      c88:	4c 59       	and	r12, r11
      c8a:	cb 66 ff ff 	andi	65535, r11, r12
-     c8e:	2b 06 8c 70 	mov	0x6ff708c, r11
+     c8e:	2b 06 d8 75 	mov	0x6ff75d8, r11
      c92:	ff 06 
      c94:	ca 51       	add	r10, r10
      c96:	cb 51       	add	r11, r10
@@ -709,7 +709,7 @@ Disassembly of section .text:
      cb4:	63 ff 05 00 	st.w	lp, 4[sp]
      cb8:	63 ef 01 00 	st.w	r29, 0[sp]
      cbc:	03 e8       	mov	sp, r29
-     cbe:	26 06 04 14 	mov	0x1404, r6
+     cbe:	26 06 08 2e 	mov	0x2e08, r6
      cc2:	00 00 
      cc4:	2a 06 60 0b 	mov	0xb60, r10
      cc8:	00 00 
@@ -954,7 +954,7 @@ Disassembly of section .text:
      f5a:	7d 37 01 00 	st.w	r6, 0[r29]
      f5e:	20 56 e8 03 	movea	1000, r0, r10
      f62:	7d 57 11 00 	st.w	r10, 16[r29]
-     f66:	2a 06 9c 70 	mov	0x6ff709c, r10
+     f66:	2a 06 e8 75 	mov	0x6ff75e8, r10
      f6a:	ff 06 
      f6c:	6a 07 01 00 	st.w	r0, 0[r10]
      f70:	20 36 b0 f5 	movea	-2640, r0, r6
@@ -1171,201 +1171,2532 @@ Disassembly of section .text:
     11d2:	80 ff 04 00 	jarl	11d6 <_target_hrt_handler+0x1a>, lp
     11d6:	44 fa       	add	4, lp
     11d8:	6a 00       	jmp	[r10]
-    11da:	2a 06 9c 70 	mov	0x6ff709c, r10
+    11da:	2a 06 e8 75 	mov	0x6ff75e8, r10
     11de:	ff 06 
     11e0:	2a 57 01 00 	ld.w	0[r10], r10
     11e4:	0a 5e 01 00 	addi	1, r10, r11
-    11e8:	2a 06 9c 70 	mov	0x6ff709c, r10
+    11e8:	2a 06 e8 75 	mov	0x6ff75e8, r10
     11ec:	ff 06 
     11ee:	6a 5f 01 00 	st.w	r11, 0[r10]
-    11f2:	1d 18       	mov	r29, sp
-    11f4:	23 ff 05 00 	ld.w	4[sp], lp
-    11f8:	23 ef 01 00 	ld.w	0[sp], r29
-    11fc:	48 1a       	add	8, sp
-    11fe:	7f 00       	jmp	[lp]
+    11f2:	26 06 30 1c 	mov	0x1c30, r6
+    11f6:	00 00 
+    11f8:	2a 06 ba 1d 	mov	0x1dba, r10
+    11fc:	00 00 
+    11fe:	80 ff 04 00 	jarl	1202 <_target_hrt_handler+0x46>, lp
+    1202:	44 fa       	add	4, lp
+    1204:	6a 00       	jmp	[r10]
+    1206:	1d 18       	mov	r29, sp
+    1208:	23 ff 05 00 	ld.w	4[sp], lp
+    120c:	23 ef 01 00 	ld.w	0[sp], r29
+    1210:	48 1a       	add	8, sp
+    1212:	7f 00       	jmp	[lp]
 
-00001200 <_target_hrt_get_current>:
-    1200:	5c 1a       	add	-4, sp
-    1202:	63 ef 01 00 	st.w	r29, 0[sp]
-    1206:	03 e8       	mov	sp, r29
-    1208:	2a 06 9c 70 	mov	0x6ff709c, r10
-    120c:	ff 06 
-    120e:	2a 57 01 00 	ld.w	0[r10], r10
-    1212:	1d 18       	mov	r29, sp
-    1214:	23 ef 01 00 	ld.w	0[sp], r29
-    1218:	44 1a       	add	4, sp
-    121a:	7f 00       	jmp	[lp]
-    121c:	00 00       	nop	
+00001214 <_target_hrt_get_current>:
+    1214:	5c 1a       	add	-4, sp
+    1216:	63 ef 01 00 	st.w	r29, 0[sp]
+    121a:	03 e8       	mov	sp, r29
+    121c:	2a 06 e8 75 	mov	0x6ff75e8, r10
+    1220:	ff 06 
+    1222:	2a 57 01 00 	ld.w	0[r10], r10
+    1226:	1d 18       	mov	r29, sp
+    1228:	23 ef 01 00 	ld.w	0[sp], r29
+    122c:	44 1a       	add	4, sp
+    122e:	7f 00       	jmp	[lp]
+
+00001230 <_interrupt>:
+    1230:	03 1e b0 ff 	addi	-80, sp, sp
+    1234:	63 f7 0d 00 	st.w	ep, 12[sp]
+    1238:	03 f0       	mov	sp, ep
+    123a:	25 0d       	sst.w	r1, 72[ep]
+    123c:	23 35       	sst.w	r6, 68[ep]
+    123e:	21 3d       	sst.w	r7, 64[ep]
+    1240:	1f 45       	sst.w	r8, 60[ep]
+    1242:	1d 4d       	sst.w	r9, 56[ep]
+    1244:	1b 55       	sst.w	r10, 52[ep]
+    1246:	19 5d       	sst.w	r11, 48[ep]
+    1248:	17 65       	sst.w	r12, 44[ep]
+    124a:	15 6d       	sst.w	r13, 40[ep]
+    124c:	13 75       	sst.w	r14, 36[ep]
+    124e:	11 7d       	sst.w	r15, 32[ep]
+    1250:	0f 85       	sst.w	r16, 28[ep]
+    1252:	0d 8d       	sst.w	r17, 24[ep]
+    1254:	0b 95       	sst.w	r18, 20[ep]
+    1256:	09 9d       	sst.w	r19, 16[ep]
+    1258:	05 fd       	sst.w	lp, 8[ep]
+    125a:	e0 5f 40 00 	stsr	eipc/vip/mpm, r11
+    125e:	03 5d       	sst.w	r11, 4[ep]
+    1260:	e1 5f 40 00 	stsr	eipsw/mpc, r11
+    1264:	01 5d       	sst.w	r11, 0[ep]
+    1266:	e4 37 40 00 	stsr	ecr/vmecr, r6
+    126a:	40 56 00 00 	movhi	0, r0, r10
+    126e:	2a 56 f6 08 	movea	2294, r10, r10
+    1272:	40 fe 00 00 	movhi	0, r0, lp
+    1276:	3f fe 7c 12 	movea	4732, lp, lp
+    127a:	6a 00       	jmp	[r10]
+
+0000127c <end_int_handler>:
+    127c:	03 f0       	mov	sp, ep
+    127e:	02 5d       	sld.w	4[ep], r11
+    1280:	eb 07 20 00 	ldsr	r11, eipc/vip/mpm
+    1284:	00 5d       	sld.w	0[ep], r11
+    1286:	eb 0f 20 00 	ldsr	r11, eipsw/mpc
+    128a:	24 0d       	sld.w	72[ep], r1
+    128c:	22 35       	sld.w	68[ep], r6
+    128e:	20 3d       	sld.w	64[ep], r7
+    1290:	1e 45       	sld.w	60[ep], r8
+    1292:	1c 4d       	sld.w	56[ep], r9
+    1294:	1a 55       	sld.w	52[ep], r10
+    1296:	18 5d       	sld.w	48[ep], r11
+    1298:	16 65       	sld.w	44[ep], r12
+    129a:	14 6d       	sld.w	40[ep], r13
+    129c:	12 75       	sld.w	36[ep], r14
+    129e:	10 7d       	sld.w	32[ep], r15
+    12a0:	0e 85       	sld.w	28[ep], r16
+    12a2:	0c 8d       	sld.w	24[ep], r17
+    12a4:	0a 95       	sld.w	20[ep], r18
+    12a6:	08 9d       	sld.w	16[ep], r19
+    12a8:	04 fd       	sld.w	8[ep], lp
+    12aa:	1e 1e 50 00 	addi	80, ep, sp
+    12ae:	06 f5       	sld.w	12[ep], ep
+    12b0:	e0 07 40 01 	reti	
 	...
 
-00001220 <_interrupt>:
-    1220:	03 1e b0 ff 	addi	-80, sp, sp
-    1224:	63 f7 0d 00 	st.w	ep, 12[sp]
-    1228:	03 f0       	mov	sp, ep
-    122a:	25 0d       	sst.w	r1, 72[ep]
-    122c:	23 35       	sst.w	r6, 68[ep]
-    122e:	21 3d       	sst.w	r7, 64[ep]
-    1230:	1f 45       	sst.w	r8, 60[ep]
-    1232:	1d 4d       	sst.w	r9, 56[ep]
-    1234:	1b 55       	sst.w	r10, 52[ep]
-    1236:	19 5d       	sst.w	r11, 48[ep]
-    1238:	17 65       	sst.w	r12, 44[ep]
-    123a:	15 6d       	sst.w	r13, 40[ep]
-    123c:	13 75       	sst.w	r14, 36[ep]
-    123e:	11 7d       	sst.w	r15, 32[ep]
-    1240:	0f 85       	sst.w	r16, 28[ep]
-    1242:	0d 8d       	sst.w	r17, 24[ep]
-    1244:	0b 95       	sst.w	r18, 20[ep]
-    1246:	09 9d       	sst.w	r19, 16[ep]
-    1248:	05 fd       	sst.w	lp, 8[ep]
-    124a:	e0 5f 40 00 	stsr	eipc/vip/mpm, r11
-    124e:	03 5d       	sst.w	r11, 4[ep]
-    1250:	e1 5f 40 00 	stsr	eipsw/mpc, r11
-    1254:	01 5d       	sst.w	r11, 0[ep]
-    1256:	e4 37 40 00 	stsr	ecr/vmecr, r6
-    125a:	40 56 00 00 	movhi	0, r0, r10
-    125e:	2a 56 f6 08 	movea	2294, r10, r10
-    1262:	40 fe 00 00 	movhi	0, r0, lp
-    1266:	3f fe 6c 12 	movea	4716, lp, lp
-    126a:	6a 00       	jmp	[r10]
+000012c0 <_test_print>:
+    12c0:	54 1a       	add	-12, sp
+    12c2:	63 ef 09 00 	st.w	r29, 8[sp]
+    12c6:	03 e8       	mov	sp, r29
+    12c8:	7d 37 01 00 	st.w	r6, 0[r29]
+    12cc:	7d 07 05 00 	st.w	r0, 4[r29]
+    12d0:	c5 15       	br	12f8 <_test_print+0x38>
+    12d2:	20 56 07 fa 	movea	-1529, r0, r10
+    12d6:	3d 5f 05 00 	ld.w	4[r29], r11
+    12da:	3d 67 01 00 	ld.w	0[r29], r12
+    12de:	cc 59       	add	r12, r11
+    12e0:	0b 5f 00 00 	ld.b	0[r11], r11
+    12e4:	d8 5a       	shl	24, r11
+    12e6:	b8 5a       	sar	24, r11
+    12e8:	8b 00       	zxb	r11
+    12ea:	4a 5f 00 00 	st.b	r11, 0[r10]
+    12ee:	3d 57 05 00 	ld.w	4[r29], r10
+    12f2:	41 52       	add	1, r10
+    12f4:	7d 57 05 00 	st.w	r10, 4[r29]
+    12f8:	3d 57 05 00 	ld.w	4[r29], r10
+    12fc:	3d 5f 01 00 	ld.w	0[r29], r11
+    1300:	cb 51       	add	r11, r10
+    1302:	0a 57 00 00 	ld.b	0[r10], r10
+    1306:	d8 52       	shl	24, r10
+    1308:	b8 52       	sar	24, r10
+    130a:	60 52       	cmp	0, r10
+    130c:	ba e5       	bne	12d2 <_test_print+0x12>
+    130e:	1d 18       	mov	r29, sp
+    1310:	23 ef 09 00 	ld.w	8[sp], r29
+    1314:	4c 1a       	add	12, sp
+    1316:	7f 00       	jmp	[lp]
 
-0000126c <end_int_handler>:
-    126c:	03 f0       	mov	sp, ep
-    126e:	02 5d       	sld.w	4[ep], r11
-    1270:	eb 07 20 00 	ldsr	r11, eipc/vip/mpm
-    1274:	00 5d       	sld.w	0[ep], r11
-    1276:	eb 0f 20 00 	ldsr	r11, eipsw/mpc
-    127a:	24 0d       	sld.w	72[ep], r1
-    127c:	22 35       	sld.w	68[ep], r6
-    127e:	20 3d       	sld.w	64[ep], r7
-    1280:	1e 45       	sld.w	60[ep], r8
-    1282:	1c 4d       	sld.w	56[ep], r9
-    1284:	1a 55       	sld.w	52[ep], r10
-    1286:	18 5d       	sld.w	48[ep], r11
-    1288:	16 65       	sld.w	44[ep], r12
-    128a:	14 6d       	sld.w	40[ep], r13
-    128c:	12 75       	sld.w	36[ep], r14
-    128e:	10 7d       	sld.w	32[ep], r15
-    1290:	0e 85       	sld.w	28[ep], r16
-    1292:	0c 8d       	sld.w	24[ep], r17
-    1294:	0a 95       	sld.w	20[ep], r18
-    1296:	08 9d       	sld.w	16[ep], r19
-    1298:	04 fd       	sld.w	8[ep], lp
-    129a:	1e 1e 50 00 	addi	80, ep, sp
-    129e:	06 f5       	sld.w	12[ep], ep
-    12a0:	e0 07 40 01 	reti	
-	...
+00001318 <_setup>:
+    1318:	58 1a       	add	-8, sp
+    131a:	63 ff 05 00 	st.w	lp, 4[sp]
+    131e:	63 ef 01 00 	st.w	r29, 0[sp]
+    1322:	03 e8       	mov	sp, r29
+    1324:	2a 06 f0 0c 	mov	0xcf0, r10
+    1328:	00 00 
+    132a:	80 ff 04 00 	jarl	132e <_setup+0x16>, lp
+    132e:	44 fa       	add	4, lp
+    1330:	6a 00       	jmp	[r10]
+    1332:	2a 06 14 15 	mov	0x1514, r10
+    1336:	00 00 
+    1338:	80 ff 04 00 	jarl	133c <_setup+0x24>, lp
+    133c:	44 fa       	add	4, lp
+    133e:	6a 00       	jmp	[r10]
+    1340:	85 05       	br	1340 <_setup+0x28>
 
-000012b0 <_test_print>:
-    12b0:	54 1a       	add	-12, sp
-    12b2:	63 ef 09 00 	st.w	r29, 8[sp]
-    12b6:	03 e8       	mov	sp, r29
-    12b8:	7d 37 01 00 	st.w	r6, 0[r29]
-    12bc:	7d 07 05 00 	st.w	r0, 4[r29]
-    12c0:	c5 15       	br	12e8 <_test_print+0x38>
-    12c2:	20 56 07 fa 	movea	-1529, r0, r10
-    12c6:	3d 5f 05 00 	ld.w	4[r29], r11
-    12ca:	3d 67 01 00 	ld.w	0[r29], r12
-    12ce:	cc 59       	add	r12, r11
-    12d0:	0b 5f 00 00 	ld.b	0[r11], r11
-    12d4:	d8 5a       	shl	24, r11
-    12d6:	b8 5a       	sar	24, r11
-    12d8:	8b 00       	zxb	r11
-    12da:	4a 5f 00 00 	st.b	r11, 0[r10]
-    12de:	3d 57 05 00 	ld.w	4[r29], r10
-    12e2:	41 52       	add	1, r10
-    12e4:	7d 57 05 00 	st.w	r10, 4[r29]
-    12e8:	3d 57 05 00 	ld.w	4[r29], r10
-    12ec:	3d 5f 01 00 	ld.w	0[r29], r11
-    12f0:	cb 51       	add	r11, r10
-    12f2:	0a 57 00 00 	ld.b	0[r10], r10
-    12f6:	d8 52       	shl	24, r10
-    12f8:	b8 52       	sar	24, r10
-    12fa:	60 52       	cmp	0, r10
-    12fc:	ba e5       	bne	12c2 <_test_print+0x12>
-    12fe:	1d 18       	mov	r29, sp
-    1300:	23 ef 09 00 	ld.w	8[sp], r29
-    1304:	4c 1a       	add	12, sp
-    1306:	7f 00       	jmp	[lp]
+00001342 <_task1>:
+    1342:	54 1a       	add	-12, sp
+    1344:	63 ff 09 00 	st.w	lp, 8[sp]
+    1348:	63 ef 05 00 	st.w	r29, 4[sp]
+    134c:	03 e8       	mov	sp, r29
+    134e:	7d 37 01 00 	st.w	r6, 0[r29]
+    1352:	26 06 38 2e 	mov	0x2e38, r6
+    1356:	00 00 
+    1358:	2a 06 c0 12 	mov	0x12c0, r10
+    135c:	00 00 
+    135e:	80 ff 04 00 	jarl	1362 <_task1+0x20>, lp
+    1362:	44 fa       	add	4, lp
+    1364:	6a 00       	jmp	[r10]
+    1366:	1d 18       	mov	r29, sp
+    1368:	23 ff 09 00 	ld.w	8[sp], lp
+    136c:	23 ef 05 00 	ld.w	4[sp], r29
+    1370:	4c 1a       	add	12, sp
+    1372:	7f 00       	jmp	[lp]
 
-00001308 <_main>:
-    1308:	58 1a       	add	-8, sp
-    130a:	63 ff 05 00 	st.w	lp, 4[sp]
-    130e:	63 ef 01 00 	st.w	r29, 0[sp]
-    1312:	03 e8       	mov	sp, r29
-    1314:	2a 06 f0 0c 	mov	0xcf0, r10
-    1318:	00 00 
-    131a:	80 ff 04 00 	jarl	131e <_main+0x16>, lp
-    131e:	44 fa       	add	4, lp
-    1320:	6a 00       	jmp	[r10]
-    1322:	26 06 34 14 	mov	0x1434, r6
-    1326:	00 00 
-    1328:	2a 06 b0 12 	mov	0x12b0, r10
-    132c:	00 00 
-    132e:	80 ff 04 00 	jarl	1332 <_main+0x2a>, lp
-    1332:	44 fa       	add	4, lp
-    1334:	6a 00       	jmp	[r10]
-    1336:	2a 06 88 70 	mov	0x6ff7088, r10
-    133a:	ff 06 
-    133c:	0a 5a       	mov	10, r11
-    133e:	6a 5f 01 00 	st.w	r11, 0[r10]
-    1342:	85 05       	br	1342 <_main+0x3a>
+00001374 <_task2>:
+    1374:	54 1a       	add	-12, sp
+    1376:	63 ff 09 00 	st.w	lp, 8[sp]
+    137a:	63 ef 05 00 	st.w	r29, 4[sp]
+    137e:	03 e8       	mov	sp, r29
+    1380:	7d 37 01 00 	st.w	r6, 0[r29]
+    1384:	26 06 47 2e 	mov	0x2e47, r6
+    1388:	00 00 
+    138a:	2a 06 c0 12 	mov	0x12c0, r10
+    138e:	00 00 
+    1390:	80 ff 04 00 	jarl	1394 <_task2+0x20>, lp
+    1394:	44 fa       	add	4, lp
+    1396:	6a 00       	jmp	[r10]
+    1398:	1d 18       	mov	r29, sp
+    139a:	23 ff 09 00 	ld.w	8[sp], lp
+    139e:	23 ef 05 00 	ld.w	4[sp], r29
+    13a2:	4c 1a       	add	12, sp
+    13a4:	7f 00       	jmp	[lp]
 
-00001344 <_bss_clear>:
-    1344:	54 1a       	add	-12, sp
-    1346:	63 ef 09 00 	st.w	r29, 8[sp]
-    134a:	03 e8       	mov	sp, r29
-    134c:	2a 06 00 70 	mov	0x6ff7000, r10
-    1350:	ff 06 
-    1352:	7d 57 05 00 	st.w	r10, 4[r29]
-    1356:	2a 06 a0 70 	mov	0x6ff70a0, r10
-    135a:	ff 06 
-    135c:	7d 57 01 00 	st.w	r10, 0[r29]
-    1360:	a5 0d       	br	1374 <_bss_clear+0x30>
-    1362:	3d 57 05 00 	ld.w	4[r29], r10
-    1366:	4a 07 00 00 	st.b	r0, 0[r10]
-    136a:	3d 57 05 00 	ld.w	4[r29], r10
-    136e:	41 52       	add	1, r10
-    1370:	7d 57 05 00 	st.w	r10, 4[r29]
-    1374:	3d 5f 05 00 	ld.w	4[r29], r11
-    1378:	3d 57 01 00 	ld.w	0[r29], r10
-    137c:	ea 59       	cmp	r10, r11
-    137e:	a1 f5       	bl	1362 <_bss_clear+0x1e>
-    1380:	00 00       	nop	
-    1382:	1d 18       	mov	r29, sp
-    1384:	23 ef 09 00 	ld.w	8[sp], r29
-    1388:	4c 1a       	add	12, sp
-    138a:	7f 00       	jmp	[lp]
+000013a6 <_cyclic_handler>:
+    13a6:	58 1a       	add	-8, sp
+    13a8:	63 ef 05 00 	st.w	r29, 4[sp]
+    13ac:	03 e8       	mov	sp, r29
+    13ae:	7d 37 01 00 	st.w	r6, 0[r29]
+    13b2:	1d 18       	mov	r29, sp
+    13b4:	23 ef 05 00 	ld.w	4[sp], r29
+    13b8:	48 1a       	add	8, sp
+    13ba:	7f 00       	jmp	[lp]
 
-0000138c <_data_init>:
-    138c:	50 1a       	add	-16, sp
-    138e:	63 ef 0d 00 	st.w	r29, 12[sp]
-    1392:	03 e8       	mov	sp, r29
-    1394:	2a 06 44 14 	mov	0x1444, r10
-    1398:	00 00 
-    139a:	7d 57 09 00 	st.w	r10, 8[r29]
-    139e:	2a 06 44 14 	mov	0x1444, r10
-    13a2:	00 00 
-    13a4:	7d 57 01 00 	st.w	r10, 0[r29]
-    13a8:	2a 06 00 70 	mov	0x6ff7000, r10
-    13ac:	ff 06 
-    13ae:	7d 57 05 00 	st.w	r10, 4[r29]
-    13b2:	b5 15       	br	13d8 <_data_init+0x4c>
-    13b4:	3d 57 09 00 	ld.w	8[r29], r10
-    13b8:	8a 5f 01 00 	ld.bu	0[r10], r11
-    13bc:	3d 57 05 00 	ld.w	4[r29], r10
-    13c0:	4a 5f 00 00 	st.b	r11, 0[r10]
-    13c4:	3d 57 05 00 	ld.w	4[r29], r10
-    13c8:	41 52       	add	1, r10
-    13ca:	7d 57 05 00 	st.w	r10, 4[r29]
-    13ce:	3d 57 09 00 	ld.w	8[r29], r10
-    13d2:	41 52       	add	1, r10
-    13d4:	7d 57 09 00 	st.w	r10, 8[r29]
-    13d8:	3d 5f 09 00 	ld.w	8[r29], r11
-    13dc:	3d 57 01 00 	ld.w	0[r29], r10
-    13e0:	ea 59       	cmp	r10, r11
-    13e2:	91 ed       	bl	13b4 <_data_init+0x28>
-    13e4:	1d 18       	mov	r29, sp
-    13e6:	23 ef 0d 00 	ld.w	12[sp], r29
-    13ea:	03 1e 10 00 	addi	16, sp, sp
-    13ee:	7f 00       	jmp	[lp]
+000013bc <_alarm_handler>:
+    13bc:	58 1a       	add	-8, sp
+    13be:	63 ef 05 00 	st.w	r29, 4[sp]
+    13c2:	03 e8       	mov	sp, r29
+    13c4:	7d 37 01 00 	st.w	r6, 0[r29]
+    13c8:	1d 18       	mov	r29, sp
+    13ca:	23 ef 05 00 	ld.w	4[sp], r29
+    13ce:	48 1a       	add	8, sp
+    13d0:	7f 00       	jmp	[lp]
+
+000013d2 <_alarm_handler2>:
+    13d2:	58 1a       	add	-8, sp
+    13d4:	63 ef 05 00 	st.w	r29, 4[sp]
+    13d8:	03 e8       	mov	sp, r29
+    13da:	7d 37 01 00 	st.w	r6, 0[r29]
+    13de:	1d 18       	mov	r29, sp
+    13e0:	23 ef 05 00 	ld.w	4[sp], r29
+    13e4:	48 1a       	add	8, sp
+    13e6:	7f 00       	jmp	[lp]
+
+000013e8 <_main>:
+    13e8:	58 1a       	add	-8, sp
+    13ea:	63 ff 05 00 	st.w	lp, 4[sp]
+    13ee:	63 ef 01 00 	st.w	r29, 0[sp]
+    13f2:	03 e8       	mov	sp, r29
+    13f4:	26 06 56 2e 	mov	0x2e56, r6
+    13f8:	00 00 
+    13fa:	2a 06 c0 12 	mov	0x12c0, r10
+    13fe:	00 00 
+    1400:	80 ff 04 00 	jarl	1404 <_main+0x1c>, lp
+    1404:	44 fa       	add	4, lp
+    1406:	6a 00       	jmp	[r10]
+    1408:	2a 06 8c 70 	mov	0x6ff708c, r10
+    140c:	ff 06 
+    140e:	0a 5a       	mov	10, r11
+    1410:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1414:	85 05       	br	1414 <_main+0x2c>
+
+00001416 <_bss_clear>:
+    1416:	54 1a       	add	-12, sp
+    1418:	63 ef 09 00 	st.w	r29, 8[sp]
+    141c:	03 e8       	mov	sp, r29
+    141e:	2a 06 00 70 	mov	0x6ff7000, r10
+    1422:	ff 06 
+    1424:	7d 57 05 00 	st.w	r10, 4[r29]
+    1428:	2a 06 10 84 	mov	0x6ff8410, r10
+    142c:	ff 06 
+    142e:	7d 57 01 00 	st.w	r10, 0[r29]
+    1432:	a5 0d       	br	1446 <_bss_clear+0x30>
+    1434:	3d 57 05 00 	ld.w	4[r29], r10
+    1438:	4a 07 00 00 	st.b	r0, 0[r10]
+    143c:	3d 57 05 00 	ld.w	4[r29], r10
+    1440:	41 52       	add	1, r10
+    1442:	7d 57 05 00 	st.w	r10, 4[r29]
+    1446:	3d 5f 05 00 	ld.w	4[r29], r11
+    144a:	3d 57 01 00 	ld.w	0[r29], r10
+    144e:	ea 59       	cmp	r10, r11
+    1450:	a1 f5       	bl	1434 <_bss_clear+0x1e>
+    1452:	00 00       	nop	
+    1454:	1d 18       	mov	r29, sp
+    1456:	23 ef 09 00 	ld.w	8[sp], r29
+    145a:	4c 1a       	add	12, sp
+    145c:	7f 00       	jmp	[lp]
+
+0000145e <_data_init>:
+    145e:	50 1a       	add	-16, sp
+    1460:	63 ef 0d 00 	st.w	r29, 12[sp]
+    1464:	03 e8       	mov	sp, r29
+    1466:	2a 06 e4 2e 	mov	0x2ee4, r10
+    146a:	00 00 
+    146c:	7d 57 09 00 	st.w	r10, 8[r29]
+    1470:	2a 06 e4 2e 	mov	0x2ee4, r10
+    1474:	00 00 
+    1476:	7d 57 01 00 	st.w	r10, 0[r29]
+    147a:	2a 06 00 70 	mov	0x6ff7000, r10
+    147e:	ff 06 
+    1480:	7d 57 05 00 	st.w	r10, 4[r29]
+    1484:	b5 15       	br	14aa <_data_init+0x4c>
+    1486:	3d 57 09 00 	ld.w	8[r29], r10
+    148a:	8a 5f 01 00 	ld.bu	0[r10], r11
+    148e:	3d 57 05 00 	ld.w	4[r29], r10
+    1492:	4a 5f 00 00 	st.b	r11, 0[r10]
+    1496:	3d 57 05 00 	ld.w	4[r29], r10
+    149a:	41 52       	add	1, r10
+    149c:	7d 57 05 00 	st.w	r10, 4[r29]
+    14a0:	3d 57 09 00 	ld.w	8[r29], r10
+    14a4:	41 52       	add	1, r10
+    14a6:	7d 57 09 00 	st.w	r10, 8[r29]
+    14aa:	3d 5f 09 00 	ld.w	8[r29], r11
+    14ae:	3d 57 01 00 	ld.w	0[r29], r10
+    14b2:	ea 59       	cmp	r10, r11
+    14b4:	91 ed       	bl	1486 <_data_init+0x28>
+    14b6:	1d 18       	mov	r29, sp
+    14b8:	23 ef 0d 00 	ld.w	12[sp], r29
+    14bc:	03 1e 10 00 	addi	16, sp, sp
+    14c0:	7f 00       	jmp	[lp]
+
+000014c2 <__kernel_initialize_object>:
+    14c2:	58 1a       	add	-8, sp
+    14c4:	63 ff 05 00 	st.w	lp, 4[sp]
+    14c8:	63 ef 01 00 	st.w	r29, 0[sp]
+    14cc:	03 e8       	mov	sp, r29
+    14ce:	2a 06 b2 2a 	mov	0x2ab2, r10
+    14d2:	00 00 
+    14d4:	80 ff 04 00 	jarl	14d8 <__kernel_initialize_object+0x16>, lp
+    14d8:	44 fa       	add	4, lp
+    14da:	6a 00       	jmp	[r10]
+    14dc:	2a 06 a0 17 	mov	0x17a0, r10
+    14e0:	00 00 
+    14e2:	80 ff 04 00 	jarl	14e6 <__kernel_initialize_object+0x24>, lp
+    14e6:	44 fa       	add	4, lp
+    14e8:	6a 00       	jmp	[r10]
+    14ea:	2a 06 58 25 	mov	0x2558, r10
+    14ee:	00 00 
+    14f0:	80 ff 04 00 	jarl	14f4 <__kernel_initialize_object+0x32>, lp
+    14f4:	44 fa       	add	4, lp
+    14f6:	6a 00       	jmp	[r10]
+    14f8:	2a 06 5c 20 	mov	0x205c, r10
+    14fc:	00 00 
+    14fe:	80 ff 04 00 	jarl	1502 <__kernel_initialize_object+0x40>, lp
+    1502:	44 fa       	add	4, lp
+    1504:	6a 00       	jmp	[r10]
+    1506:	1d 18       	mov	r29, sp
+    1508:	23 ff 05 00 	ld.w	4[sp], lp
+    150c:	23 ef 01 00 	ld.w	0[sp], r29
+    1510:	48 1a       	add	8, sp
+    1512:	7f 00       	jmp	[lp]
+
+00001514 <_sta_ker>:
+    1514:	58 1a       	add	-8, sp
+    1516:	63 ff 05 00 	st.w	lp, 4[sp]
+    151a:	63 ef 01 00 	st.w	r29, 0[sp]
+    151e:	03 e8       	mov	sp, r29
+    1520:	2a 06 c2 14 	mov	0x14c2, r10
+    1524:	00 00 
+    1526:	80 ff 04 00 	jarl	152a <_sta_ker+0x16>, lp
+    152a:	44 fa       	add	4, lp
+    152c:	6a 00       	jmp	[r10]
+    152e:	2a 06 90 75 	mov	0x6ff7590, r10
+    1532:	ff 06 
+    1534:	01 5a       	mov	1, r11
+    1536:	6a 5f 01 00 	st.w	r11, 0[r10]
+    153a:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    153e:	ff 06 
+    1540:	6a 07 00 00 	st.h	r0, 0[r10]
+    1544:	26 06 b0 83 	mov	0x6ff83b0, r6
+    1548:	ff 06 
+    154a:	2a 06 6e 2d 	mov	0x2d6e, r10
+    154e:	00 00 
+    1550:	80 ff 04 00 	jarl	1554 <_sta_ker+0x40>, lp
+    1554:	44 fa       	add	4, lp
+    1556:	6a 00       	jmp	[r10]
+    1558:	2a 06 6c 1a 	mov	0x1a6c, r10
+    155c:	00 00 
+    155e:	80 ff 04 00 	jarl	1562 <_sta_ker+0x4e>, lp
+    1562:	44 fa       	add	4, lp
+    1564:	6a 00       	jmp	[r10]
+    1566:	1d 18       	mov	r29, sp
+    1568:	23 ff 05 00 	ld.w	4[sp], lp
+    156c:	23 ef 01 00 	ld.w	0[sp], r29
+    1570:	48 1a       	add	8, sp
+    1572:	7f 00       	jmp	[lp]
+
+00001574 <_idle_loop>:
+    1574:	5c 1a       	add	-4, sp
+    1576:	63 ef 01 00 	st.w	r29, 0[sp]
+    157a:	03 e8       	mov	sp, r29
+    157c:	e0 87 60 01 	ei	
+    1580:	e0 07 60 01 	di	
+    1584:	1d 18       	mov	r29, sp
+    1586:	23 ef 01 00 	ld.w	0[sp], r29
+    158a:	44 1a       	add	4, sp
+    158c:	7f 00       	jmp	[lp]
+
+0000158e <_get_ipri_self>:
+    158e:	54 1a       	add	-12, sp
+    1590:	63 ef 09 00 	st.w	r29, 8[sp]
+    1594:	03 e8       	mov	sp, r29
+    1596:	7d 37 01 00 	st.w	r6, 0[r29]
+    159a:	3d 57 01 00 	ld.w	0[r29], r10
+    159e:	60 52       	cmp	0, r10
+    15a0:	f2 05       	be	15ae <_get_ipri_self+0x20>
+    15a2:	3d 57 01 00 	ld.w	0[r29], r10
+    15a6:	5f 52       	add	-1, r10
+    15a8:	7d 57 05 00 	st.w	r10, 4[r29]
+    15ac:	85 0d       	br	15bc <_get_ipri_self+0x2e>
+    15ae:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    15b2:	ff 06 
+    15b4:	2a 57 01 00 	ld.w	0[r10], r10
+    15b8:	7d 57 05 00 	st.w	r10, 4[r29]
+    15bc:	3d 57 05 00 	ld.w	4[r29], r10
+    15c0:	1d 18       	mov	r29, sp
+    15c2:	23 ef 09 00 	ld.w	8[sp], r29
+    15c6:	4c 1a       	add	12, sp
+    15c8:	7f 00       	jmp	[lp]
+
+000015ca <_get_ipri>:
+    15ca:	58 1a       	add	-8, sp
+    15cc:	63 ef 05 00 	st.w	r29, 4[sp]
+    15d0:	03 e8       	mov	sp, r29
+    15d2:	7d 37 01 00 	st.w	r6, 0[r29]
+    15d6:	3d 57 01 00 	ld.w	0[r29], r10
+    15da:	5f 52       	add	-1, r10
+    15dc:	1d 18       	mov	r29, sp
+    15de:	23 ef 05 00 	ld.w	4[sp], r29
+    15e2:	48 1a       	add	8, sp
+    15e4:	7f 00       	jmp	[lp]
+
+000015e6 <__kernel_bitmap_search>:
+    15e6:	54 1a       	add	-12, sp
+    15e8:	63 ef 09 00 	st.w	r29, 8[sp]
+    15ec:	03 e8       	mov	sp, r29
+    15ee:	7d 37 01 00 	st.w	r6, 0[r29]
+    15f2:	7d 07 05 00 	st.w	r0, 4[r29]
+    15f6:	3d 57 01 00 	ld.w	0[r29], r10
+    15fa:	ca 56 0f 00 	andi	15, r10, r10
+    15fe:	60 52       	cmp	0, r10
+    1600:	ba 0d       	bne	1616 <__kernel_bitmap_search+0x30>
+    1602:	3d 57 01 00 	ld.w	0[r29], r10
+    1606:	84 52       	shr	4, r10
+    1608:	7d 57 01 00 	st.w	r10, 0[r29]
+    160c:	3d 57 05 00 	ld.w	4[r29], r10
+    1610:	44 52       	add	4, r10
+    1612:	7d 57 05 00 	st.w	r10, 4[r29]
+    1616:	3d 57 01 00 	ld.w	0[r29], r10
+    161a:	ca 56 0f 00 	andi	15, r10, r10
+    161e:	5f 52       	add	-1, r10
+    1620:	2b 06 d4 2e 	mov	0x2ed4, r11
+    1624:	00 00 
+    1626:	cb 51       	add	r11, r10
+    1628:	8a 57 01 00 	ld.bu	0[r10], r10
+    162c:	0a 58       	mov	r10, r11
+    162e:	3d 57 05 00 	ld.w	4[r29], r10
+    1632:	cb 51       	add	r11, r10
+    1634:	1d 18       	mov	r29, sp
+    1636:	23 ef 09 00 	ld.w	8[sp], r29
+    163a:	4c 1a       	add	12, sp
+    163c:	7f 00       	jmp	[lp]
+
+0000163e <__kernel_primap_empty>:
+    163e:	5c 1a       	add	-4, sp
+    1640:	63 ef 01 00 	st.w	r29, 0[sp]
+    1644:	03 e8       	mov	sp, r29
+    1646:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    164a:	ff 06 
+    164c:	2a 57 01 00 	ld.w	0[r10], r10
+    1650:	60 52       	cmp	0, r10
+    1652:	e2 57 00 00 	setf	z, r10
+    1656:	8a 00       	zxb	r10
+    1658:	1d 18       	mov	r29, sp
+    165a:	23 ef 01 00 	ld.w	0[sp], r29
+    165e:	44 1a       	add	4, sp
+    1660:	7f 00       	jmp	[lp]
+
+00001662 <__kernel_primap_test>:
+    1662:	58 1a       	add	-8, sp
+    1664:	63 ef 05 00 	st.w	r29, 4[sp]
+    1668:	03 e8       	mov	sp, r29
+    166a:	7d 37 01 00 	st.w	r6, 0[r29]
+    166e:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    1672:	ff 06 
+    1674:	2a 5f 01 00 	ld.w	0[r10], r11
+    1678:	3d 57 01 00 	ld.w	0[r29], r10
+    167c:	0b 60       	mov	r11, r12
+    167e:	ea 67 80 00 	shr	r10, r12
+    1682:	0c 50       	mov	r12, r10
+    1684:	ca 56 01 00 	andi	1, r10, r10
+    1688:	60 52       	cmp	0, r10
+    168a:	ea 57 00 00 	setf	nz, r10
+    168e:	8a 00       	zxb	r10
+    1690:	1d 18       	mov	r29, sp
+    1692:	23 ef 05 00 	ld.w	4[sp], r29
+    1696:	48 1a       	add	8, sp
+    1698:	7f 00       	jmp	[lp]
+
+0000169a <_primap_search>:
+    169a:	58 1a       	add	-8, sp
+    169c:	63 ff 05 00 	st.w	lp, 4[sp]
+    16a0:	63 ef 01 00 	st.w	r29, 0[sp]
+    16a4:	03 e8       	mov	sp, r29
+    16a6:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    16aa:	ff 06 
+    16ac:	2a 57 01 00 	ld.w	0[r10], r10
+    16b0:	0a 30       	mov	r10, r6
+    16b2:	2a 06 e6 15 	mov	0x15e6, r10
+    16b6:	00 00 
+    16b8:	80 ff 04 00 	jarl	16bc <_primap_search+0x22>, lp
+    16bc:	44 fa       	add	4, lp
+    16be:	6a 00       	jmp	[r10]
+    16c0:	1d 18       	mov	r29, sp
+    16c2:	23 ff 05 00 	ld.w	4[sp], lp
+    16c6:	23 ef 01 00 	ld.w	0[sp], r29
+    16ca:	48 1a       	add	8, sp
+    16cc:	7f 00       	jmp	[lp]
+
+000016ce <__kernel_primap_set>:
+    16ce:	58 1a       	add	-8, sp
+    16d0:	63 ef 05 00 	st.w	r29, 4[sp]
+    16d4:	03 e8       	mov	sp, r29
+    16d6:	7d 37 01 00 	st.w	r6, 0[r29]
+    16da:	3d 57 01 00 	ld.w	0[r29], r10
+    16de:	01 5a       	mov	1, r11
+    16e0:	ea 5f c0 00 	shl	r10, r11
+    16e4:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    16e8:	ff 06 
+    16ea:	2a 57 01 00 	ld.w	0[r10], r10
+    16ee:	0a 59       	or	r10, r11
+    16f0:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    16f4:	ff 06 
+    16f6:	6a 5f 01 00 	st.w	r11, 0[r10]
+    16fa:	1d 18       	mov	r29, sp
+    16fc:	23 ef 05 00 	ld.w	4[sp], r29
+    1700:	48 1a       	add	8, sp
+    1702:	7f 00       	jmp	[lp]
+
+00001704 <__kernel_primap_clear>:
+    1704:	58 1a       	add	-8, sp
+    1706:	63 ef 05 00 	st.w	r29, 4[sp]
+    170a:	03 e8       	mov	sp, r29
+    170c:	7d 37 01 00 	st.w	r6, 0[r29]
+    1710:	3d 57 01 00 	ld.w	0[r29], r10
+    1714:	01 5a       	mov	1, r11
+    1716:	0b 60       	mov	r11, r12
+    1718:	ea 67 c0 00 	shl	r10, r12
+    171c:	0c 50       	mov	r12, r10
+    171e:	2a 58       	not	r10, r11
+    1720:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    1724:	ff 06 
+    1726:	2a 57 01 00 	ld.w	0[r10], r10
+    172a:	4a 59       	and	r10, r11
+    172c:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    1730:	ff 06 
+    1732:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1736:	1d 18       	mov	r29, sp
+    1738:	23 ef 05 00 	ld.w	4[sp], r29
+    173c:	48 1a       	add	8, sp
+    173e:	7f 00       	jmp	[lp]
+
+00001740 <__kernel_search_schedtsk>:
+    1740:	58 1a       	add	-8, sp
+    1742:	63 ff 05 00 	st.w	lp, 4[sp]
+    1746:	63 ef 01 00 	st.w	r29, 0[sp]
+    174a:	03 e8       	mov	sp, r29
+    174c:	2a 06 9a 16 	mov	0x169a, r10
+    1750:	00 00 
+    1752:	80 ff 04 00 	jarl	1756 <__kernel_search_schedtsk+0x16>, lp
+    1756:	44 fa       	add	4, lp
+    1758:	6a 00       	jmp	[r10]
+    175a:	1d 18       	mov	r29, sp
+    175c:	23 ff 05 00 	ld.w	4[sp], lp
+    1760:	23 ef 01 00 	ld.w	0[sp], r29
+    1764:	48 1a       	add	8, sp
+    1766:	7f 00       	jmp	[lp]
+
+00001768 <__kernel_test_dormant>:
+    1768:	54 1a       	add	-12, sp
+    176a:	63 ff 09 00 	st.w	lp, 8[sp]
+    176e:	63 ef 05 00 	st.w	r29, 4[sp]
+    1772:	03 e8       	mov	sp, r29
+    1774:	7d 37 01 00 	st.w	r6, 0[r29]
+    1778:	3d 37 01 00 	ld.w	0[r29], r6
+    177c:	2a 06 62 16 	mov	0x1662, r10
+    1780:	00 00 
+    1782:	80 ff 04 00 	jarl	1786 <__kernel_test_dormant+0x1e>, lp
+    1786:	44 fa       	add	4, lp
+    1788:	6a 00       	jmp	[r10]
+    178a:	60 52       	cmp	0, r10
+    178c:	e2 57 00 00 	setf	z, r10
+    1790:	8a 00       	zxb	r10
+    1792:	1d 18       	mov	r29, sp
+    1794:	23 ff 09 00 	ld.w	8[sp], lp
+    1798:	23 ef 05 00 	ld.w	4[sp], r29
+    179c:	4c 1a       	add	12, sp
+    179e:	7f 00       	jmp	[lp]
+
+000017a0 <__kernel_initialize_task>:
+    17a0:	54 1a       	add	-12, sp
+    17a2:	63 ff 09 00 	st.w	lp, 8[sp]
+    17a6:	63 ef 05 00 	st.w	r29, 4[sp]
+    17aa:	03 e8       	mov	sp, r29
+    17ac:	2a 06 74 2e 	mov	0x2e74, r10
+    17b0:	00 00 
+    17b2:	2a 5f 01 00 	ld.w	0[r10], r11
+    17b6:	2a 06 f4 83 	mov	0x6ff83f4, r10
+    17ba:	ff 06 
+    17bc:	6a 5f 01 00 	st.w	r11, 0[r10]
+    17c0:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    17c4:	ff 06 
+    17c6:	1f 5a       	mov	-1, r11
+    17c8:	6a 5f 01 00 	st.w	r11, 0[r10]
+    17cc:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    17d0:	ff 06 
+    17d2:	20 5e ff 00 	movea	255, r0, r11
+    17d6:	6a 5f 01 00 	st.w	r11, 0[r10]
+    17da:	7d 07 01 00 	st.w	r0, 0[r29]
+    17de:	d5 2d       	br	1838 <__kernel_initialize_task+0x98>
+    17e0:	3d 57 01 00 	ld.w	0[r29], r10
+    17e4:	0a 30       	mov	r10, r6
+    17e6:	2a 06 62 16 	mov	0x1662, r10
+    17ea:	00 00 
+    17ec:	80 ff 04 00 	jarl	17f0 <__kernel_initialize_task+0x50>, lp
+    17f0:	44 fa       	add	4, lp
+    17f2:	6a 00       	jmp	[r10]
+    17f4:	60 52       	cmp	0, r10
+    17f6:	b2 0d       	be	180c <__kernel_initialize_task+0x6c>
+    17f8:	3d 57 01 00 	ld.w	0[r29], r10
+    17fc:	0a 30       	mov	r10, r6
+    17fe:	2a 06 58 18 	mov	0x1858, r10
+    1802:	00 00 
+    1804:	80 ff 04 00 	jarl	1808 <__kernel_initialize_task+0x68>, lp
+    1808:	44 fa       	add	4, lp
+    180a:	6a 00       	jmp	[r10]
+    180c:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1810:	ff 06 
+    1812:	3d 57 01 00 	ld.w	0[r29], r10
+    1816:	cb 51       	add	r11, r10
+    1818:	4a 07 00 00 	st.b	r0, 0[r10]
+    181c:	2b 06 00 76 	mov	0x6ff7600, r11
+    1820:	ff 06 
+    1822:	3d 57 01 00 	ld.w	0[r29], r10
+    1826:	c2 52       	shl	2, r10
+    1828:	cb 51       	add	r11, r10
+    182a:	6a 07 01 00 	st.w	r0, 0[r10]
+    182e:	3d 57 01 00 	ld.w	0[r29], r10
+    1832:	41 52       	add	1, r10
+    1834:	7d 57 01 00 	st.w	r10, 0[r29]
+    1838:	3d 57 01 00 	ld.w	0[r29], r10
+    183c:	61 52       	cmp	1, r10
+    183e:	97 d5       	ble	17e0 <__kernel_initialize_task+0x40>
+    1840:	2a 06 00 84 	mov	0x6ff8400, r10
+    1844:	ff 06 
+    1846:	6a 07 01 00 	st.w	r0, 0[r10]
+    184a:	1d 18       	mov	r29, sp
+    184c:	23 ff 09 00 	ld.w	8[sp], lp
+    1850:	23 ef 05 00 	ld.w	4[sp], r29
+    1854:	4c 1a       	add	12, sp
+    1856:	7f 00       	jmp	[lp]
+
+00001858 <_make_ctx>:
+    1858:	03 1e e8 ff 	addi	-24, sp, sp
+    185c:	63 ff 15 00 	st.w	lp, 20[sp]
+    1860:	63 ef 11 00 	st.w	r29, 16[sp]
+    1864:	03 e8       	mov	sp, r29
+    1866:	7d 37 01 00 	st.w	r6, 0[r29]
+    186a:	7d 07 09 00 	st.w	r0, 8[r29]
+    186e:	3d 57 01 00 	ld.w	0[r29], r10
+    1872:	7d 57 0d 00 	st.w	r10, 12[r29]
+    1876:	26 06 94 75 	mov	0x6ff7594, r6
+    187a:	ff 06 
+    187c:	2a 06 6e 2d 	mov	0x2d6e, r10
+    1880:	00 00 
+    1882:	80 ff 04 00 	jarl	1886 <_make_ctx+0x2e>, lp
+    1886:	44 fa       	add	4, lp
+    1888:	6a 00       	jmp	[r10]
+    188a:	60 52       	cmp	0, r10
+    188c:	ea 6d       	bne	1968 <_make_ctx+0x110>
+    188e:	3d 57 0d 00 	ld.w	12[r29], r10
+    1892:	c6 52       	shl	6, r10
+    1894:	2b 06 08 76 	mov	0x6ff7608, r11
+    1898:	ff 06 
+    189a:	cb 51       	add	r11, r10
+    189c:	0a 30       	mov	r10, r6
+    189e:	2a 06 6e 2d 	mov	0x2d6e, r10
+    18a2:	00 00 
+    18a4:	80 ff 04 00 	jarl	18a8 <_make_ctx+0x50>, lp
+    18a8:	44 fa       	add	4, lp
+    18aa:	6a 00       	jmp	[r10]
+    18ac:	60 52       	cmp	0, r10
+    18ae:	ca 0d       	bne	18c6 <_make_ctx+0x6e>
+    18b0:	26 06 94 75 	mov	0x6ff7594, r6
+    18b4:	ff 06 
+    18b6:	01 3a       	mov	1, r7
+    18b8:	2a 06 ae 2d 	mov	0x2dae, r10
+    18bc:	00 00 
+    18be:	80 ff 04 00 	jarl	18c2 <_make_ctx+0x6a>, lp
+    18c2:	44 fa       	add	4, lp
+    18c4:	6a 00       	jmp	[r10]
+    18c6:	e0 07 60 01 	di	
+    18ca:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    18ce:	ff 06 
+    18d0:	2a 57 01 00 	ld.w	0[r10], r10
+    18d4:	7d 57 0d 00 	st.w	r10, 12[r29]
+    18d8:	3d 57 0d 00 	ld.w	12[r29], r10
+    18dc:	41 52       	add	1, r10
+    18de:	ca 52       	shl	10, r10
+    18e0:	2b 06 ac 7b 	mov	0x6ff7bac, r11
+    18e4:	ff 06 
+    18e6:	cb 51       	add	r11, r10
+    18e8:	7d 57 05 00 	st.w	r10, 4[r29]
+    18ec:	3d 57 05 00 	ld.w	4[r29], r10
+    18f0:	0a 18       	mov	r10, sp
+    18f2:	e0 87 60 01 	ei	
+    18f6:	2b 06 80 2e 	mov	0x2e80, r11
+    18fa:	00 00 
+    18fc:	3d 57 0d 00 	ld.w	12[r29], r10
+    1900:	c2 52       	shl	2, r10
+    1902:	cb 51       	add	r11, r10
+    1904:	2a 57 01 00 	ld.w	0[r10], r10
+    1908:	2c 06 78 2e 	mov	0x2e78, r12
+    190c:	00 00 
+    190e:	3d 5f 0d 00 	ld.w	12[r29], r11
+    1912:	c2 5a       	shl	2, r11
+    1914:	cc 59       	add	r12, r11
+    1916:	2b 5f 01 00 	ld.w	0[r11], r11
+    191a:	0b 30       	mov	r11, r6
+    191c:	80 ff 04 00 	jarl	1920 <_make_ctx+0xc8>, lp
+    1920:	44 fa       	add	4, lp
+    1922:	6a 00       	jmp	[r10]
+    1924:	e0 07 60 01 	di	
+    1928:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    192c:	ff 06 
+    192e:	2a 57 01 00 	ld.w	0[r10], r10
+    1932:	7d 57 0d 00 	st.w	r10, 12[r29]
+    1936:	2a 06 00 84 	mov	0x6ff8400, r10
+    193a:	ff 06 
+    193c:	6a 07 01 00 	st.w	r0, 0[r10]
+    1940:	3d 37 0d 00 	ld.w	12[r29], r6
+    1944:	2a 06 04 17 	mov	0x1704, r10
+    1948:	00 00 
+    194a:	80 ff 04 00 	jarl	194e <_make_ctx+0xf6>, lp
+    194e:	44 fa       	add	4, lp
+    1950:	6a 00       	jmp	[r10]
+    1952:	26 06 b0 83 	mov	0x6ff83b0, r6
+    1956:	ff 06 
+    1958:	01 3a       	mov	1, r7
+    195a:	2a 06 ae 2d 	mov	0x2dae, r10
+    195e:	00 00 
+    1960:	80 ff 04 00 	jarl	1964 <_make_ctx+0x10c>, lp
+    1964:	44 fa       	add	4, lp
+    1966:	6a 00       	jmp	[r10]
+    1968:	1d 18       	mov	r29, sp
+    196a:	23 ff 15 00 	ld.w	20[sp], lp
+    196e:	23 ef 11 00 	ld.w	16[sp], r29
+    1972:	03 1e 18 00 	addi	24, sp, sp
+    1976:	7f 00       	jmp	[lp]
+
+00001978 <__kernel_make_active>:
+    1978:	50 1a       	add	-16, sp
+    197a:	63 ff 0d 00 	st.w	lp, 12[sp]
+    197e:	63 ef 09 00 	st.w	r29, 8[sp]
+    1982:	03 e8       	mov	sp, r29
+    1984:	7d 37 01 00 	st.w	r6, 0[r29]
+    1988:	3d 37 01 00 	ld.w	0[r29], r6
+    198c:	2a 06 ce 16 	mov	0x16ce, r10
+    1990:	00 00 
+    1992:	80 ff 04 00 	jarl	1996 <__kernel_make_active+0x1e>, lp
+    1996:	44 fa       	add	4, lp
+    1998:	6a 00       	jmp	[r10]
+    199a:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    199e:	ff 06 
+    19a0:	2a 57 01 00 	ld.w	0[r10], r10
+    19a4:	3d 5f 01 00 	ld.w	0[r29], r11
+    19a8:	ea 59       	cmp	r10, r11
+    19aa:	d9 0d       	bnl	19c4 <__kernel_make_active+0x4c>
+    19ac:	2a 06 00 84 	mov	0x6ff8400, r10
+    19b0:	ff 06 
+    19b2:	2a 57 01 00 	ld.w	0[r10], r10
+    19b6:	60 52       	cmp	0, r10
+    19b8:	e2 57 00 00 	setf	z, r10
+    19bc:	8a 00       	zxb	r10
+    19be:	7d 57 05 00 	st.w	r10, 4[r29]
+    19c2:	b5 05       	br	19c8 <__kernel_make_active+0x50>
+    19c4:	7d 07 05 00 	st.w	r0, 4[r29]
+    19c8:	3d 37 01 00 	ld.w	0[r29], r6
+    19cc:	2a 06 58 18 	mov	0x1858, r10
+    19d0:	00 00 
+    19d2:	80 ff 04 00 	jarl	19d6 <__kernel_make_active+0x5e>, lp
+    19d6:	44 fa       	add	4, lp
+    19d8:	6a 00       	jmp	[r10]
+    19da:	3d 57 05 00 	ld.w	4[r29], r10
+    19de:	1d 18       	mov	r29, sp
+    19e0:	23 ff 0d 00 	ld.w	12[sp], lp
+    19e4:	23 ef 09 00 	ld.w	8[sp], r29
+    19e8:	03 1e 10 00 	addi	16, sp, sp
+    19ec:	7f 00       	jmp	[lp]
+
+000019ee <_dispatch>:
+    19ee:	54 1a       	add	-12, sp
+    19f0:	63 ff 09 00 	st.w	lp, 8[sp]
+    19f4:	63 ef 05 00 	st.w	r29, 4[sp]
+    19f8:	03 e8       	mov	sp, r29
+    19fa:	7d 37 01 00 	st.w	r6, 0[r29]
+    19fe:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    1a02:	ff 06 
+    1a04:	3d 5f 01 00 	ld.w	0[r29], r11
+    1a08:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1a0c:	3d 5f 01 00 	ld.w	0[r29], r11
+    1a10:	2a 06 f8 83 	mov	0x6ff83f8, r10
+    1a14:	ff 06 
+    1a16:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1a1a:	3d 57 01 00 	ld.w	0[r29], r10
+    1a1e:	c6 52       	shl	6, r10
+    1a20:	2b 06 08 76 	mov	0x6ff7608, r11
+    1a24:	ff 06 
+    1a26:	cb 51       	add	r11, r10
+    1a28:	0a 30       	mov	r10, r6
+    1a2a:	01 3a       	mov	1, r7
+    1a2c:	2a 06 ae 2d 	mov	0x2dae, r10
+    1a30:	00 00 
+    1a32:	80 ff 04 00 	jarl	1a36 <_dispatch+0x48>, lp
+    1a36:	44 fa       	add	4, lp
+    1a38:	6a 00       	jmp	[r10]
+
+00001a3a <__kernel_run_task>:
+    1a3a:	54 1a       	add	-12, sp
+    1a3c:	63 ff 09 00 	st.w	lp, 8[sp]
+    1a40:	63 ef 05 00 	st.w	r29, 4[sp]
+    1a44:	03 e8       	mov	sp, r29
+    1a46:	7d 37 01 00 	st.w	r6, 0[r29]
+    1a4a:	3d 57 01 00 	ld.w	0[r29], r10
+    1a4e:	0a 30       	mov	r10, r6
+    1a50:	2a 06 ee 19 	mov	0x19ee, r10
+    1a54:	00 00 
+    1a56:	80 ff 04 00 	jarl	1a5a <__kernel_run_task+0x20>, lp
+    1a5a:	44 fa       	add	4, lp
+    1a5c:	6a 00       	jmp	[r10]
+    1a5e:	1d 18       	mov	r29, sp
+    1a60:	23 ff 09 00 	ld.w	8[sp], lp
+    1a64:	23 ef 05 00 	ld.w	4[sp], r29
+    1a68:	4c 1a       	add	12, sp
+    1a6a:	7f 00       	jmp	[lp]
+
+00001a6c <__kernel_dispatcher>:
+    1a6c:	58 1a       	add	-8, sp
+    1a6e:	63 ff 05 00 	st.w	lp, 4[sp]
+    1a72:	63 ef 01 00 	st.w	r29, 0[sp]
+    1a76:	03 e8       	mov	sp, r29
+    1a78:	2a 06 3e 16 	mov	0x163e, r10
+    1a7c:	00 00 
+    1a7e:	80 ff 04 00 	jarl	1a82 <__kernel_dispatcher+0x16>, lp
+    1a82:	44 fa       	add	4, lp
+    1a84:	6a 00       	jmp	[r10]
+    1a86:	60 52       	cmp	0, r10
+    1a88:	9a 15       	bne	1aaa <__kernel_dispatcher+0x3e>
+    1a8a:	2a 06 40 17 	mov	0x1740, r10
+    1a8e:	00 00 
+    1a90:	80 ff 04 00 	jarl	1a94 <__kernel_dispatcher+0x28>, lp
+    1a94:	44 fa       	add	4, lp
+    1a96:	6a 00       	jmp	[r10]
+    1a98:	0a 30       	mov	r10, r6
+    1a9a:	2a 06 ee 19 	mov	0x19ee, r10
+    1a9e:	00 00 
+    1aa0:	80 ff 04 00 	jarl	1aa4 <__kernel_dispatcher+0x38>, lp
+    1aa4:	44 fa       	add	4, lp
+    1aa6:	6a 00       	jmp	[r10]
+    1aa8:	f5 0d       	br	1ac6 <__kernel_dispatcher+0x5a>
+    1aaa:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    1aae:	ff 06 
+    1ab0:	20 5e ff 00 	movea	255, r0, r11
+    1ab4:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1ab8:	2a 06 74 15 	mov	0x1574, r10
+    1abc:	00 00 
+    1abe:	80 ff 04 00 	jarl	1ac2 <__kernel_dispatcher+0x56>, lp
+    1ac2:	44 fa       	add	4, lp
+    1ac4:	6a 00       	jmp	[r10]
+    1ac6:	95 dd       	br	1a78 <__kernel_dispatcher+0xc>
+
+00001ac8 <_wai_tsk>:
+    1ac8:	50 1a       	add	-16, sp
+    1aca:	63 ff 0d 00 	st.w	lp, 12[sp]
+    1ace:	63 ef 09 00 	st.w	r29, 8[sp]
+    1ad2:	03 e8       	mov	sp, r29
+    1ad4:	00 32       	mov	0, r6
+    1ad6:	2a 06 8e 15 	mov	0x158e, r10
+    1ada:	00 00 
+    1adc:	80 ff 04 00 	jarl	1ae0 <_wai_tsk+0x18>, lp
+    1ae0:	44 fa       	add	4, lp
+    1ae2:	6a 00       	jmp	[r10]
+    1ae4:	7d 57 05 00 	st.w	r10, 4[r29]
+    1ae8:	e0 07 60 01 	di	
+    1aec:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1af0:	ff 06 
+    1af2:	3d 57 05 00 	ld.w	4[r29], r10
+    1af6:	cb 51       	add	r11, r10
+    1af8:	01 5a       	mov	1, r11
+    1afa:	4a 5f 00 00 	st.b	r11, 0[r10]
+    1afe:	3d 37 05 00 	ld.w	4[r29], r6
+    1b02:	2a 06 04 17 	mov	0x1704, r10
+    1b06:	00 00 
+    1b08:	80 ff 04 00 	jarl	1b0c <_wai_tsk+0x44>, lp
+    1b0c:	44 fa       	add	4, lp
+    1b0e:	6a 00       	jmp	[r10]
+    1b10:	3d 57 05 00 	ld.w	4[r29], r10
+    1b14:	c6 52       	shl	6, r10
+    1b16:	2b 06 08 76 	mov	0x6ff7608, r11
+    1b1a:	ff 06 
+    1b1c:	cb 51       	add	r11, r10
+    1b1e:	0a 30       	mov	r10, r6
+    1b20:	2a 06 6e 2d 	mov	0x2d6e, r10
+    1b24:	00 00 
+    1b26:	80 ff 04 00 	jarl	1b2a <_wai_tsk+0x62>, lp
+    1b2a:	44 fa       	add	4, lp
+    1b2c:	6a 00       	jmp	[r10]
+    1b2e:	60 52       	cmp	0, r10
+    1b30:	ca 0d       	bne	1b48 <_wai_tsk+0x80>
+    1b32:	26 06 b0 83 	mov	0x6ff83b0, r6
+    1b36:	ff 06 
+    1b38:	01 3a       	mov	1, r7
+    1b3a:	2a 06 ae 2d 	mov	0x2dae, r10
+    1b3e:	00 00 
+    1b40:	80 ff 04 00 	jarl	1b44 <_wai_tsk+0x7c>, lp
+    1b44:	44 fa       	add	4, lp
+    1b46:	6a 00       	jmp	[r10]
+    1b48:	e0 87 60 01 	ei	
+    1b4c:	3d 57 01 00 	ld.w	0[r29], r10
+    1b50:	1d 18       	mov	r29, sp
+    1b52:	23 ff 0d 00 	ld.w	12[sp], lp
+    1b56:	23 ef 09 00 	ld.w	8[sp], r29
+    1b5a:	03 1e 10 00 	addi	16, sp, sp
+    1b5e:	7f 00       	jmp	[lp]
+
+00001b60 <_go_tsk>:
+    1b60:	03 1e e8 ff 	addi	-24, sp, sp
+    1b64:	63 ff 15 00 	st.w	lp, 20[sp]
+    1b68:	63 ef 11 00 	st.w	r29, 16[sp]
+    1b6c:	03 e8       	mov	sp, r29
+    1b6e:	7d 37 01 00 	st.w	r6, 0[r29]
+    1b72:	3d 37 01 00 	ld.w	0[r29], r6
+    1b76:	2a 06 ca 15 	mov	0x15ca, r10
+    1b7a:	00 00 
+    1b7c:	80 ff 04 00 	jarl	1b80 <_go_tsk+0x20>, lp
+    1b80:	44 fa       	add	4, lp
+    1b82:	6a 00       	jmp	[r10]
+    1b84:	7d 57 0d 00 	st.w	r10, 12[r29]
+    1b88:	00 32       	mov	0, r6
+    1b8a:	2a 06 8e 15 	mov	0x158e, r10
+    1b8e:	00 00 
+    1b90:	80 ff 04 00 	jarl	1b94 <_go_tsk+0x34>, lp
+    1b94:	44 fa       	add	4, lp
+    1b96:	6a 00       	jmp	[r10]
+    1b98:	7d 57 09 00 	st.w	r10, 8[r29]
+    1b9c:	e0 07 60 01 	di	
+    1ba0:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1ba4:	ff 06 
+    1ba6:	3d 57 0d 00 	ld.w	12[r29], r10
+    1baa:	cb 51       	add	r11, r10
+    1bac:	8a 57 01 00 	ld.bu	0[r10], r10
+    1bb0:	60 52       	cmp	0, r10
+    1bb2:	ea 05       	bne	1bbe <_go_tsk+0x5e>
+    1bb4:	e0 87 60 01 	ei	
+    1bb8:	20 56 d7 ff 	movea	-41, r0, r10
+    1bbc:	a5 35       	br	1c20 <_go_tsk+0xc0>
+    1bbe:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1bc2:	ff 06 
+    1bc4:	3d 57 0d 00 	ld.w	12[r29], r10
+    1bc8:	cb 51       	add	r11, r10
+    1bca:	4a 07 00 00 	st.b	r0, 0[r10]
+    1bce:	3d 37 0d 00 	ld.w	12[r29], r6
+    1bd2:	2a 06 ce 16 	mov	0x16ce, r10
+    1bd6:	00 00 
+    1bd8:	80 ff 04 00 	jarl	1bdc <_go_tsk+0x7c>, lp
+    1bdc:	44 fa       	add	4, lp
+    1bde:	6a 00       	jmp	[r10]
+    1be0:	3d 57 09 00 	ld.w	8[r29], r10
+    1be4:	c6 52       	shl	6, r10
+    1be6:	2b 06 08 76 	mov	0x6ff7608, r11
+    1bea:	ff 06 
+    1bec:	cb 51       	add	r11, r10
+    1bee:	0a 30       	mov	r10, r6
+    1bf0:	2a 06 6e 2d 	mov	0x2d6e, r10
+    1bf4:	00 00 
+    1bf6:	80 ff 04 00 	jarl	1bfa <_go_tsk+0x9a>, lp
+    1bfa:	44 fa       	add	4, lp
+    1bfc:	6a 00       	jmp	[r10]
+    1bfe:	60 52       	cmp	0, r10
+    1c00:	ca 0d       	bne	1c18 <_go_tsk+0xb8>
+    1c02:	26 06 b0 83 	mov	0x6ff83b0, r6
+    1c06:	ff 06 
+    1c08:	01 3a       	mov	1, r7
+    1c0a:	2a 06 ae 2d 	mov	0x2dae, r10
+    1c0e:	00 00 
+    1c10:	80 ff 04 00 	jarl	1c14 <_go_tsk+0xb4>, lp
+    1c14:	44 fa       	add	4, lp
+    1c16:	6a 00       	jmp	[r10]
+    1c18:	e0 87 60 01 	ei	
+    1c1c:	3d 57 05 00 	ld.w	4[r29], r10
+    1c20:	1d 18       	mov	r29, sp
+    1c22:	23 ff 15 00 	ld.w	20[sp], lp
+    1c26:	23 ef 11 00 	ld.w	16[sp], r29
+    1c2a:	03 1e 18 00 	addi	24, sp, sp
+    1c2e:	7f 00       	jmp	[lp]
+
+00001c30 <_isig_tim>:
+    1c30:	54 1a       	add	-12, sp
+    1c32:	63 ff 09 00 	st.w	lp, 8[sp]
+    1c36:	63 ef 05 00 	st.w	r29, 4[sp]
+    1c3a:	03 e8       	mov	sp, r29
+    1c3c:	2a 06 58 2c 	mov	0x2c58, r10
+    1c40:	00 00 
+    1c42:	80 ff 04 00 	jarl	1c46 <_isig_tim+0x16>, lp
+    1c46:	44 fa       	add	4, lp
+    1c48:	6a 00       	jmp	[r10]
+    1c4a:	7d 07 01 00 	st.w	r0, 0[r29]
+    1c4e:	85 4d       	br	1cde <_isig_tim+0xae>
+    1c50:	2b 06 00 76 	mov	0x6ff7600, r11
+    1c54:	ff 06 
+    1c56:	3d 57 01 00 	ld.w	0[r29], r10
+    1c5a:	c2 52       	shl	2, r10
+    1c5c:	cb 51       	add	r11, r10
+    1c5e:	2a 57 01 00 	ld.w	0[r10], r10
+    1c62:	60 52       	cmp	0, r10
+    1c64:	82 3d       	be	1cd4 <_isig_tim+0xa4>
+    1c66:	2b 06 00 76 	mov	0x6ff7600, r11
+    1c6a:	ff 06 
+    1c6c:	3d 57 01 00 	ld.w	0[r29], r10
+    1c70:	c2 52       	shl	2, r10
+    1c72:	cb 51       	add	r11, r10
+    1c74:	2a 57 01 00 	ld.w	0[r10], r10
+    1c78:	0a 66 ff ff 	addi	-1, r10, r12
+    1c7c:	2b 06 00 76 	mov	0x6ff7600, r11
+    1c80:	ff 06 
+    1c82:	3d 57 01 00 	ld.w	0[r29], r10
+    1c86:	c2 52       	shl	2, r10
+    1c88:	cb 51       	add	r11, r10
+    1c8a:	6a 67 01 00 	st.w	r12, 0[r10]
+    1c8e:	2b 06 00 76 	mov	0x6ff7600, r11
+    1c92:	ff 06 
+    1c94:	3d 57 01 00 	ld.w	0[r29], r10
+    1c98:	c2 52       	shl	2, r10
+    1c9a:	cb 51       	add	r11, r10
+    1c9c:	2a 57 01 00 	ld.w	0[r10], r10
+    1ca0:	60 52       	cmp	0, r10
+    1ca2:	9a 1d       	bne	1cd4 <_isig_tim+0xa4>
+    1ca4:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1ca8:	ff 06 
+    1caa:	3d 57 01 00 	ld.w	0[r29], r10
+    1cae:	cb 51       	add	r11, r10
+    1cb0:	4a 07 00 00 	st.b	r0, 0[r10]
+    1cb4:	3d 57 01 00 	ld.w	0[r29], r10
+    1cb8:	0a 30       	mov	r10, r6
+    1cba:	2a 06 ce 16 	mov	0x16ce, r10
+    1cbe:	00 00 
+    1cc0:	80 ff 04 00 	jarl	1cc4 <_isig_tim+0x94>, lp
+    1cc4:	44 fa       	add	4, lp
+    1cc6:	6a 00       	jmp	[r10]
+    1cc8:	2a 06 04 84 	mov	0x6ff8404, r10
+    1ccc:	ff 06 
+    1cce:	01 5a       	mov	1, r11
+    1cd0:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1cd4:	3d 57 01 00 	ld.w	0[r29], r10
+    1cd8:	41 52       	add	1, r10
+    1cda:	7d 57 01 00 	st.w	r10, 0[r29]
+    1cde:	3d 57 01 00 	ld.w	0[r29], r10
+    1ce2:	61 52       	cmp	1, r10
+    1ce4:	e7 b5       	ble	1c50 <_isig_tim+0x20>
+    1ce6:	1d 18       	mov	r29, sp
+    1ce8:	23 ff 09 00 	ld.w	8[sp], lp
+    1cec:	23 ef 05 00 	ld.w	4[sp], r29
+    1cf0:	4c 1a       	add	12, sp
+    1cf2:	7f 00       	jmp	[lp]
+
+00001cf4 <_dly_tsk>:
+    1cf4:	03 1e ec ff 	addi	-20, sp, sp
+    1cf8:	63 ff 11 00 	st.w	lp, 16[sp]
+    1cfc:	63 ef 0d 00 	st.w	r29, 12[sp]
+    1d00:	03 e8       	mov	sp, r29
+    1d02:	7d 37 01 00 	st.w	r6, 0[r29]
+    1d06:	3d 57 01 00 	ld.w	0[r29], r10
+    1d0a:	7f 52       	cmp	-1, r10
+    1d0c:	ca 05       	bne	1d14 <_dly_tsk+0x20>
+    1d0e:	20 56 ef ff 	movea	-17, r0, r10
+    1d12:	c5 4d       	br	1daa <_dly_tsk+0xb6>
+    1d14:	00 32       	mov	0, r6
+    1d16:	2a 06 8e 15 	mov	0x158e, r10
+    1d1a:	00 00 
+    1d1c:	80 ff 04 00 	jarl	1d20 <_dly_tsk+0x2c>, lp
+    1d20:	44 fa       	add	4, lp
+    1d22:	6a 00       	jmp	[r10]
+    1d24:	7d 57 09 00 	st.w	r10, 8[r29]
+    1d28:	e0 07 60 01 	di	
+    1d2c:	2b 06 f0 75 	mov	0x6ff75f0, r11
+    1d30:	ff 06 
+    1d32:	3d 57 09 00 	ld.w	8[r29], r10
+    1d36:	cb 51       	add	r11, r10
+    1d38:	01 5a       	mov	1, r11
+    1d3a:	4a 5f 00 00 	st.b	r11, 0[r10]
+    1d3e:	3d 37 09 00 	ld.w	8[r29], r6
+    1d42:	2a 06 04 17 	mov	0x1704, r10
+    1d46:	00 00 
+    1d48:	80 ff 04 00 	jarl	1d4c <_dly_tsk+0x58>, lp
+    1d4c:	44 fa       	add	4, lp
+    1d4e:	6a 00       	jmp	[r10]
+    1d50:	3d 57 01 00 	ld.w	0[r29], r10
+    1d54:	0a 66 01 00 	addi	1, r10, r12
+    1d58:	2b 06 00 76 	mov	0x6ff7600, r11
+    1d5c:	ff 06 
+    1d5e:	3d 57 09 00 	ld.w	8[r29], r10
+    1d62:	c2 52       	shl	2, r10
+    1d64:	cb 51       	add	r11, r10
+    1d66:	6a 67 01 00 	st.w	r12, 0[r10]
+    1d6a:	3d 57 09 00 	ld.w	8[r29], r10
+    1d6e:	c6 52       	shl	6, r10
+    1d70:	2b 06 08 76 	mov	0x6ff7608, r11
+    1d74:	ff 06 
+    1d76:	cb 51       	add	r11, r10
+    1d78:	0a 30       	mov	r10, r6
+    1d7a:	2a 06 6e 2d 	mov	0x2d6e, r10
+    1d7e:	00 00 
+    1d80:	80 ff 04 00 	jarl	1d84 <_dly_tsk+0x90>, lp
+    1d84:	44 fa       	add	4, lp
+    1d86:	6a 00       	jmp	[r10]
+    1d88:	60 52       	cmp	0, r10
+    1d8a:	ca 0d       	bne	1da2 <_dly_tsk+0xae>
+    1d8c:	26 06 b0 83 	mov	0x6ff83b0, r6
+    1d90:	ff 06 
+    1d92:	01 3a       	mov	1, r7
+    1d94:	2a 06 ae 2d 	mov	0x2dae, r10
+    1d98:	00 00 
+    1d9a:	80 ff 04 00 	jarl	1d9e <_dly_tsk+0xaa>, lp
+    1d9e:	44 fa       	add	4, lp
+    1da0:	6a 00       	jmp	[r10]
+    1da2:	e0 87 60 01 	ei	
+    1da6:	3d 57 05 00 	ld.w	4[r29], r10
+    1daa:	1d 18       	mov	r29, sp
+    1dac:	23 ff 11 00 	ld.w	16[sp], lp
+    1db0:	23 ef 0d 00 	ld.w	12[sp], r29
+    1db4:	03 1e 14 00 	addi	20, sp, sp
+    1db8:	7f 00       	jmp	[lp]
+
+00001dba <__kernel_handler>:
+    1dba:	54 1a       	add	-12, sp
+    1dbc:	63 ff 09 00 	st.w	lp, 8[sp]
+    1dc0:	63 ef 05 00 	st.w	r29, 4[sp]
+    1dc4:	03 e8       	mov	sp, r29
+    1dc6:	7d 37 01 00 	st.w	r6, 0[r29]
+    1dca:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    1dce:	ff 06 
+    1dd0:	2a 57 00 00 	ld.h	0[r10], r10
+    1dd4:	ca 00       	zxh	r10
+    1dd6:	41 52       	add	1, r10
+    1dd8:	ca 5e ff ff 	andi	65535, r10, r11
+    1ddc:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    1de0:	ff 06 
+    1de2:	6a 5f 00 00 	st.h	r11, 0[r10]
+    1de6:	3d 57 01 00 	ld.w	0[r29], r10
+    1dea:	80 ff 04 00 	jarl	1dee <__kernel_handler+0x34>, lp
+    1dee:	44 fa       	add	4, lp
+    1df0:	6a 00       	jmp	[r10]
+    1df2:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    1df6:	ff 06 
+    1df8:	2a 57 00 00 	ld.h	0[r10], r10
+    1dfc:	ca 00       	zxh	r10
+    1dfe:	5f 52       	add	-1, r10
+    1e00:	ca 5e ff ff 	andi	65535, r10, r11
+    1e04:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    1e08:	ff 06 
+    1e0a:	6a 5f 00 00 	st.h	r11, 0[r10]
+    1e0e:	2a 06 fc 83 	mov	0x6ff83fc, r10
+    1e12:	ff 06 
+    1e14:	2a 57 00 00 	ld.h	0[r10], r10
+    1e18:	ca 00       	zxh	r10
+    1e1a:	60 52       	cmp	0, r10
+    1e1c:	aa 5d       	bne	1ed0 <__kernel_handler+0x116>
+    1e1e:	2a 06 04 84 	mov	0x6ff8404, r10
+    1e22:	ff 06 
+    1e24:	2a 57 01 00 	ld.w	0[r10], r10
+    1e28:	60 52       	cmp	0, r10
+    1e2a:	b2 55       	be	1ed0 <__kernel_handler+0x116>
+    1e2c:	2a 06 04 84 	mov	0x6ff8404, r10
+    1e30:	ff 06 
+    1e32:	6a 07 01 00 	st.w	r0, 0[r10]
+    1e36:	2a 06 40 17 	mov	0x1740, r10
+    1e3a:	00 00 
+    1e3c:	80 ff 04 00 	jarl	1e40 <__kernel_handler+0x86>, lp
+    1e40:	44 fa       	add	4, lp
+    1e42:	6a 00       	jmp	[r10]
+    1e44:	0a 58       	mov	r10, r11
+    1e46:	2a 06 d4 75 	mov	0x6ff75d4, r10
+    1e4a:	ff 06 
+    1e4c:	6a 5f 01 00 	st.w	r11, 0[r10]
+    1e50:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    1e54:	ff 06 
+    1e56:	2a 5f 01 00 	ld.w	0[r10], r11
+    1e5a:	20 56 ff 00 	movea	255, r0, r10
+    1e5e:	ea 59       	cmp	r10, r11
+    1e60:	82 3d       	be	1ed0 <__kernel_handler+0x116>
+    1e62:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    1e66:	ff 06 
+    1e68:	2a 5f 01 00 	ld.w	0[r10], r11
+    1e6c:	2a 06 d4 75 	mov	0x6ff75d4, r10
+    1e70:	ff 06 
+    1e72:	2a 57 01 00 	ld.w	0[r10], r10
+    1e76:	ea 59       	cmp	r10, r11
+    1e78:	c2 2d       	be	1ed0 <__kernel_handler+0x116>
+    1e7a:	5c 1a       	add	-4, sp
+    1e7c:	63 17 01 00 	st.w	r2, 0[sp]
+    1e80:	94 07 c1 ff 	prepare	{r20 - r29}, 10
+    1e84:	2a 06 f0 83 	mov	0x6ff83f0, r10
+    1e88:	ff 06 
+    1e8a:	2a 57 01 00 	ld.w	0[r10], r10
+    1e8e:	c6 52       	shl	6, r10
+    1e90:	2b 06 08 76 	mov	0x6ff7608, r11
+    1e94:	ff 06 
+    1e96:	cb 51       	add	r11, r10
+    1e98:	0a 30       	mov	r10, r6
+    1e9a:	2a 06 6e 2d 	mov	0x2d6e, r10
+    1e9e:	00 00 
+    1ea0:	80 ff 04 00 	jarl	1ea4 <__kernel_handler+0xea>, lp
+    1ea4:	44 fa       	add	4, lp
+    1ea6:	6a 00       	jmp	[r10]
+    1ea8:	60 52       	cmp	0, r10
+    1eaa:	ea 0d       	bne	1ec6 <__kernel_handler+0x10c>
+    1eac:	2a 06 d4 75 	mov	0x6ff75d4, r10
+    1eb0:	ff 06 
+    1eb2:	2a 57 01 00 	ld.w	0[r10], r10
+    1eb6:	0a 30       	mov	r10, r6
+    1eb8:	2a 06 ee 19 	mov	0x19ee, r10
+    1ebc:	00 00 
+    1ebe:	80 ff 04 00 	jarl	1ec2 <__kernel_handler+0x108>, lp
+    1ec2:	44 fa       	add	4, lp
+    1ec4:	6a 00       	jmp	[r10]
+    1ec6:	54 06 c0 ff 	dispose	10, {r20 - r29}, r0
+    1eca:	23 17 01 00 	ld.w	0[sp], r2
+    1ece:	44 1a       	add	4, sp
+    1ed0:	1d 18       	mov	r29, sp
+    1ed2:	23 ff 09 00 	ld.w	8[sp], lp
+    1ed6:	23 ef 05 00 	ld.w	4[sp], r29
+    1eda:	4c 1a       	add	12, sp
+    1edc:	7f 00       	jmp	[lp]
+
+00001ede <_act_tsk>:
+    1ede:	03 1e ec ff 	addi	-20, sp, sp
+    1ee2:	63 ff 11 00 	st.w	lp, 16[sp]
+    1ee6:	63 ef 0d 00 	st.w	r29, 12[sp]
+    1eea:	03 e8       	mov	sp, r29
+    1eec:	7d 37 01 00 	st.w	r6, 0[r29]
+    1ef0:	3d 57 01 00 	ld.w	0[r29], r10
+    1ef4:	60 52       	cmp	0, r10
+    1ef6:	a7 0d       	ble	1f0a <_act_tsk+0x2c>
+    1ef8:	2a 06 68 2e 	mov	0x2e68, r10
+    1efc:	00 00 
+    1efe:	2a 57 01 00 	ld.w	0[r10], r10
+    1f02:	3d 5f 01 00 	ld.w	0[r29], r11
+    1f06:	ea 59       	cmp	r10, r11
+    1f08:	a7 0d       	ble	1f1c <_act_tsk+0x3e>
+    1f0a:	3d 57 01 00 	ld.w	0[r29], r10
+    1f0e:	60 52       	cmp	0, r10
+    1f10:	e2 05       	be	1f1c <_act_tsk+0x3e>
+    1f12:	20 56 ee ff 	movea	-18, r0, r10
+    1f16:	7d 57 09 00 	st.w	r10, 8[r29]
+    1f1a:	e5 35       	br	1f86 <_act_tsk+0xa8>
+    1f1c:	3d 37 01 00 	ld.w	0[r29], r6
+    1f20:	2a 06 8e 15 	mov	0x158e, r10
+    1f24:	00 00 
+    1f26:	80 ff 04 00 	jarl	1f2a <_act_tsk+0x4c>, lp
+    1f2a:	44 fa       	add	4, lp
+    1f2c:	6a 00       	jmp	[r10]
+    1f2e:	7d 57 05 00 	st.w	r10, 4[r29]
+    1f32:	e0 07 60 01 	di	
+    1f36:	3d 37 05 00 	ld.w	4[r29], r6
+    1f3a:	2a 06 68 17 	mov	0x1768, r10
+    1f3e:	00 00 
+    1f40:	80 ff 04 00 	jarl	1f44 <_act_tsk+0x66>, lp
+    1f44:	44 fa       	add	4, lp
+    1f46:	6a 00       	jmp	[r10]
+    1f48:	60 52       	cmp	0, r10
+    1f4a:	82 1d       	be	1f7a <_act_tsk+0x9c>
+    1f4c:	3d 37 05 00 	ld.w	4[r29], r6
+    1f50:	2a 06 78 19 	mov	0x1978, r10
+    1f54:	00 00 
+    1f56:	80 ff 04 00 	jarl	1f5a <_act_tsk+0x7c>, lp
+    1f5a:	44 fa       	add	4, lp
+    1f5c:	6a 00       	jmp	[r10]
+    1f5e:	60 52       	cmp	0, r10
+    1f60:	a2 0d       	be	1f74 <_act_tsk+0x96>
+    1f62:	3d 37 05 00 	ld.w	4[r29], r6
+    1f66:	2a 06 3a 1a 	mov	0x1a3a, r10
+    1f6a:	00 00 
+    1f6c:	80 ff 04 00 	jarl	1f70 <_act_tsk+0x92>, lp
+    1f70:	44 fa       	add	4, lp
+    1f72:	6a 00       	jmp	[r10]
+    1f74:	7d 07 09 00 	st.w	r0, 8[r29]
+    1f78:	d5 05       	br	1f82 <_act_tsk+0xa4>
+    1f7a:	20 56 d5 ff 	movea	-43, r0, r10
+    1f7e:	7d 57 09 00 	st.w	r10, 8[r29]
+    1f82:	e0 87 60 01 	ei	
+    1f86:	3d 57 09 00 	ld.w	8[r29], r10
+    1f8a:	1d 18       	mov	r29, sp
+    1f8c:	23 ff 11 00 	ld.w	16[sp], lp
+    1f90:	23 ef 0d 00 	ld.w	12[sp], r29
+    1f94:	03 1e 14 00 	addi	20, sp, sp
+    1f98:	7f 00       	jmp	[lp]
+
+00001f9a <_iact_tsk>:
+    1f9a:	03 1e ec ff 	addi	-20, sp, sp
+    1f9e:	63 ff 11 00 	st.w	lp, 16[sp]
+    1fa2:	63 ef 0d 00 	st.w	r29, 12[sp]
+    1fa6:	03 e8       	mov	sp, r29
+    1fa8:	7d 37 01 00 	st.w	r6, 0[r29]
+    1fac:	3d 57 01 00 	ld.w	0[r29], r10
+    1fb0:	60 52       	cmp	0, r10
+    1fb2:	a7 0d       	ble	1fc6 <_iact_tsk+0x2c>
+    1fb4:	2a 06 68 2e 	mov	0x2e68, r10
+    1fb8:	00 00 
+    1fba:	2a 57 01 00 	ld.w	0[r10], r10
+    1fbe:	3d 5f 01 00 	ld.w	0[r29], r11
+    1fc2:	ea 59       	cmp	r10, r11
+    1fc4:	e7 05       	ble	1fd0 <_iact_tsk+0x36>
+    1fc6:	20 56 ee ff 	movea	-18, r0, r10
+    1fca:	7d 57 09 00 	st.w	r10, 8[r29]
+    1fce:	b5 35       	br	2034 <_iact_tsk+0x9a>
+    1fd0:	3d 37 01 00 	ld.w	0[r29], r6
+    1fd4:	2a 06 ca 15 	mov	0x15ca, r10
+    1fd8:	00 00 
+    1fda:	80 ff 04 00 	jarl	1fde <_iact_tsk+0x44>, lp
+    1fde:	44 fa       	add	4, lp
+    1fe0:	6a 00       	jmp	[r10]
+    1fe2:	7d 57 05 00 	st.w	r10, 4[r29]
+    1fe6:	e0 07 60 01 	di	
+    1fea:	3d 37 05 00 	ld.w	4[r29], r6
+    1fee:	2a 06 68 17 	mov	0x1768, r10
+    1ff2:	00 00 
+    1ff4:	80 ff 04 00 	jarl	1ff8 <_iact_tsk+0x5e>, lp
+    1ff8:	44 fa       	add	4, lp
+    1ffa:	6a 00       	jmp	[r10]
+    1ffc:	60 52       	cmp	0, r10
+    1ffe:	d2 15       	be	2028 <_iact_tsk+0x8e>
+    2000:	3d 37 05 00 	ld.w	4[r29], r6
+    2004:	2a 06 78 19 	mov	0x1978, r10
+    2008:	00 00 
+    200a:	80 ff 04 00 	jarl	200e <_iact_tsk+0x74>, lp
+    200e:	44 fa       	add	4, lp
+    2010:	6a 00       	jmp	[r10]
+    2012:	60 52       	cmp	0, r10
+    2014:	f2 05       	be	2022 <_iact_tsk+0x88>
+    2016:	2a 06 04 84 	mov	0x6ff8404, r10
+    201a:	ff 06 
+    201c:	01 5a       	mov	1, r11
+    201e:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2022:	7d 07 09 00 	st.w	r0, 8[r29]
+    2026:	d5 05       	br	2030 <_iact_tsk+0x96>
+    2028:	20 56 d5 ff 	movea	-43, r0, r10
+    202c:	7d 57 09 00 	st.w	r10, 8[r29]
+    2030:	e0 87 60 01 	ei	
+    2034:	3d 57 09 00 	ld.w	8[r29], r10
+    2038:	1d 18       	mov	r29, sp
+    203a:	23 ff 11 00 	ld.w	16[sp], lp
+    203e:	23 ef 0d 00 	ld.w	12[sp], r29
+    2042:	03 1e 14 00 	addi	20, sp, sp
+    2046:	7f 00       	jmp	[lp]
+
+00002048 <_sense_context>:
+    2048:	5c 1a       	add	-4, sp
+    204a:	63 ef 01 00 	st.w	r29, 0[sp]
+    204e:	03 e8       	mov	sp, r29
+    2050:	00 52       	mov	0, r10
+    2052:	1d 18       	mov	r29, sp
+    2054:	23 ef 01 00 	ld.w	0[sp], r29
+    2058:	44 1a       	add	4, sp
+    205a:	7f 00       	jmp	[lp]
+
+0000205c <__kernel_initialize_alarm>:
+    205c:	5c 1a       	add	-4, sp
+    205e:	63 ef 01 00 	st.w	r29, 0[sp]
+    2062:	03 e8       	mov	sp, r29
+    2064:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2068:	ff 06 
+    206a:	6a 07 01 00 	st.w	r0, 0[r10]
+    206e:	1d 18       	mov	r29, sp
+    2070:	23 ef 01 00 	ld.w	0[sp], r29
+    2074:	44 1a       	add	4, sp
+    2076:	7f 00       	jmp	[lp]
+
+00002078 <_sta_alm>:
+    2078:	03 1e e8 ff 	addi	-24, sp, sp
+    207c:	63 ff 15 00 	st.w	lp, 20[sp]
+    2080:	63 ef 11 00 	st.w	r29, 16[sp]
+    2084:	03 e8       	mov	sp, r29
+    2086:	7d 37 05 00 	st.w	r6, 4[r29]
+    208a:	7d 3f 01 00 	st.w	r7, 0[r29]
+    208e:	3d 57 05 00 	ld.w	4[r29], r10
+    2092:	5f 52       	add	-1, r10
+    2094:	7d 57 09 00 	st.w	r10, 8[r29]
+    2098:	2a 06 48 20 	mov	0x2048, r10
+    209c:	00 00 
+    209e:	80 ff 04 00 	jarl	20a2 <_sta_alm+0x2a>, lp
+    20a2:	44 fa       	add	4, lp
+    20a4:	6a 00       	jmp	[r10]
+    20a6:	60 52       	cmp	0, r10
+    20a8:	aa 0d       	bne	20bc <_sta_alm+0x44>
+    20aa:	2a 06 48 20 	mov	0x2048, r10
+    20ae:	00 00 
+    20b0:	80 ff 04 00 	jarl	20b4 <_sta_alm+0x3c>, lp
+    20b4:	44 fa       	add	4, lp
+    20b6:	6a 00       	jmp	[r10]
+    20b8:	60 52       	cmp	0, r10
+    20ba:	e2 05       	be	20c6 <_sta_alm+0x4e>
+    20bc:	20 56 e7 ff 	movea	-25, r0, r10
+    20c0:	7d 57 0d 00 	st.w	r10, 12[r29]
+    20c4:	85 6d       	br	2194 <_sta_alm+0x11c>
+    20c6:	3d 57 05 00 	ld.w	4[r29], r10
+    20ca:	60 52       	cmp	0, r10
+    20cc:	a7 0d       	ble	20e0 <_sta_alm+0x68>
+    20ce:	2a 06 ac 2e 	mov	0x2eac, r10
+    20d2:	00 00 
+    20d4:	2a 57 01 00 	ld.w	0[r10], r10
+    20d8:	3d 5f 05 00 	ld.w	4[r29], r11
+    20dc:	ea 59       	cmp	r10, r11
+    20de:	e7 05       	ble	20ea <_sta_alm+0x72>
+    20e0:	20 56 ee ff 	movea	-18, r0, r10
+    20e4:	7d 57 0d 00 	st.w	r10, 12[r29]
+    20e8:	e5 55       	br	2194 <_sta_alm+0x11c>
+    20ea:	e0 07 60 01 	di	
+    20ee:	3d 57 09 00 	ld.w	8[r29], r10
+    20f2:	01 5a       	mov	1, r11
+    20f4:	ea 5f c0 00 	shl	r10, r11
+    20f8:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    20fc:	ff 06 
+    20fe:	2a 57 01 00 	ld.w	0[r10], r10
+    2102:	4b 51       	and	r11, r10
+    2104:	60 52       	cmp	0, r10
+    2106:	b2 15       	be	212c <_sta_alm+0xb4>
+    2108:	3d 5f 05 00 	ld.w	4[r29], r11
+    210c:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2110:	00 00 
+    2112:	2a 57 01 00 	ld.w	0[r10], r10
+    2116:	cb 51       	add	r11, r10
+    2118:	5f 52       	add	-1, r10
+    211a:	0a 30       	mov	r10, r6
+    211c:	2a 06 1e 2c 	mov	0x2c1e, r10
+    2120:	00 00 
+    2122:	80 ff 04 00 	jarl	2126 <_sta_alm+0xae>, lp
+    2126:	44 fa       	add	4, lp
+    2128:	6a 00       	jmp	[r10]
+    212a:	95 15       	br	214c <_sta_alm+0xd4>
+    212c:	3d 57 09 00 	ld.w	8[r29], r10
+    2130:	01 5a       	mov	1, r11
+    2132:	ea 5f c0 00 	shl	r10, r11
+    2136:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    213a:	ff 06 
+    213c:	2a 57 01 00 	ld.w	0[r10], r10
+    2140:	0a 59       	or	r10, r11
+    2142:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2146:	ff 06 
+    2148:	6a 5f 01 00 	st.w	r11, 0[r10]
+    214c:	3d 5f 05 00 	ld.w	4[r29], r11
+    2150:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2154:	00 00 
+    2156:	2a 57 01 00 	ld.w	0[r10], r10
+    215a:	cb 51       	add	r11, r10
+    215c:	5f 52       	add	-1, r10
+    215e:	0a 60       	mov	r10, r12
+    2160:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2164:	ff 06 
+    2166:	2a 5f 01 00 	ld.w	0[r10], r11
+    216a:	3d 57 01 00 	ld.w	0[r29], r10
+    216e:	cb 51       	add	r11, r10
+    2170:	0c 30       	mov	r12, r6
+    2172:	0a 38       	mov	r10, r7
+    2174:	28 06 b8 24 	mov	0x24b8, r8
+    2178:	00 00 
+    217a:	3d 4f 09 00 	ld.w	8[r29], r9
+    217e:	2a 06 12 2b 	mov	0x2b12, r10
+    2182:	00 00 
+    2184:	80 ff 04 00 	jarl	2188 <_sta_alm+0x110>, lp
+    2188:	44 fa       	add	4, lp
+    218a:	6a 00       	jmp	[r10]
+    218c:	7d 07 0d 00 	st.w	r0, 12[r29]
+    2190:	e0 87 60 01 	ei	
+    2194:	3d 57 0d 00 	ld.w	12[r29], r10
+    2198:	1d 18       	mov	r29, sp
+    219a:	23 ff 15 00 	ld.w	20[sp], lp
+    219e:	23 ef 11 00 	ld.w	16[sp], r29
+    21a2:	03 1e 18 00 	addi	24, sp, sp
+    21a6:	7f 00       	jmp	[lp]
+
+000021a8 <_ista_alm>:
+    21a8:	03 1e e8 ff 	addi	-24, sp, sp
+    21ac:	63 ff 15 00 	st.w	lp, 20[sp]
+    21b0:	63 ef 11 00 	st.w	r29, 16[sp]
+    21b4:	03 e8       	mov	sp, r29
+    21b6:	7d 37 05 00 	st.w	r6, 4[r29]
+    21ba:	7d 3f 01 00 	st.w	r7, 0[r29]
+    21be:	3d 57 05 00 	ld.w	4[r29], r10
+    21c2:	5f 52       	add	-1, r10
+    21c4:	7d 57 09 00 	st.w	r10, 8[r29]
+    21c8:	2a 06 48 20 	mov	0x2048, r10
+    21cc:	00 00 
+    21ce:	80 ff 04 00 	jarl	21d2 <_ista_alm+0x2a>, lp
+    21d2:	44 fa       	add	4, lp
+    21d4:	6a 00       	jmp	[r10]
+    21d6:	60 52       	cmp	0, r10
+    21d8:	a2 0d       	be	21ec <_ista_alm+0x44>
+    21da:	2a 06 48 20 	mov	0x2048, r10
+    21de:	00 00 
+    21e0:	80 ff 04 00 	jarl	21e4 <_ista_alm+0x3c>, lp
+    21e4:	44 fa       	add	4, lp
+    21e6:	6a 00       	jmp	[r10]
+    21e8:	60 52       	cmp	0, r10
+    21ea:	e2 05       	be	21f6 <_ista_alm+0x4e>
+    21ec:	20 56 e7 ff 	movea	-25, r0, r10
+    21f0:	7d 57 0d 00 	st.w	r10, 12[r29]
+    21f4:	85 6d       	br	22c4 <_ista_alm+0x11c>
+    21f6:	3d 57 05 00 	ld.w	4[r29], r10
+    21fa:	60 52       	cmp	0, r10
+    21fc:	a7 0d       	ble	2210 <_ista_alm+0x68>
+    21fe:	2a 06 ac 2e 	mov	0x2eac, r10
+    2202:	00 00 
+    2204:	2a 57 01 00 	ld.w	0[r10], r10
+    2208:	3d 5f 05 00 	ld.w	4[r29], r11
+    220c:	ea 59       	cmp	r10, r11
+    220e:	e7 05       	ble	221a <_ista_alm+0x72>
+    2210:	20 56 ee ff 	movea	-18, r0, r10
+    2214:	7d 57 0d 00 	st.w	r10, 12[r29]
+    2218:	e5 55       	br	22c4 <_ista_alm+0x11c>
+    221a:	e0 07 60 01 	di	
+    221e:	3d 57 09 00 	ld.w	8[r29], r10
+    2222:	01 5a       	mov	1, r11
+    2224:	ea 5f c0 00 	shl	r10, r11
+    2228:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    222c:	ff 06 
+    222e:	2a 57 01 00 	ld.w	0[r10], r10
+    2232:	4b 51       	and	r11, r10
+    2234:	60 52       	cmp	0, r10
+    2236:	b2 15       	be	225c <_ista_alm+0xb4>
+    2238:	3d 5f 05 00 	ld.w	4[r29], r11
+    223c:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2240:	00 00 
+    2242:	2a 57 01 00 	ld.w	0[r10], r10
+    2246:	cb 51       	add	r11, r10
+    2248:	5f 52       	add	-1, r10
+    224a:	0a 30       	mov	r10, r6
+    224c:	2a 06 1e 2c 	mov	0x2c1e, r10
+    2250:	00 00 
+    2252:	80 ff 04 00 	jarl	2256 <_ista_alm+0xae>, lp
+    2256:	44 fa       	add	4, lp
+    2258:	6a 00       	jmp	[r10]
+    225a:	95 15       	br	227c <_ista_alm+0xd4>
+    225c:	3d 57 09 00 	ld.w	8[r29], r10
+    2260:	01 5a       	mov	1, r11
+    2262:	ea 5f c0 00 	shl	r10, r11
+    2266:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    226a:	ff 06 
+    226c:	2a 57 01 00 	ld.w	0[r10], r10
+    2270:	0a 59       	or	r10, r11
+    2272:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2276:	ff 06 
+    2278:	6a 5f 01 00 	st.w	r11, 0[r10]
+    227c:	3d 5f 05 00 	ld.w	4[r29], r11
+    2280:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2284:	00 00 
+    2286:	2a 57 01 00 	ld.w	0[r10], r10
+    228a:	cb 51       	add	r11, r10
+    228c:	5f 52       	add	-1, r10
+    228e:	0a 60       	mov	r10, r12
+    2290:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2294:	ff 06 
+    2296:	2a 5f 01 00 	ld.w	0[r10], r11
+    229a:	3d 57 01 00 	ld.w	0[r29], r10
+    229e:	cb 51       	add	r11, r10
+    22a0:	0c 30       	mov	r12, r6
+    22a2:	0a 38       	mov	r10, r7
+    22a4:	28 06 b8 24 	mov	0x24b8, r8
+    22a8:	00 00 
+    22aa:	3d 4f 09 00 	ld.w	8[r29], r9
+    22ae:	2a 06 12 2b 	mov	0x2b12, r10
+    22b2:	00 00 
+    22b4:	80 ff 04 00 	jarl	22b8 <_ista_alm+0x110>, lp
+    22b8:	44 fa       	add	4, lp
+    22ba:	6a 00       	jmp	[r10]
+    22bc:	7d 07 0d 00 	st.w	r0, 12[r29]
+    22c0:	e0 87 60 01 	ei	
+    22c4:	3d 57 0d 00 	ld.w	12[r29], r10
+    22c8:	1d 18       	mov	r29, sp
+    22ca:	23 ff 15 00 	ld.w	20[sp], lp
+    22ce:	23 ef 11 00 	ld.w	16[sp], r29
+    22d2:	03 1e 18 00 	addi	24, sp, sp
+    22d6:	7f 00       	jmp	[lp]
+
+000022d8 <_stp_alm>:
+    22d8:	03 1e ec ff 	addi	-20, sp, sp
+    22dc:	63 ff 11 00 	st.w	lp, 16[sp]
+    22e0:	63 ef 0d 00 	st.w	r29, 12[sp]
+    22e4:	03 e8       	mov	sp, r29
+    22e6:	7d 37 01 00 	st.w	r6, 0[r29]
+    22ea:	3d 57 01 00 	ld.w	0[r29], r10
+    22ee:	5f 52       	add	-1, r10
+    22f0:	7d 57 05 00 	st.w	r10, 4[r29]
+    22f4:	2a 06 48 20 	mov	0x2048, r10
+    22f8:	00 00 
+    22fa:	80 ff 04 00 	jarl	22fe <_stp_alm+0x26>, lp
+    22fe:	44 fa       	add	4, lp
+    2300:	6a 00       	jmp	[r10]
+    2302:	60 52       	cmp	0, r10
+    2304:	aa 0d       	bne	2318 <_stp_alm+0x40>
+    2306:	2a 06 48 20 	mov	0x2048, r10
+    230a:	00 00 
+    230c:	80 ff 04 00 	jarl	2310 <_stp_alm+0x38>, lp
+    2310:	44 fa       	add	4, lp
+    2312:	6a 00       	jmp	[r10]
+    2314:	60 52       	cmp	0, r10
+    2316:	e2 05       	be	2322 <_stp_alm+0x4a>
+    2318:	20 56 e7 ff 	movea	-25, r0, r10
+    231c:	7d 57 09 00 	st.w	r10, 8[r29]
+    2320:	a5 4d       	br	23b4 <_stp_alm+0xdc>
+    2322:	3d 57 01 00 	ld.w	0[r29], r10
+    2326:	60 52       	cmp	0, r10
+    2328:	a7 0d       	ble	233c <_stp_alm+0x64>
+    232a:	2a 06 ac 2e 	mov	0x2eac, r10
+    232e:	00 00 
+    2330:	2a 57 01 00 	ld.w	0[r10], r10
+    2334:	3d 5f 01 00 	ld.w	0[r29], r11
+    2338:	ea 59       	cmp	r10, r11
+    233a:	e7 05       	ble	2346 <_stp_alm+0x6e>
+    233c:	20 56 ee ff 	movea	-18, r0, r10
+    2340:	7d 57 09 00 	st.w	r10, 8[r29]
+    2344:	85 3d       	br	23b4 <_stp_alm+0xdc>
+    2346:	e0 07 60 01 	di	
+    234a:	3d 57 05 00 	ld.w	4[r29], r10
+    234e:	01 5a       	mov	1, r11
+    2350:	ea 5f c0 00 	shl	r10, r11
+    2354:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2358:	ff 06 
+    235a:	2a 57 01 00 	ld.w	0[r10], r10
+    235e:	4b 51       	and	r11, r10
+    2360:	60 52       	cmp	0, r10
+    2362:	d2 25       	be	23ac <_stp_alm+0xd4>
+    2364:	3d 57 05 00 	ld.w	4[r29], r10
+    2368:	01 5a       	mov	1, r11
+    236a:	0b 60       	mov	r11, r12
+    236c:	ea 67 c0 00 	shl	r10, r12
+    2370:	0c 50       	mov	r12, r10
+    2372:	2a 58       	not	r10, r11
+    2374:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2378:	ff 06 
+    237a:	2a 57 01 00 	ld.w	0[r10], r10
+    237e:	4a 59       	and	r10, r11
+    2380:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2384:	ff 06 
+    2386:	6a 5f 01 00 	st.w	r11, 0[r10]
+    238a:	3d 5f 01 00 	ld.w	0[r29], r11
+    238e:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2392:	00 00 
+    2394:	2a 57 01 00 	ld.w	0[r10], r10
+    2398:	cb 51       	add	r11, r10
+    239a:	5f 52       	add	-1, r10
+    239c:	0a 30       	mov	r10, r6
+    239e:	2a 06 1e 2c 	mov	0x2c1e, r10
+    23a2:	00 00 
+    23a4:	80 ff 04 00 	jarl	23a8 <_stp_alm+0xd0>, lp
+    23a8:	44 fa       	add	4, lp
+    23aa:	6a 00       	jmp	[r10]
+    23ac:	7d 07 09 00 	st.w	r0, 8[r29]
+    23b0:	e0 87 60 01 	ei	
+    23b4:	3d 57 09 00 	ld.w	8[r29], r10
+    23b8:	1d 18       	mov	r29, sp
+    23ba:	23 ff 11 00 	ld.w	16[sp], lp
+    23be:	23 ef 0d 00 	ld.w	12[sp], r29
+    23c2:	03 1e 14 00 	addi	20, sp, sp
+    23c6:	7f 00       	jmp	[lp]
+
+000023c8 <_istp_alm>:
+    23c8:	03 1e ec ff 	addi	-20, sp, sp
+    23cc:	63 ff 11 00 	st.w	lp, 16[sp]
+    23d0:	63 ef 0d 00 	st.w	r29, 12[sp]
+    23d4:	03 e8       	mov	sp, r29
+    23d6:	7d 37 01 00 	st.w	r6, 0[r29]
+    23da:	3d 57 01 00 	ld.w	0[r29], r10
+    23de:	5f 52       	add	-1, r10
+    23e0:	7d 57 05 00 	st.w	r10, 4[r29]
+    23e4:	2a 06 48 20 	mov	0x2048, r10
+    23e8:	00 00 
+    23ea:	80 ff 04 00 	jarl	23ee <_istp_alm+0x26>, lp
+    23ee:	44 fa       	add	4, lp
+    23f0:	6a 00       	jmp	[r10]
+    23f2:	60 52       	cmp	0, r10
+    23f4:	a2 0d       	be	2408 <_istp_alm+0x40>
+    23f6:	2a 06 48 20 	mov	0x2048, r10
+    23fa:	00 00 
+    23fc:	80 ff 04 00 	jarl	2400 <_istp_alm+0x38>, lp
+    2400:	44 fa       	add	4, lp
+    2402:	6a 00       	jmp	[r10]
+    2404:	60 52       	cmp	0, r10
+    2406:	e2 05       	be	2412 <_istp_alm+0x4a>
+    2408:	20 56 e7 ff 	movea	-25, r0, r10
+    240c:	7d 57 09 00 	st.w	r10, 8[r29]
+    2410:	a5 4d       	br	24a4 <_istp_alm+0xdc>
+    2412:	3d 57 01 00 	ld.w	0[r29], r10
+    2416:	60 52       	cmp	0, r10
+    2418:	a7 0d       	ble	242c <_istp_alm+0x64>
+    241a:	2a 06 ac 2e 	mov	0x2eac, r10
+    241e:	00 00 
+    2420:	2a 57 01 00 	ld.w	0[r10], r10
+    2424:	3d 5f 01 00 	ld.w	0[r29], r11
+    2428:	ea 59       	cmp	r10, r11
+    242a:	e7 05       	ble	2436 <_istp_alm+0x6e>
+    242c:	20 56 ee ff 	movea	-18, r0, r10
+    2430:	7d 57 09 00 	st.w	r10, 8[r29]
+    2434:	85 3d       	br	24a4 <_istp_alm+0xdc>
+    2436:	e0 07 60 01 	di	
+    243a:	3d 57 05 00 	ld.w	4[r29], r10
+    243e:	01 5a       	mov	1, r11
+    2440:	ea 5f c0 00 	shl	r10, r11
+    2444:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2448:	ff 06 
+    244a:	2a 57 01 00 	ld.w	0[r10], r10
+    244e:	4b 51       	and	r11, r10
+    2450:	60 52       	cmp	0, r10
+    2452:	d2 25       	be	249c <_istp_alm+0xd4>
+    2454:	3d 57 05 00 	ld.w	4[r29], r10
+    2458:	01 5a       	mov	1, r11
+    245a:	0b 60       	mov	r11, r12
+    245c:	ea 67 c0 00 	shl	r10, r12
+    2460:	0c 50       	mov	r12, r10
+    2462:	2a 58       	not	r10, r11
+    2464:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2468:	ff 06 
+    246a:	2a 57 01 00 	ld.w	0[r10], r10
+    246e:	4a 59       	and	r10, r11
+    2470:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    2474:	ff 06 
+    2476:	6a 5f 01 00 	st.w	r11, 0[r10]
+    247a:	3d 5f 01 00 	ld.w	0[r29], r11
+    247e:	2a 06 b0 2e 	mov	0x2eb0, r10
+    2482:	00 00 
+    2484:	2a 57 01 00 	ld.w	0[r10], r10
+    2488:	cb 51       	add	r11, r10
+    248a:	5f 52       	add	-1, r10
+    248c:	0a 30       	mov	r10, r6
+    248e:	2a 06 1e 2c 	mov	0x2c1e, r10
+    2492:	00 00 
+    2494:	80 ff 04 00 	jarl	2498 <_istp_alm+0xd0>, lp
+    2498:	44 fa       	add	4, lp
+    249a:	6a 00       	jmp	[r10]
+    249c:	7d 07 09 00 	st.w	r0, 8[r29]
+    24a0:	e0 87 60 01 	ei	
+    24a4:	3d 57 09 00 	ld.w	8[r29], r10
+    24a8:	1d 18       	mov	r29, sp
+    24aa:	23 ff 11 00 	ld.w	16[sp], lp
+    24ae:	23 ef 0d 00 	ld.w	12[sp], r29
+    24b2:	03 1e 14 00 	addi	20, sp, sp
+    24b6:	7f 00       	jmp	[lp]
+
+000024b8 <__kernel_call_almhdr>:
+    24b8:	54 1a       	add	-12, sp
+    24ba:	63 ff 09 00 	st.w	lp, 8[sp]
+    24be:	63 ef 05 00 	st.w	r29, 4[sp]
+    24c2:	03 e8       	mov	sp, r29
+    24c4:	7d 37 01 00 	st.w	r6, 0[r29]
+    24c8:	3d 57 01 00 	ld.w	0[r29], r10
+    24cc:	01 5a       	mov	1, r11
+    24ce:	0b 60       	mov	r11, r12
+    24d0:	ea 67 c0 00 	shl	r10, r12
+    24d4:	0c 50       	mov	r12, r10
+    24d6:	2a 58       	not	r10, r11
+    24d8:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    24dc:	ff 06 
+    24de:	2a 57 01 00 	ld.w	0[r10], r10
+    24e2:	4a 59       	and	r10, r11
+    24e4:	2a 06 ec 75 	mov	0x6ff75ec, r10
+    24e8:	ff 06 
+    24ea:	6a 5f 01 00 	st.w	r11, 0[r10]
+    24ee:	e0 87 60 01 	ei	
+    24f2:	2b 06 b4 2e 	mov	0x2eb4, r11
+    24f6:	00 00 
+    24f8:	3d 57 01 00 	ld.w	0[r29], r10
+    24fc:	c2 52       	shl	2, r10
+    24fe:	cb 51       	add	r11, r10
+    2500:	2a 57 01 00 	ld.w	0[r10], r10
+    2504:	2c 06 bc 2e 	mov	0x2ebc, r12
+    2508:	00 00 
+    250a:	3d 5f 01 00 	ld.w	0[r29], r11
+    250e:	c2 5a       	shl	2, r11
+    2510:	cc 59       	add	r12, r11
+    2512:	2b 5f 01 00 	ld.w	0[r11], r11
+    2516:	0b 30       	mov	r11, r6
+    2518:	80 ff 04 00 	jarl	251c <__kernel_call_almhdr+0x64>, lp
+    251c:	44 fa       	add	4, lp
+    251e:	6a 00       	jmp	[r10]
+    2520:	2a 06 48 20 	mov	0x2048, r10
+    2524:	00 00 
+    2526:	80 ff 04 00 	jarl	252a <__kernel_call_almhdr+0x72>, lp
+    252a:	44 fa       	add	4, lp
+    252c:	6a 00       	jmp	[r10]
+    252e:	60 52       	cmp	0, r10
+    2530:	ba 05       	bne	2536 <__kernel_call_almhdr+0x7e>
+    2532:	e0 07 60 01 	di	
+    2536:	1d 18       	mov	r29, sp
+    2538:	23 ff 09 00 	ld.w	8[sp], lp
+    253c:	23 ef 05 00 	ld.w	4[sp], r29
+    2540:	4c 1a       	add	12, sp
+    2542:	7f 00       	jmp	[lp]
+
+00002544 <_sense_context>:
+    2544:	5c 1a       	add	-4, sp
+    2546:	63 ef 01 00 	st.w	r29, 0[sp]
+    254a:	03 e8       	mov	sp, r29
+    254c:	00 52       	mov	0, r10
+    254e:	1d 18       	mov	r29, sp
+    2550:	23 ef 01 00 	ld.w	0[sp], r29
+    2554:	44 1a       	add	4, sp
+    2556:	7f 00       	jmp	[lp]
+
+00002558 <__kernel_initialize_cyclic>:
+    2558:	54 1a       	add	-12, sp
+    255a:	63 ff 09 00 	st.w	lp, 8[sp]
+    255e:	63 ef 05 00 	st.w	r29, 4[sp]
+    2562:	03 e8       	mov	sp, r29
+    2564:	2a 06 98 2e 	mov	0x2e98, r10
+    2568:	00 00 
+    256a:	2a 5f 01 00 	ld.w	0[r10], r11
+    256e:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    2572:	ff 06 
+    2574:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2578:	7d 07 01 00 	st.w	r0, 0[r29]
+    257c:	85 55       	br	261c <__kernel_initialize_cyclic+0xc4>
+    257e:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    2582:	ff 06 
+    2584:	3d 57 01 00 	ld.w	0[r29], r10
+    2588:	c2 52       	shl	2, r10
+    258a:	cb 51       	add	r11, r10
+    258c:	6a 07 01 00 	st.w	r0, 0[r10]
+    2590:	2a 06 98 2e 	mov	0x2e98, r10
+    2594:	00 00 
+    2596:	2a 5f 01 00 	ld.w	0[r10], r11
+    259a:	3d 57 01 00 	ld.w	0[r29], r10
+    259e:	0b 60       	mov	r11, r12
+    25a0:	ea 67 80 00 	shr	r10, r12
+    25a4:	0c 50       	mov	r12, r10
+    25a6:	ca 56 01 00 	andi	1, r10, r10
+    25aa:	60 52       	cmp	0, r10
+    25ac:	b2 35       	be	2612 <__kernel_initialize_cyclic+0xba>
+    25ae:	2a 06 94 2e 	mov	0x2e94, r10
+    25b2:	00 00 
+    25b4:	2a 5f 01 00 	ld.w	0[r10], r11
+    25b8:	3d 57 01 00 	ld.w	0[r29], r10
+    25bc:	cb 51       	add	r11, r10
+    25be:	0a 60       	mov	r10, r12
+    25c0:	2b 06 a8 2e 	mov	0x2ea8, r11
+    25c4:	00 00 
+    25c6:	3d 57 01 00 	ld.w	0[r29], r10
+    25ca:	c2 52       	shl	2, r10
+    25cc:	cb 51       	add	r11, r10
+    25ce:	2a 57 01 00 	ld.w	0[r10], r10
+    25d2:	0c 30       	mov	r12, r6
+    25d4:	0a 38       	mov	r10, r7
+    25d6:	28 06 7e 28 	mov	0x287e, r8
+    25da:	00 00 
+    25dc:	3d 4f 01 00 	ld.w	0[r29], r9
+    25e0:	2a 06 12 2b 	mov	0x2b12, r10
+    25e4:	00 00 
+    25e6:	80 ff 04 00 	jarl	25ea <__kernel_initialize_cyclic+0x92>, lp
+    25ea:	44 fa       	add	4, lp
+    25ec:	6a 00       	jmp	[r10]
+    25ee:	2b 06 a8 2e 	mov	0x2ea8, r11
+    25f2:	00 00 
+    25f4:	3d 57 01 00 	ld.w	0[r29], r10
+    25f8:	c2 52       	shl	2, r10
+    25fa:	cb 51       	add	r11, r10
+    25fc:	2a 67 01 00 	ld.w	0[r10], r12
+    2600:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    2604:	ff 06 
+    2606:	3d 57 01 00 	ld.w	0[r29], r10
+    260a:	c2 52       	shl	2, r10
+    260c:	cb 51       	add	r11, r10
+    260e:	6a 67 01 00 	st.w	r12, 0[r10]
+    2612:	3d 57 01 00 	ld.w	0[r29], r10
+    2616:	41 52       	add	1, r10
+    2618:	7d 57 01 00 	st.w	r10, 0[r29]
+    261c:	2a 06 90 2e 	mov	0x2e90, r10
+    2620:	00 00 
+    2622:	2a 57 01 00 	ld.w	0[r10], r10
+    2626:	0a 58       	mov	r10, r11
+    2628:	3d 57 01 00 	ld.w	0[r29], r10
+    262c:	ea 59       	cmp	r10, r11
+    262e:	8b ad       	bh	257e <__kernel_initialize_cyclic+0x26>
+    2630:	1d 18       	mov	r29, sp
+    2632:	23 ff 09 00 	ld.w	8[sp], lp
+    2636:	23 ef 05 00 	ld.w	4[sp], r29
+    263a:	4c 1a       	add	12, sp
+    263c:	7f 00       	jmp	[lp]
+
+0000263e <_sta_cyc>:
+    263e:	03 1e e8 ff 	addi	-24, sp, sp
+    2642:	63 ff 15 00 	st.w	lp, 20[sp]
+    2646:	63 ef 11 00 	st.w	r29, 16[sp]
+    264a:	03 e8       	mov	sp, r29
+    264c:	7d 37 01 00 	st.w	r6, 0[r29]
+    2650:	3d 57 01 00 	ld.w	0[r29], r10
+    2654:	5f 52       	add	-1, r10
+    2656:	7d 57 09 00 	st.w	r10, 8[r29]
+    265a:	2a 06 44 25 	mov	0x2544, r10
+    265e:	00 00 
+    2660:	80 ff 04 00 	jarl	2664 <_sta_cyc+0x26>, lp
+    2664:	44 fa       	add	4, lp
+    2666:	6a 00       	jmp	[r10]
+    2668:	60 52       	cmp	0, r10
+    266a:	aa 0d       	bne	267e <_sta_cyc+0x40>
+    266c:	2a 06 44 25 	mov	0x2544, r10
+    2670:	00 00 
+    2672:	80 ff 04 00 	jarl	2676 <_sta_cyc+0x38>, lp
+    2676:	44 fa       	add	4, lp
+    2678:	6a 00       	jmp	[r10]
+    267a:	60 52       	cmp	0, r10
+    267c:	f2 05       	be	268a <_sta_cyc+0x4c>
+    267e:	20 56 e7 ff 	movea	-25, r0, r10
+    2682:	7d 57 0d 00 	st.w	r10, 12[r29]
+    2686:	80 07 f6 00 	jr	277c <_sta_cyc+0x13e>
+    268a:	3d 57 01 00 	ld.w	0[r29], r10
+    268e:	60 52       	cmp	0, r10
+    2690:	a7 0d       	ble	26a4 <_sta_cyc+0x66>
+    2692:	2a 06 90 2e 	mov	0x2e90, r10
+    2696:	00 00 
+    2698:	2a 57 01 00 	ld.w	0[r10], r10
+    269c:	3d 5f 01 00 	ld.w	0[r29], r11
+    26a0:	ea 59       	cmp	r10, r11
+    26a2:	e7 05       	ble	26ae <_sta_cyc+0x70>
+    26a4:	20 56 ee ff 	movea	-18, r0, r10
+    26a8:	7d 57 0d 00 	st.w	r10, 12[r29]
+    26ac:	85 6d       	br	277c <_sta_cyc+0x13e>
+    26ae:	e0 07 60 01 	di	
+    26b2:	3d 57 09 00 	ld.w	8[r29], r10
+    26b6:	01 5a       	mov	1, r11
+    26b8:	ea 5f c0 00 	shl	r10, r11
+    26bc:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    26c0:	ff 06 
+    26c2:	2a 57 01 00 	ld.w	0[r10], r10
+    26c6:	4b 51       	and	r11, r10
+    26c8:	60 52       	cmp	0, r10
+    26ca:	a2 15       	be	26ee <_sta_cyc+0xb0>
+    26cc:	2a 06 94 2e 	mov	0x2e94, r10
+    26d0:	00 00 
+    26d2:	2a 5f 01 00 	ld.w	0[r10], r11
+    26d6:	3d 57 09 00 	ld.w	8[r29], r10
+    26da:	cb 51       	add	r11, r10
+    26dc:	0a 30       	mov	r10, r6
+    26de:	2a 06 1e 2c 	mov	0x2c1e, r10
+    26e2:	00 00 
+    26e4:	80 ff 04 00 	jarl	26e8 <_sta_cyc+0xaa>, lp
+    26e8:	44 fa       	add	4, lp
+    26ea:	6a 00       	jmp	[r10]
+    26ec:	95 15       	br	270e <_sta_cyc+0xd0>
+    26ee:	3d 57 09 00 	ld.w	8[r29], r10
+    26f2:	01 5a       	mov	1, r11
+    26f4:	ea 5f c0 00 	shl	r10, r11
+    26f8:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    26fc:	ff 06 
+    26fe:	2a 57 01 00 	ld.w	0[r10], r10
+    2702:	0a 59       	or	r10, r11
+    2704:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    2708:	ff 06 
+    270a:	6a 5f 01 00 	st.w	r11, 0[r10]
+    270e:	2b 06 a8 2e 	mov	0x2ea8, r11
+    2712:	00 00 
+    2714:	3d 57 09 00 	ld.w	8[r29], r10
+    2718:	c2 52       	shl	2, r10
+    271a:	cb 51       	add	r11, r10
+    271c:	2a 5f 01 00 	ld.w	0[r10], r11
+    2720:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2724:	ff 06 
+    2726:	2a 57 01 00 	ld.w	0[r10], r10
+    272a:	cb 51       	add	r11, r10
+    272c:	7d 57 05 00 	st.w	r10, 4[r29]
+    2730:	2a 06 94 2e 	mov	0x2e94, r10
+    2734:	00 00 
+    2736:	2a 5f 01 00 	ld.w	0[r10], r11
+    273a:	3d 57 09 00 	ld.w	8[r29], r10
+    273e:	cb 51       	add	r11, r10
+    2740:	0a 30       	mov	r10, r6
+    2742:	3d 3f 05 00 	ld.w	4[r29], r7
+    2746:	28 06 7e 28 	mov	0x287e, r8
+    274a:	00 00 
+    274c:	3d 4f 09 00 	ld.w	8[r29], r9
+    2750:	2a 06 12 2b 	mov	0x2b12, r10
+    2754:	00 00 
+    2756:	80 ff 04 00 	jarl	275a <_sta_cyc+0x11c>, lp
+    275a:	44 fa       	add	4, lp
+    275c:	6a 00       	jmp	[r10]
+    275e:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    2762:	ff 06 
+    2764:	3d 57 09 00 	ld.w	8[r29], r10
+    2768:	c2 52       	shl	2, r10
+    276a:	cb 51       	add	r11, r10
+    276c:	3d 5f 05 00 	ld.w	4[r29], r11
+    2770:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2774:	7d 07 0d 00 	st.w	r0, 12[r29]
+    2778:	e0 87 60 01 	ei	
+    277c:	3d 57 0d 00 	ld.w	12[r29], r10
+    2780:	1d 18       	mov	r29, sp
+    2782:	23 ff 15 00 	ld.w	20[sp], lp
+    2786:	23 ef 11 00 	ld.w	16[sp], r29
+    278a:	03 1e 18 00 	addi	24, sp, sp
+    278e:	7f 00       	jmp	[lp]
+
+00002790 <_stp_cyc>:
+    2790:	03 1e ec ff 	addi	-20, sp, sp
+    2794:	63 ff 11 00 	st.w	lp, 16[sp]
+    2798:	63 ef 0d 00 	st.w	r29, 12[sp]
+    279c:	03 e8       	mov	sp, r29
+    279e:	7d 37 01 00 	st.w	r6, 0[r29]
+    27a2:	3d 57 01 00 	ld.w	0[r29], r10
+    27a6:	5f 52       	add	-1, r10
+    27a8:	7d 57 05 00 	st.w	r10, 4[r29]
+    27ac:	2a 06 44 25 	mov	0x2544, r10
+    27b0:	00 00 
+    27b2:	80 ff 04 00 	jarl	27b6 <_stp_cyc+0x26>, lp
+    27b6:	44 fa       	add	4, lp
+    27b8:	6a 00       	jmp	[r10]
+    27ba:	60 52       	cmp	0, r10
+    27bc:	aa 0d       	bne	27d0 <_stp_cyc+0x40>
+    27be:	2a 06 44 25 	mov	0x2544, r10
+    27c2:	00 00 
+    27c4:	80 ff 04 00 	jarl	27c8 <_stp_cyc+0x38>, lp
+    27c8:	44 fa       	add	4, lp
+    27ca:	6a 00       	jmp	[r10]
+    27cc:	60 52       	cmp	0, r10
+    27ce:	e2 05       	be	27da <_stp_cyc+0x4a>
+    27d0:	20 56 e7 ff 	movea	-25, r0, r10
+    27d4:	7d 57 09 00 	st.w	r10, 8[r29]
+    27d8:	95 4d       	br	286a <_stp_cyc+0xda>
+    27da:	3d 57 01 00 	ld.w	0[r29], r10
+    27de:	60 52       	cmp	0, r10
+    27e0:	a7 0d       	ble	27f4 <_stp_cyc+0x64>
+    27e2:	2a 06 90 2e 	mov	0x2e90, r10
+    27e6:	00 00 
+    27e8:	2a 57 01 00 	ld.w	0[r10], r10
+    27ec:	3d 5f 01 00 	ld.w	0[r29], r11
+    27f0:	ea 59       	cmp	r10, r11
+    27f2:	e7 05       	ble	27fe <_stp_cyc+0x6e>
+    27f4:	20 56 ee ff 	movea	-18, r0, r10
+    27f8:	7d 57 09 00 	st.w	r10, 8[r29]
+    27fc:	f5 35       	br	286a <_stp_cyc+0xda>
+    27fe:	e0 07 60 01 	di	
+    2802:	3d 57 05 00 	ld.w	4[r29], r10
+    2806:	01 5a       	mov	1, r11
+    2808:	ea 5f c0 00 	shl	r10, r11
+    280c:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    2810:	ff 06 
+    2812:	2a 57 01 00 	ld.w	0[r10], r10
+    2816:	4b 51       	and	r11, r10
+    2818:	60 52       	cmp	0, r10
+    281a:	c2 25       	be	2862 <_stp_cyc+0xd2>
+    281c:	3d 57 05 00 	ld.w	4[r29], r10
+    2820:	01 5a       	mov	1, r11
+    2822:	0b 60       	mov	r11, r12
+    2824:	ea 67 c0 00 	shl	r10, r12
+    2828:	0c 50       	mov	r12, r10
+    282a:	2a 58       	not	r10, r11
+    282c:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    2830:	ff 06 
+    2832:	2a 57 01 00 	ld.w	0[r10], r10
+    2836:	4a 59       	and	r10, r11
+    2838:	2a 06 ac 83 	mov	0x6ff83ac, r10
+    283c:	ff 06 
+    283e:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2842:	2a 06 94 2e 	mov	0x2e94, r10
+    2846:	00 00 
+    2848:	2a 5f 01 00 	ld.w	0[r10], r11
+    284c:	3d 57 05 00 	ld.w	4[r29], r10
+    2850:	cb 51       	add	r11, r10
+    2852:	0a 30       	mov	r10, r6
+    2854:	2a 06 1e 2c 	mov	0x2c1e, r10
+    2858:	00 00 
+    285a:	80 ff 04 00 	jarl	285e <_stp_cyc+0xce>, lp
+    285e:	44 fa       	add	4, lp
+    2860:	6a 00       	jmp	[r10]
+    2862:	7d 07 09 00 	st.w	r0, 8[r29]
+    2866:	e0 87 60 01 	ei	
+    286a:	3d 57 09 00 	ld.w	8[r29], r10
+    286e:	1d 18       	mov	r29, sp
+    2870:	23 ff 11 00 	ld.w	16[sp], lp
+    2874:	23 ef 0d 00 	ld.w	12[sp], r29
+    2878:	03 1e 14 00 	addi	20, sp, sp
+    287c:	7f 00       	jmp	[lp]
+
+0000287e <__kernel_call_cychdr>:
+    287e:	54 1a       	add	-12, sp
+    2880:	63 ff 09 00 	st.w	lp, 8[sp]
+    2884:	63 ef 05 00 	st.w	r29, 4[sp]
+    2888:	03 e8       	mov	sp, r29
+    288a:	7d 37 01 00 	st.w	r6, 0[r29]
+    288e:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    2892:	ff 06 
+    2894:	3d 57 01 00 	ld.w	0[r29], r10
+    2898:	c2 52       	shl	2, r10
+    289a:	cb 51       	add	r11, r10
+    289c:	2a 5f 01 00 	ld.w	0[r10], r11
+    28a0:	2c 06 a4 2e 	mov	0x2ea4, r12
+    28a4:	00 00 
+    28a6:	3d 57 01 00 	ld.w	0[r29], r10
+    28aa:	c2 52       	shl	2, r10
+    28ac:	cc 51       	add	r12, r10
+    28ae:	2a 57 01 00 	ld.w	0[r10], r10
+    28b2:	0b 60       	mov	r11, r12
+    28b4:	ca 61       	add	r10, r12
+    28b6:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    28ba:	ff 06 
+    28bc:	3d 57 01 00 	ld.w	0[r29], r10
+    28c0:	c2 52       	shl	2, r10
+    28c2:	cb 51       	add	r11, r10
+    28c4:	6a 67 01 00 	st.w	r12, 0[r10]
+    28c8:	3d 67 01 00 	ld.w	0[r29], r12
+    28cc:	2b 06 f4 75 	mov	0x6ff75f4, r11
+    28d0:	ff 06 
+    28d2:	3d 57 01 00 	ld.w	0[r29], r10
+    28d6:	c2 52       	shl	2, r10
+    28d8:	cb 51       	add	r11, r10
+    28da:	2a 57 01 00 	ld.w	0[r10], r10
+    28de:	0c 30       	mov	r12, r6
+    28e0:	0a 38       	mov	r10, r7
+    28e2:	28 06 7e 28 	mov	0x287e, r8
+    28e6:	00 00 
+    28e8:	3d 4f 01 00 	ld.w	0[r29], r9
+    28ec:	2a 06 12 2b 	mov	0x2b12, r10
+    28f0:	00 00 
+    28f2:	80 ff 04 00 	jarl	28f6 <__kernel_call_cychdr+0x78>, lp
+    28f6:	44 fa       	add	4, lp
+    28f8:	6a 00       	jmp	[r10]
+    28fa:	e0 87 60 01 	ei	
+    28fe:	2b 06 a0 2e 	mov	0x2ea0, r11
+    2902:	00 00 
+    2904:	3d 57 01 00 	ld.w	0[r29], r10
+    2908:	c2 52       	shl	2, r10
+    290a:	cb 51       	add	r11, r10
+    290c:	2a 57 01 00 	ld.w	0[r10], r10
+    2910:	2c 06 9c 2e 	mov	0x2e9c, r12
+    2914:	00 00 
+    2916:	3d 5f 01 00 	ld.w	0[r29], r11
+    291a:	c2 5a       	shl	2, r11
+    291c:	cc 59       	add	r12, r11
+    291e:	2b 5f 01 00 	ld.w	0[r11], r11
+    2922:	0b 30       	mov	r11, r6
+    2924:	80 ff 04 00 	jarl	2928 <__kernel_call_cychdr+0xaa>, lp
+    2928:	44 fa       	add	4, lp
+    292a:	6a 00       	jmp	[r10]
+    292c:	2a 06 44 25 	mov	0x2544, r10
+    2930:	00 00 
+    2932:	80 ff 04 00 	jarl	2936 <__kernel_call_cychdr+0xb8>, lp
+    2936:	44 fa       	add	4, lp
+    2938:	6a 00       	jmp	[r10]
+    293a:	60 52       	cmp	0, r10
+    293c:	ba 05       	bne	2942 <__kernel_call_cychdr+0xc4>
+    293e:	e0 07 60 01 	di	
+    2942:	1d 18       	mov	r29, sp
+    2944:	23 ff 09 00 	ld.w	8[sp], lp
+    2948:	23 ef 05 00 	ld.w	4[sp], r29
+    294c:	4c 1a       	add	12, sp
+    294e:	7f 00       	jmp	[lp]
+
+00002950 <_queue_initialize>:
+    2950:	54 1a       	add	-12, sp
+    2952:	63 ef 09 00 	st.w	r29, 8[sp]
+    2956:	03 e8       	mov	sp, r29
+    2958:	7d 37 05 00 	st.w	r6, 4[r29]
+    295c:	07 50       	mov	r7, r10
+    295e:	5d 57 00 00 	st.b	r10, 0[r29]
+    2962:	3d 57 05 00 	ld.w	4[r29], r10
+    2966:	1d 5f 00 00 	ld.b	0[r29], r11
+    296a:	4a 5f 01 00 	st.b	r11, 1[r10]
+    296e:	3d 57 05 00 	ld.w	4[r29], r10
+    2972:	aa 5f 01 00 	ld.bu	1[r10], r11
+    2976:	3d 57 05 00 	ld.w	4[r29], r10
+    297a:	4a 5f 00 00 	st.b	r11, 0[r10]
+    297e:	1d 18       	mov	r29, sp
+    2980:	23 ef 09 00 	ld.w	8[sp], r29
+    2984:	4c 1a       	add	12, sp
+    2986:	7f 00       	jmp	[lp]
+
+00002988 <_queue_insert_prev>:
+    2988:	50 1a       	add	-16, sp
+    298a:	63 ef 0d 00 	st.w	r29, 12[sp]
+    298e:	03 e8       	mov	sp, r29
+    2990:	7d 37 09 00 	st.w	r6, 8[r29]
+    2994:	07 58       	mov	r7, r11
+    2996:	08 50       	mov	r8, r10
+    2998:	5d 5f 04 00 	st.b	r11, 4[r29]
+    299c:	5d 57 00 00 	st.b	r10, 0[r29]
+    29a0:	9d 57 01 00 	ld.bu	0[r29], r10
+    29a4:	ca 51       	add	r10, r10
+    29a6:	0a 58       	mov	r10, r11
+    29a8:	3d 57 09 00 	ld.w	8[r29], r10
+    29ac:	ca 59       	add	r10, r11
+    29ae:	9d 57 05 00 	ld.b	2680064[r29], r0
+    29b2:	ca 51       	add	r10, r10
+    29b4:	0a 60       	mov	r10, r12
+    29b6:	3d 57 09 00 	ld.w	8[r29], r10
+    29ba:	cc 51       	add	r12, r10
+    29bc:	aa 57 01 00 	ld.bu	1[r10], r10
+    29c0:	4b 57 01 00 	st.b	r10, 1[r11]
+    29c4:	9d 57 01 00 	ld.bu	0[r29], r10
+    29c8:	ca 51       	add	r10, r10
+    29ca:	0a 58       	mov	r10, r11
+    29cc:	3d 57 09 00 	ld.w	8[r29], r10
+    29d0:	cb 51       	add	r11, r10
+    29d2:	1d 5f 04 00 	ld.b	4[r29], r11
+    29d6:	4a 5f 00 00 	st.b	r11, 0[r10]
+    29da:	9d 57 05 00 	ld.b	2680064[r29], r0
+    29de:	ca 51       	add	r10, r10
+    29e0:	0a 58       	mov	r10, r11
+    29e2:	3d 57 09 00 	ld.w	8[r29], r10
+    29e6:	cb 51       	add	r11, r10
+    29e8:	aa 57 01 00 	ld.bu	1[r10], r10
+    29ec:	ca 51       	add	r10, r10
+    29ee:	0a 58       	mov	r10, r11
+    29f0:	3d 57 09 00 	ld.w	8[r29], r10
+    29f4:	cb 51       	add	r11, r10
+    29f6:	1d 5f 00 00 	ld.b	0[r29], r11
+    29fa:	4a 5f 00 00 	st.b	r11, 0[r10]
+    29fe:	9d 57 05 00 	ld.b	2680064[r29], r0
+    2a02:	ca 51       	add	r10, r10
+    2a04:	0a 58       	mov	r10, r11
+    2a06:	3d 57 09 00 	ld.w	8[r29], r10
+    2a0a:	cb 51       	add	r11, r10
+    2a0c:	1d 5f 00 00 	ld.b	0[r29], r11
+    2a10:	4a 5f 01 00 	st.b	r11, 1[r10]
+    2a14:	1d 18       	mov	r29, sp
+    2a16:	23 ef 0d 00 	ld.w	12[sp], r29
+    2a1a:	03 1e 10 00 	addi	16, sp, sp
+    2a1e:	7f 00       	jmp	[lp]
+
+00002a20 <_queue_delete_next>:
+    2a20:	54 1a       	add	-12, sp
+    2a22:	63 ef 09 00 	st.w	r29, 8[sp]
+    2a26:	03 e8       	mov	sp, r29
+    2a28:	7d 37 05 00 	st.w	r6, 4[r29]
+    2a2c:	07 50       	mov	r7, r10
+    2a2e:	5d 57 00 00 	st.b	r10, 0[r29]
+    2a32:	9d 57 01 00 	ld.bu	0[r29], r10
+    2a36:	ca 51       	add	r10, r10
+    2a38:	0a 58       	mov	r10, r11
+    2a3a:	3d 57 05 00 	ld.w	4[r29], r10
+    2a3e:	cb 51       	add	r11, r10
+    2a40:	8a 57 01 00 	ld.bu	0[r10], r10
+    2a44:	ca 51       	add	r10, r10
+    2a46:	0a 58       	mov	r10, r11
+    2a48:	3d 57 05 00 	ld.w	4[r29], r10
+    2a4c:	ca 59       	add	r10, r11
+    2a4e:	9d 57 01 00 	ld.bu	0[r29], r10
+    2a52:	ca 51       	add	r10, r10
+    2a54:	0a 60       	mov	r10, r12
+    2a56:	3d 57 05 00 	ld.w	4[r29], r10
+    2a5a:	cc 51       	add	r12, r10
+    2a5c:	aa 57 01 00 	ld.bu	1[r10], r10
+    2a60:	4b 57 01 00 	st.b	r10, 1[r11]
+    2a64:	9d 57 01 00 	ld.bu	0[r29], r10
+    2a68:	ca 51       	add	r10, r10
+    2a6a:	0a 58       	mov	r10, r11
+    2a6c:	3d 57 05 00 	ld.w	4[r29], r10
+    2a70:	cb 51       	add	r11, r10
+    2a72:	aa 57 01 00 	ld.bu	1[r10], r10
+    2a76:	ca 51       	add	r10, r10
+    2a78:	0a 58       	mov	r10, r11
+    2a7a:	3d 57 05 00 	ld.w	4[r29], r10
+    2a7e:	ca 59       	add	r10, r11
+    2a80:	9d 57 01 00 	ld.bu	0[r29], r10
+    2a84:	ca 51       	add	r10, r10
+    2a86:	0a 60       	mov	r10, r12
+    2a88:	3d 57 05 00 	ld.w	4[r29], r10
+    2a8c:	cc 51       	add	r12, r10
+    2a8e:	8a 57 01 00 	ld.bu	0[r10], r10
+    2a92:	4b 57 00 00 	st.b	r10, 0[r11]
+    2a96:	9d 57 01 00 	ld.bu	0[r29], r10
+    2a9a:	ca 51       	add	r10, r10
+    2a9c:	0a 58       	mov	r10, r11
+    2a9e:	3d 57 05 00 	ld.w	4[r29], r10
+    2aa2:	cb 51       	add	r11, r10
+    2aa4:	8a 57 01 00 	ld.bu	0[r10], r10
+    2aa8:	1d 18       	mov	r29, sp
+    2aaa:	23 ef 09 00 	ld.w	8[sp], r29
+    2aae:	4c 1a       	add	12, sp
+    2ab0:	7f 00       	jmp	[lp]
+
+00002ab2 <__kernel_initialize_time_event>:
+    2ab2:	58 1a       	add	-8, sp
+    2ab4:	63 ff 05 00 	st.w	lp, 4[sp]
+    2ab8:	63 ef 01 00 	st.w	r29, 0[sp]
+    2abc:	03 e8       	mov	sp, r29
+    2abe:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2ac2:	ff 06 
+    2ac4:	6a 07 01 00 	st.w	r0, 0[r10]
+    2ac8:	2a 06 08 84 	mov	0x6ff8408, r10
+    2acc:	ff 06 
+    2ace:	6a 07 01 00 	st.w	r0, 0[r10]
+    2ad2:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2ad6:	00 00 
+    2ad8:	2a 57 01 00 	ld.w	0[r10], r10
+    2adc:	ca 51       	add	r10, r10
+    2ade:	2b 06 f8 75 	mov	0x6ff75f8, r11
+    2ae2:	ff 06 
+    2ae4:	ca 59       	add	r10, r11
+    2ae6:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2aea:	00 00 
+    2aec:	2a 57 01 00 	ld.w	0[r10], r10
+    2af0:	8a 00       	zxb	r10
+    2af2:	0b 30       	mov	r11, r6
+    2af4:	0a 38       	mov	r10, r7
+    2af6:	2a 06 50 29 	mov	0x2950, r10
+    2afa:	00 00 
+    2afc:	80 ff 04 00 	jarl	2b00 <__kernel_initialize_time_event+0x4e>, lp
+    2b00:	44 fa       	add	4, lp
+    2b02:	6a 00       	jmp	[r10]
+    2b04:	1d 18       	mov	r29, sp
+    2b06:	23 ff 05 00 	ld.w	4[sp], lp
+    2b0a:	23 ef 01 00 	ld.w	0[sp], r29
+    2b0e:	48 1a       	add	8, sp
+    2b10:	7f 00       	jmp	[lp]
+
+00002b12 <__kernel_time_event_enqueue>:
+    2b12:	03 1e e4 ff 	addi	-28, sp, sp
+    2b16:	63 ff 19 00 	st.w	lp, 24[sp]
+    2b1a:	63 ef 15 00 	st.w	r29, 20[sp]
+    2b1e:	03 e8       	mov	sp, r29
+    2b20:	7d 37 0d 00 	st.w	r6, 12[r29]
+    2b24:	7d 3f 09 00 	st.w	r7, 8[r29]
+    2b28:	7d 47 05 00 	st.w	r8, 4[r29]
+    2b2c:	7d 4f 01 00 	st.w	r9, 0[r29]
+    2b30:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2b34:	00 00 
+    2b36:	2a 57 01 00 	ld.w	0[r10], r10
+    2b3a:	2b 06 f8 75 	mov	0x6ff75f8, r11
+    2b3e:	ff 06 
+    2b40:	ca 51       	add	r10, r10
+    2b42:	cb 51       	add	r11, r10
+    2b44:	0a 57 00 00 	ld.b	0[r10], r10
+    2b48:	5d 57 13 00 	st.b	r10, 19[r29]
+    2b4c:	c5 0d       	br	2b64 <__kernel_time_event_enqueue+0x52>
+    2b4e:	bd 57 13 00 	ld.bu	19[r29], r10
+    2b52:	2b 06 f8 75 	mov	0x6ff75f8, r11
+    2b56:	ff 06 
+    2b58:	ca 51       	add	r10, r10
+    2b5a:	cb 51       	add	r11, r10
+    2b5c:	0a 57 00 00 	ld.b	0[r10], r10
+    2b60:	5d 57 13 00 	st.b	r10, 19[r29]
+    2b64:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2b68:	00 00 
+    2b6a:	2a 57 01 00 	ld.w	0[r10], r10
+    2b6e:	8a 00       	zxb	r10
+    2b70:	bd 5f 13 00 	ld.bu	19[r29], r11
+    2b74:	ea 59       	cmp	r10, r11
+    2b76:	a2 1d       	be	2baa <__kernel_time_event_enqueue+0x98>
+    2b78:	bd 57 13 00 	ld.bu	19[r29], r10
+    2b7c:	2b 06 a0 76 	mov	0x6ff76a0, r11
+    2b80:	ff 06 
+    2b82:	c2 52       	shl	2, r10
+    2b84:	cb 51       	add	r11, r10
+    2b86:	2a 5f 01 00 	ld.w	0[r10], r11
+    2b8a:	2a 06 08 84 	mov	0x6ff8408, r10
+    2b8e:	ff 06 
+    2b90:	2a 57 01 00 	ld.w	0[r10], r10
+    2b94:	aa 59       	sub	r10, r11
+    2b96:	2a 06 08 84 	mov	0x6ff8408, r10
+    2b9a:	ff 06 
+    2b9c:	2a 57 01 00 	ld.w	0[r10], r10
+    2ba0:	3d 67 09 00 	ld.w	8[r29], r12
+    2ba4:	8c 51       	subr	r12, r10
+    2ba6:	ea 59       	cmp	r10, r11
+    2ba8:	b3 d5       	bnh	2b4e <__kernel_time_event_enqueue+0x3c>
+    2baa:	bd 57 13 00 	ld.bu	19[r29], r10
+    2bae:	3d 5f 0d 00 	ld.w	12[r29], r11
+    2bb2:	8b 00       	zxb	r11
+    2bb4:	26 06 f8 75 	mov	0x6ff75f8, r6
+    2bb8:	ff 06 
+    2bba:	0a 38       	mov	r10, r7
+    2bbc:	0b 40       	mov	r11, r8
+    2bbe:	2a 06 88 29 	mov	0x2988, r10
+    2bc2:	00 00 
+    2bc4:	80 ff 04 00 	jarl	2bc8 <__kernel_time_event_enqueue+0xb6>, lp
+    2bc8:	44 fa       	add	4, lp
+    2bca:	6a 00       	jmp	[r10]
+    2bcc:	2b 06 88 76 	mov	0x6ff7688, r11
+    2bd0:	ff 06 
+    2bd2:	3d 57 0d 00 	ld.w	12[r29], r10
+    2bd6:	c2 52       	shl	2, r10
+    2bd8:	cb 51       	add	r11, r10
+    2bda:	3d 5f 05 00 	ld.w	4[r29], r11
+    2bde:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2be2:	2b 06 94 76 	mov	0x6ff7694, r11
+    2be6:	ff 06 
+    2be8:	3d 57 0d 00 	ld.w	12[r29], r10
+    2bec:	c2 52       	shl	2, r10
+    2bee:	cb 51       	add	r11, r10
+    2bf0:	3d 5f 01 00 	ld.w	0[r29], r11
+    2bf4:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2bf8:	2b 06 a0 76 	mov	0x6ff76a0, r11
+    2bfc:	ff 06 
+    2bfe:	3d 57 0d 00 	ld.w	12[r29], r10
+    2c02:	c2 52       	shl	2, r10
+    2c04:	cb 51       	add	r11, r10
+    2c06:	3d 5f 09 00 	ld.w	8[r29], r11
+    2c0a:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2c0e:	1d 18       	mov	r29, sp
+    2c10:	23 ff 19 00 	ld.w	24[sp], lp
+    2c14:	23 ef 15 00 	ld.w	20[sp], r29
+    2c18:	03 1e 1c 00 	addi	28, sp, sp
+    2c1c:	7f 00       	jmp	[lp]
+
+00002c1e <__kernel_time_event_dequeue>:
+    2c1e:	54 1a       	add	-12, sp
+    2c20:	63 ff 09 00 	st.w	lp, 8[sp]
+    2c24:	63 ef 05 00 	st.w	r29, 4[sp]
+    2c28:	03 e8       	mov	sp, r29
+    2c2a:	7d 37 01 00 	st.w	r6, 0[r29]
+    2c2e:	3d 57 01 00 	ld.w	0[r29], r10
+    2c32:	8a 00       	zxb	r10
+    2c34:	26 06 f8 75 	mov	0x6ff75f8, r6
+    2c38:	ff 06 
+    2c3a:	0a 38       	mov	r10, r7
+    2c3c:	2a 06 20 2a 	mov	0x2a20, r10
+    2c40:	00 00 
+    2c42:	80 ff 04 00 	jarl	2c46 <__kernel_time_event_dequeue+0x28>, lp
+    2c46:	44 fa       	add	4, lp
+    2c48:	6a 00       	jmp	[r10]
+    2c4a:	1d 18       	mov	r29, sp
+    2c4c:	23 ff 09 00 	ld.w	8[sp], lp
+    2c50:	23 ef 05 00 	ld.w	4[sp], r29
+    2c54:	4c 1a       	add	12, sp
+    2c56:	7f 00       	jmp	[lp]
+
+00002c58 <__kernel_signal_time>:
+    2c58:	54 1a       	add	-12, sp
+    2c5a:	63 ff 09 00 	st.w	lp, 8[sp]
+    2c5e:	63 ef 05 00 	st.w	r29, 4[sp]
+    2c62:	03 e8       	mov	sp, r29
+    2c64:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2c68:	00 00 
+    2c6a:	2a 57 01 00 	ld.w	0[r10], r10
+    2c6e:	2b 06 f8 75 	mov	0x6ff75f8, r11
+    2c72:	ff 06 
+    2c74:	ca 51       	add	r10, r10
+    2c76:	cb 51       	add	r11, r10
+    2c78:	0a 57 00 00 	ld.b	0[r10], r10
+    2c7c:	5d 57 03 00 	st.b	r10, 3[r29]
+    2c80:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2c84:	ff 06 
+    2c86:	2a 57 01 00 	ld.w	0[r10], r10
+    2c8a:	0a 5e 01 00 	addi	1, r10, r11
+    2c8e:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2c92:	ff 06 
+    2c94:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2c98:	c5 35       	br	2d00 <__kernel_signal_time+0xa8>
+    2c9a:	bd 57 03 00 	ld.bu	3[r29], r10
+    2c9e:	26 06 f8 75 	mov	0x6ff75f8, r6
+    2ca2:	ff 06 
+    2ca4:	0a 38       	mov	r10, r7
+    2ca6:	2a 06 20 2a 	mov	0x2a20, r10
+    2caa:	00 00 
+    2cac:	80 ff 04 00 	jarl	2cb0 <__kernel_signal_time+0x58>, lp
+    2cb0:	44 fa       	add	4, lp
+    2cb2:	6a 00       	jmp	[r10]
+    2cb4:	1d 57 03 00 	ld.b	3[r29], r10
+    2cb8:	5d 57 02 00 	st.b	r10, 2[r29]
+    2cbc:	bd 57 03 00 	ld.bu	3[r29], r10
+    2cc0:	2b 06 f8 75 	mov	0x6ff75f8, r11
+    2cc4:	ff 06 
+    2cc6:	ca 51       	add	r10, r10
+    2cc8:	cb 51       	add	r11, r10
+    2cca:	0a 57 00 00 	ld.b	0[r10], r10
+    2cce:	5d 57 03 00 	st.b	r10, 3[r29]
+    2cd2:	9d 57 03 00 	ld.bu	2[r29], r10
+    2cd6:	2b 06 88 76 	mov	0x6ff7688, r11
+    2cda:	ff 06 
+    2cdc:	c2 52       	shl	2, r10
+    2cde:	cb 51       	add	r11, r10
+    2ce0:	2a 57 01 00 	ld.w	0[r10], r10
+    2ce4:	9d 5f 03 00 	ld.bu	2[r29], r11
+    2ce8:	2c 06 94 76 	mov	0x6ff7694, r12
+    2cec:	ff 06 
+    2cee:	c2 5a       	shl	2, r11
+    2cf0:	cc 59       	add	r12, r11
+    2cf2:	2b 5f 01 00 	ld.w	0[r11], r11
+    2cf6:	0b 30       	mov	r11, r6
+    2cf8:	80 ff 04 00 	jarl	2cfc <__kernel_signal_time+0xa4>, lp
+    2cfc:	44 fa       	add	4, lp
+    2cfe:	6a 00       	jmp	[r10]
+    2d00:	2a 06 c4 2e 	mov	0x2ec4, r10
+    2d04:	00 00 
+    2d06:	2a 57 01 00 	ld.w	0[r10], r10
+    2d0a:	8a 00       	zxb	r10
+    2d0c:	bd 5f 03 00 	ld.bu	3[r29], r11
+    2d10:	ea 59       	cmp	r10, r11
+    2d12:	d2 1d       	be	2d4c <__kernel_signal_time+0xf4>
+    2d14:	bd 57 03 00 	ld.bu	3[r29], r10
+    2d18:	2b 06 a0 76 	mov	0x6ff76a0, r11
+    2d1c:	ff 06 
+    2d1e:	c2 52       	shl	2, r10
+    2d20:	cb 51       	add	r11, r10
+    2d22:	2a 5f 01 00 	ld.w	0[r10], r11
+    2d26:	2a 06 08 84 	mov	0x6ff8408, r10
+    2d2a:	ff 06 
+    2d2c:	2a 57 01 00 	ld.w	0[r10], r10
+    2d30:	aa 59       	sub	r10, r11
+    2d32:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2d36:	ff 06 
+    2d38:	2a 67 01 00 	ld.w	0[r10], r12
+    2d3c:	2a 06 08 84 	mov	0x6ff8408, r10
+    2d40:	ff 06 
+    2d42:	2a 57 01 00 	ld.w	0[r10], r10
+    2d46:	8c 51       	subr	r12, r10
+    2d48:	ea 59       	cmp	r10, r11
+    2d4a:	81 ad       	bl	2c9a <__kernel_signal_time+0x42>
+    2d4c:	2a 06 0c 84 	mov	0x6ff840c, r10
+    2d50:	ff 06 
+    2d52:	2a 5f 01 00 	ld.w	0[r10], r11
+    2d56:	2a 06 08 84 	mov	0x6ff8408, r10
+    2d5a:	ff 06 
+    2d5c:	6a 5f 01 00 	st.w	r11, 0[r10]
+    2d60:	1d 18       	mov	r29, sp
+    2d62:	23 ff 09 00 	ld.w	8[sp], lp
+    2d66:	23 ef 05 00 	ld.w	4[sp], r29
+    2d6a:	4c 1a       	add	12, sp
+    2d6c:	7f 00       	jmp	[lp]
+
+00002d6e <_setjmp>:
+    2d6e:	66 0f 01 00 	st.w	r1, 0[r6]
+    2d72:	66 1f 05 00 	st.w	sp, 4[r6]
+    2d76:	66 27 09 00 	st.w	gp, 8[r6]
+    2d7a:	66 a7 0d 00 	st.w	r20, 12[r6]
+    2d7e:	66 af 11 00 	st.w	r21, 16[r6]
+    2d82:	66 b7 15 00 	st.w	r22, 20[r6]
+    2d86:	66 bf 19 00 	st.w	r23, 24[r6]
+    2d8a:	66 c7 1d 00 	st.w	r24, 28[r6]
+    2d8e:	66 cf 21 00 	st.w	r25, 32[r6]
+    2d92:	66 d7 25 00 	st.w	r26, 36[r6]
+    2d96:	66 df 29 00 	st.w	r27, 40[r6]
+    2d9a:	66 e7 2d 00 	st.w	r28, 44[r6]
+    2d9e:	66 ef 31 00 	st.w	r29, 48[r6]
+    2da2:	66 f7 35 00 	st.w	ep, 52[r6]
+    2da6:	66 ff 39 00 	st.w	lp, 56[r6]
+    2daa:	00 50       	mov	r0, r10
+    2dac:	7f 00       	jmp	[lp]
+
+00002dae <_longjmp>:
+    2dae:	26 0f 01 00 	ld.w	0[r6], r1
+    2db2:	26 1f 05 00 	ld.w	4[r6], sp
+    2db6:	26 27 09 00 	ld.w	8[r6], gp
+    2dba:	26 a7 0d 00 	ld.w	12[r6], r20
+    2dbe:	26 af 11 00 	ld.w	16[r6], r21
+    2dc2:	26 b7 15 00 	ld.w	20[r6], r22
+    2dc6:	26 bf 19 00 	ld.w	24[r6], r23
+    2dca:	26 c7 1d 00 	ld.w	28[r6], r24
+    2dce:	26 cf 21 00 	ld.w	32[r6], r25
+    2dd2:	26 d7 25 00 	ld.w	36[r6], r26
+    2dd6:	26 df 29 00 	ld.w	40[r6], r27
+    2dda:	26 e7 2d 00 	ld.w	44[r6], r28
+    2dde:	26 ef 31 00 	ld.w	48[r6], r29
+    2de2:	26 f7 35 00 	ld.w	52[r6], ep
+    2de6:	26 ff 39 00 	ld.w	56[r6], lp
+    2dea:	e7 01       	cmp	r7, r0
+    2dec:	aa 05       	bne	2df0 <_longjmp+0x42>
+    2dee:	01 3a       	mov	1, r7
+    2df0:	07 50       	mov	r7, r10
+    2df2:	7f 00       	jmp	[lp]

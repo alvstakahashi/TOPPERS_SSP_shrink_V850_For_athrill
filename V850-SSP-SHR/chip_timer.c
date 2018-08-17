@@ -64,6 +64,9 @@ HRTCNT hrtcnt_current;
 
 uint16_t disint_table[IMR_SIZE];
 
+extern void _kernel_handler(INTHDR userhandler);
+extern void isig_tim(void);
+
 /*
  *  割込み要求のクリア
  */
