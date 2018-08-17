@@ -33,15 +33,33 @@ int setup(void)
 	while(1);
 }
 
-void task1(intptr_t arg)
-{
-	printf("Hello task1!!\n");
-
-}
 void task2(intptr_t arg)
 {
-	printf("Hello task2!!\n");
+	int toggle= 0;
+	printf("task2 RUNNING-----------------------------------------------------\n");
+	for(;;)
+	{
+		if ((toggle ^= 1) != 0)
+		{
+			printf("TASK2 \n");
+		}
+		else
+		{
+			printf("TASK2 OFF \n");
+		}
+		dly_tsk(700);
+	}
+}
 
+void task1(void)
+{
+	printf("task1-----------------\n");
+	for(;;)
+	{
+		dly_tsk(500);
+		count++;
+		printf("task1-----------------\n");
+	}
 }
 
 #ifdef TAMIYA_NO_IMPREMENT

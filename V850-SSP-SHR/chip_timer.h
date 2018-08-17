@@ -80,7 +80,7 @@ typedef uint32_t HRTCNT;
  */
 //・TSTEP_HRTCNT（高分解能タイマのカウント値の進み幅）を，タイムティック
 //　の周期に定義する（単位はマイクロ秒）．
-#define TSTEP_HRTCNT			(1000)			/* 1ms 	*/
+#define TSTEP_HRTCNT			(100)			/* 1ms 	*/
 //#define TSTEP_HRTCNT			(1000000)		/* 1sec */
 
 //・高分解能タイマの現時点の値を保持する変数（hrtcnt_current，HRTCNT型）

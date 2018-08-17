@@ -4,7 +4,7 @@
 
 static void timer_interrupt_handler(void)
 {
-	printf("timer_interrupt_handler!!\n");
+	//printf("timer_interrupt_handler!!\n");
 	target_hrt_handler();
 	return;
 }
