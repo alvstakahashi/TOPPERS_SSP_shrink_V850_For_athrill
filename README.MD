@@ -1,88 +1,88 @@
-TOPPERS_SSPƒVƒ…ƒŠƒ“ƒN”Å@V850ˆÚA
+TOPPERS_SSPã‚·ãƒ¥ãƒªãƒ³ã‚¯ç‰ˆã€€V850ç§»æ¤
 
 TOPPERS_SSP_shrink_V850_For_athrill
 
 
-TOPPERS_SSPƒVƒ…ƒŠƒ“ƒN”Å‚ğV850‚ÉˆÚA‚·‚éB
-ƒ^[ƒQƒbƒg‚ÍAathrill ‚Æ‚¢‚¤‰¼‘zƒ}ƒVƒ“B
+TOPPERS_SSPã‚·ãƒ¥ãƒªãƒ³ã‚¯ç‰ˆã‚’V850ã«ç§»æ¤ã™ã‚‹ã€‚
+ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¯ã€athrill ã¨ã„ã†ä»®æƒ³ãƒã‚·ãƒ³ã€‚
 
-–{ƒŠƒ|ƒWƒgƒŠ‚ÍAathrill‚ÌberametalƒR[ƒh‚©‚ç
-TOPPERS_SSPƒVƒ…ƒŠƒ“ƒN‚ÉˆÚA‚µ‚Ä‚¢‚«‚Ü‚·B
-Š®¬ŒãA‚Ç‚Ì‚æ‚¤‚É•ÏX‚µ‚½‚©‚ªŒ©‚¦‚é‚©‚Æv‚¢‚Ü‚·B
+æœ¬ãƒªãƒã‚¸ãƒˆãƒªã¯ã€athrillã®berametalã‚³ãƒ¼ãƒ‰ã‹ã‚‰
+TOPPERS_SSPã‚·ãƒ¥ãƒªãƒ³ã‚¯ã«ç§»æ¤ã—ã¦ã„ãã¾ã™ã€‚
+å®Œæˆå¾Œã€ã©ã®ã‚ˆã†ã«å¤‰æ›´ã—ãŸã‹ãŒè¦‹ãˆã‚‹ã‹ã¨æ€ã„ã¾ã™ã€‚
 
-2018.8.16Œ»İAbaremetalƒR[ƒh‚ğƒ^ƒCƒ}[Š„‚è‚İ‚Ì‚İ
-’Ç‰Á‚µ‚½ƒR[ƒh‚©‚çŠJn‚µ‚Ü‚·B
+2018.8.16ç¾åœ¨ã€baremetalã‚³ãƒ¼ãƒ‰ã‚’ã‚¿ã‚¤ãƒãƒ¼å‰²ã‚Šè¾¼ã¿ã®ã¿
+è¿½åŠ ã—ãŸã‚³ãƒ¼ãƒ‰ã‹ã‚‰é–‹å§‹ã—ã¾ã™ã€‚
 
-‚È‚º‚©A•\¦•¶š‚ª@
+ãªãœã‹ã€è¡¨ç¤ºæ–‡å­—ãŒã€€
 
 ttiimmeerr__iinntteerrrruupptt__hhaannddlleerr!!!!
 
-‚Ì‚æ‚¤‚É@2d‚ÉƒvƒŠƒ“ƒg‚³‚ê‚é–â‘è‚ª‚ ‚è‚Ü‚·‚ªA
-‚Æ‚è‚ ‚¦‚¸‚â‚Á‚Ä‚¢‚«‚Ü‚·B
+ã®ã‚ˆã†ã«ã€€2é‡ã«ãƒ—ãƒªãƒ³ãƒˆã•ã‚Œã‚‹å•é¡ŒãŒã‚ã‚Šã¾ã™ãŒã€
+ã¨ã‚Šã‚ãˆãšã‚„ã£ã¦ã„ãã¾ã™ã€‚
 
-8/17 ’Ç‹L---------------------------------------------------------
-* ƒ^ƒXƒN2‚Â@“®ì@ˆóš‚ª‚¨‚©‚µ‚¢‚Ü‚Ü@Revision‚Å‚¢‚Á‚½‚ñŠ®¬
+8/17 è¿½è¨˜---------------------------------------------------------
+* ã‚¿ã‚¹ã‚¯2ã¤ã€€å‹•ä½œã€€å°å­—ãŒãŠã‹ã—ã„ã¾ã¾ã€€Revisionã§ã„ã£ãŸã‚“å®Œæˆ
 
-ˆÈ‰º‚Ì‚æ‚¤‚Éo‚ê‚ÎOK‚Å‚·
-D:\DEV\V850-SSP-HM\GIT\TOPPERS_SSP_shrink_V850_For_athrill\V850-SSP-SHR>athrill -i -d device_config.txt -m memory.txt test_main.elf
-core id num=0
-ROM : START=0x0 SIZE=512
-RAM : START=0x6ff7000 SIZE=512
-WARNING: unknown memory type=MMAP
-Elf loading was succeeded:0x0 - 0x2f2f : 11.815 KB
-Elf loading was succeeded:0x2f30 - 0x4340 : 0.0 KB
-Elf loading was succeeded:0x4340 - 0x4740 : 1.0 KB
-ELF SYMBOL SECTION LOADED:index=17
-ELF SYMBOL SECTION LOADED:sym_num=194
-ELF STRING TABLE SECTION LOADED:index=18
-search_region:not found error:addr=0x7ff0000
-[DBG>
-HIT break:0x0
-[NEXT> pc=0x0 vector.S 9
-c
-[CPU>WARNING: Found invalid data write on not variable region(addr=0x6ff75f2 size=1) : bss_clear(0x144e)@stack_data
-WARNING: Found invalid data write on not variable region(addr=0x6ff75f3 size=1) : bss_clear(0x144e)@stack_data
-WARNING: Found invalid data write on not variable region(addr=0x6ff83fe size=1) : bss_clear(0x144e)@stack_data
-WARNING: Found invalid data write on not variable region(addr=0x6ff83ff size=1) : bss_clear(0x144e)@stack_data
-task1-----------------
-task2 RUNNING-----------------------------------------------------
-TASK2
-task1-----------------
-TASK2 OFF
-task1-----------------
-TASK2
-task1-----------------
-task1-----------------
-TASK2 OFF
-task1-----------------
-TASK2
-task1-----------------
-TASK2 OFF
-task1-----------------
-task1-----------------
-TASK2
-task1-----------------
-TASK2 OFF
-task1-----------------
+ä»¥ä¸‹ã®ã‚ˆã†ã«å‡ºã‚Œã°OKã§ã™ã€€<br>
+D:\DEV\V850-SSP-HM\GIT\TOPPERS_SSP_shrink_V850_For_athrill\V850-SSP-SHR>athrill -i -d device_config.txt -m memory.txt test_main.elf<br>
+core id num=0<br>
+ROM : START=0x0 SIZE=512<br>
+RAM : START=0x6ff7000 SIZE=512<br>
+WARNING: unknown memory type=MMAP<br>
+Elf loading was succeeded:0x0 - 0x2f2f : 11.815 KB<br>
+Elf loading was succeeded:0x2f30 - 0x4340 : 0.0 KB<br>
+Elf loading was succeeded:0x4340 - 0x4740 : 1.0 KB<br>
+ELF SYMBOL SECTION LOADED:index=17<br>
+ELF SYMBOL SECTION LOADED:sym_num=194<br>
+ELF STRING TABLE SECTION LOADED:index=18<br>
+search_region:not found error:addr=0x7ff0000<br>
+[DBG><br>
+HIT break:0x0<br>
+[NEXT> pc=0x0 vector.S 9<br>
+c<br>
+[CPU>WARNING: Found invalid data write on not variable region(addr=0x6ff75f2 size=1) : bss_clear(0x144e)@stack_data<br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff75f3 size=1) : bss_clear(0x144e)@stack_data<br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff83fe size=1) : bss_clear(0x144e)@stack_data<br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff83ff size=1) : bss_clear(0x144e)@stack_data<br>
+task1-----------------<br>
+task2 RUNNING-----------------------------------------------------<br>
+TASK2<br>
+task1-----------------<br>
+TASK2 OFF<br>
+task1-----------------<br>
+TASK2<br>
+task1-----------------<br>
+task1-----------------<br>
+TASK2 OFF<br>
+task1-----------------<br>
+TASK2<br>
+task1-----------------<br>
+TASK2 OFF<br>
+task1-----------------<br>
+task1-----------------<br>
+TASK2<br>
+task1-----------------<br>
+TASK2 OFF<br>
+task1-----------------<br>
 
----------------------------------------------------------------
-task‰½–^‚ª0.5•b‚­‚ç‚¢‚Å•\¦‚ª‘‚¦‚Ä‚¢‚¯‚ÎOK‚Å‚·B
-•¶š‚ª2d‚É‚È‚é–â‘è‚ÍAatrhill‚ğƒrƒ‹ƒh‚µ‚È‚¨‚µ‚½‚ç¡‚è‚Ü‚µ‚½B
+---------------------------------------------------------------<br>
+taskä½•æŸãŒ0.5ç§’ãã‚‰ã„ã§è¡¨ç¤ºãŒå¢—ãˆã¦ã„ã‘ã°OKã§ã™ã€‚
+æ–‡å­—ãŒ2é‡ã«ãªã‚‹å•é¡Œã¯ã€atrhillã‚’ãƒ“ãƒ«ãƒ‰ã—ãªãŠã—ãŸã‚‰æ²»ã‚Šã¾ã—ãŸã€‚
 
 
 
-ŠJ”­ŠÂ‹«
+é–‹ç™ºç’°å¢ƒ
 
 Windows10 64bit
 MinGW 32bit
 V850 gcc KPIT
 
-ÀsŠÂ‹«@athrill2  Windows”Å
+å®Ÿè¡Œç’°å¢ƒã€€athrill2  Windowsç‰ˆ
 
-–Ú“Ii—]’kj
-Raspberry pi‚Å‚ÌJTAGƒfƒoƒbƒO‚Í‚ ‚ê‚Í‚ ‚ê‚ÅˆÓ–¡‚ª‚ ‚é‚Æv‚¢‚Ü‚·‚ª
-‚à‚Á‚ÆŠÈ’P‚ÉOS‚ğÀs‚Å‚«‚éŠÂ‹«‚ª‚ ‚Á‚½‚Ù‚¤‚ª‚¢‚¢‚Æv‚Á‚½‚©‚ç‚Å‚·B
-CubeSuite+‚Æ‚©‚ÅRX‚Å‚à‰Â”\‚Å‚·‚ªA‚ ‚Ü‚èƒ[ƒJ[‚æ‚è‚¶‚á‚È‚­
-‚·‚×‚ÄƒI[ƒvƒ“ƒ\[ƒX‚Ì‚Ù‚¤‚ª‚¢‚¢‚µA
-athrill‚Ì‚Ù‚¤‚ª‚‹@”\‚ÅƒfƒoƒbƒO‚Å‚«‚»‚¤‚ÈŠ´‚¶‚Å‚·B
-‚Ü‚¾‚æ‚­g‚¢‚±‚È‚¹‚Ä‚¢‚Ü‚¹‚ñB@
+ç›®çš„ï¼ˆä½™è«‡ï¼‰
+Raspberry piã§ã®JTAGãƒ‡ãƒãƒƒã‚°ã¯ã‚ã‚Œã¯ã‚ã‚Œã§æ„å‘³ãŒã‚ã‚‹ã¨æ€ã„ã¾ã™ãŒ
+ã‚‚ã£ã¨ç°¡å˜ã«OSã‚’å®Ÿè¡Œã§ãã‚‹ç’°å¢ƒãŒã‚ã£ãŸã»ã†ãŒã„ã„ã¨æ€ã£ãŸã‹ã‚‰ã§ã™ã€‚
+CubeSuite+ã¨ã‹ã§RXã§ã‚‚å¯èƒ½ã§ã™ãŒã€ã‚ã¾ã‚Šãƒ¡ãƒ¼ã‚«ãƒ¼ã‚ˆã‚Šã˜ã‚ƒãªã
+ã™ã¹ã¦ã‚ªãƒ¼ãƒ—ãƒ³ã‚½ãƒ¼ã‚¹ã®ã»ã†ãŒã„ã„ã—ã€
+athrillã®ã»ã†ãŒé«˜æ©Ÿèƒ½ã§ãƒ‡ãƒãƒƒã‚°ã§ããã†ãªæ„Ÿã˜ã§ã™ã€‚
+ã¾ã ã‚ˆãä½¿ã„ã“ãªã›ã¦ã„ã¾ã›ã‚“ã€‚ã€€
