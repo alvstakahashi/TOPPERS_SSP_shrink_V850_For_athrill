@@ -323,9 +323,14 @@ Inline void idle_loop(void)
 
 Inline bool_t sense_context( void )
 {
+/*
+ *  割込み発生回数を保存する変数
+ */
+extern volatile  uint16_t	intnest;
+
 	/*  ネストカウンタ0より大なら非タスクコンテキスト  */
-//	return ( intnest > 0U );
-	return 0;
+	return ( intnest > 0U );
+//	return 0;
 
 }
 
