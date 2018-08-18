@@ -254,7 +254,15 @@ x_clear_int(INTNO intno)
 #define i_unlock_cpu()	enable_IRQ()
 
 
-#define	ipl_maskClear()	
+/*
+ *  TIPM_ENAALL（割込み優先度マスク全解除）の内部表現
+ */
+#define INT_IPM(ipm)	 (CAST(uint32_t, -(ipm)))  /* 外部表現を内部表現に */
+#define TIPM_ENAALL		0			/* 割込み優先度マスク全解除 */
+#define INTPRI_ENAALL	INT_IPM(TIPM_ENAALL)
+
+
+#define	ipl_maskClear()		set_intpri(INTPRI_ENAALL)
 
 /*
  *  デフォルトの非タスクコンテキスト用のスタック領域の定義

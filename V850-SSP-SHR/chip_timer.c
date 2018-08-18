@@ -62,10 +62,43 @@
 //　を用意する．
 HRTCNT hrtcnt_current;		
 
+const uint16_t imr_table[][IMR_SIZE] = { 
+	 { 0xffff, 0xffbf, 0xffcf, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 0 */
+	 { 0xffff, 0xffff, 0xffcf, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 1 */
+	 { 0xffff, 0xffff, 0xffcf, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 2 */
+	 { 0xffff, 0xffff, 0xffcf, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 3 */
+	 { 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 4 */
+	 { 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 5 */
+	 { 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 6 */
+	 { 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff }, /* 7 */
+};
+
+
+
 uint16_t disint_table[IMR_SIZE];
 
 extern void _kernel_handler(INTHDR userhandler);
 extern void isig_tim(void);
+
+
+/*
+ *
+ *	現在の割込み優先度マスク(内部表現)の設定
+ *
+ *	インライン関数でないのは，アセンブラからも使用するためである．
+ */
+void
+set_intpri(uint8_t intpri)
+{
+	sil_wrh_mem((void *)(IMR0) , imr_table[intpri][0] | disint_table[0]);
+	sil_wrh_mem((void *)(IMR1) , imr_table[intpri][1] | disint_table[1]);
+	sil_wrh_mem((void *)(IMR2) , imr_table[intpri][2] | disint_table[2]);
+	sil_wrh_mem((void *)(IMR3) , imr_table[intpri][3] | disint_table[3]);
+	sil_wrh_mem((void *)(IMR4) , imr_table[intpri][4] | disint_table[4]);
+	sil_wrh_mem((void *)(IMR5) , imr_table[intpri][5] | disint_table[5]);
+	sil_wrh_mem((void *)(IMR6) , imr_table[intpri][6] | disint_table[6]);
+	sil_wrb_mem((void *)(IMR7) , (uint8_t)( imr_table[intpri][7] | disint_table[7] ) );
+}
 
 /*
  *  割込み要求のクリア
