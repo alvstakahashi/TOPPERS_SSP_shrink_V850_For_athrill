@@ -390,6 +390,7 @@ void dispatch(intptr_t ipri)
 {
 	last_ipri = ipri;
 	runtsk_ipri = ipri;
+	ipl_maskClear();
 	longjmp(task_ctx[ipri],1);
 }
 
@@ -611,6 +612,8 @@ void handler(INTHDR userhandler)
 				}
 				//コンテキスト　calleeセーブレジスタ復帰
 				loadCTX();
+				//多重割り込みからぬけてtaskに戻る前に割り込みマスクをクリアする
+				ipl_maskClear();
 			}
 		}
 	}
