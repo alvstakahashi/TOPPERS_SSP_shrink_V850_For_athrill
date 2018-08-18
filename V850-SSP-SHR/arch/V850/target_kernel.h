@@ -83,6 +83,13 @@ typedef	uint_t		INTNO;		/* 割込み番号 */
 typedef	uint_t		INHNO;		/* 割込みハンドラ番号 */
 typedef	uint_t		EXCNO;		/* CPU例外ハンドラ番号 */
 #endif
+
+#ifdef TOPPERS_V850
+#define ISP_ATTRIB	__attribute__ ((section(".bss_noclr")))
+#else
+#define ISP_ATTRIB
+#endif
+
 /*
  *  プロセッサで共通な定義
  */
@@ -344,6 +351,10 @@ extern volatile  uint16_t	intnest;
 
 #define t_sense_lock()	sense_context()
 #define i_sense_lock()	sense_context()
+
+
+#define	get_sp(status)	__asm__("mov	sp,%[Rd]":[Rd]"=r"(status));
+
 
 #if 0
 //----------------------以下　見直しまだ---------------------------------

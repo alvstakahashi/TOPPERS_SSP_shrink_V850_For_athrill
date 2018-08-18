@@ -8,6 +8,7 @@
 #include "time_event.h"
 
 #include "sample1.h"
+#include "target_kernel.h"
 
 /*
  *  Task Management Functions
@@ -70,7 +71,7 @@ uintptr_t _kernel_tmevt_arg[TNUM_TMEVT];
  */
 
 #define TOPPERS_ISTKSZ		DEFAULT_ISTKSZ
-STK_T          		_kernel_stack[COUNT_STK_T(TOPPERS_ISTKSZ)];
+STK_T          		_kernel_stack[COUNT_STK_T(TOPPERS_ISTKSZ)] ISP_ATTRIB;
 #define TOPPERS_STK   		_kernel_stack
 #define TOPPERS_STKSZ		ROUND_STK_T(TOPPERS_ISTKSZ)
 

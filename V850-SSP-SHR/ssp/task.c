@@ -47,6 +47,7 @@
 
 #include "kernel_cfg.h"
 
+void *usr_sp;									//ユーザースタック保存
 
 
 /*
@@ -66,6 +67,7 @@ extern const intptr_t	tinib_exinf[];			/* タスクの拡張情報 */
 extern const TASK    	tinib_task[];			/* タスクの起動番地 */
 extern const uint_t  	tinib_epriority[];		/* タスクの実行時優先度先度（内部表現） */
 
+extern STK_T *const	_kernel_istkpt;
 
 
 #define TOPPERS_tskini
@@ -588,6 +590,11 @@ void handler(INTHDR userhandler)
 {
 	volatile static intptr_t newtskipi;
 	
+	if( intnest == 0 )				//初回
+	{
+		get_sp(usr_sp);
+		set_task_stack(_kernel_istkpt);
+	}
 	intnest++;						//割り込みネスト数インクリメント
 //	i_unlock_cpu();					//割り込み許可
 	(*userhandler)();				//ユーザーハンドラ呼び出し
@@ -596,6 +603,8 @@ void handler(INTHDR userhandler)
 
 	if (intnest == 0)				//多重割り込み中でない
 	{
+		set_task_stack(usr_sp);		//タスクスタックに戻す
+
 		if (reqflg !=0)				//スケジュール必要
 		{
 			reqflg = 0;
