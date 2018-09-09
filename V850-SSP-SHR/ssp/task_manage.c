@@ -93,7 +93,22 @@ act_tsk(ID tskid)
 	t_lock_cpu();
 	if (test_dormant(tskpri)) {
 		if(make_active(tskpri)) {
-			run_task(tskpri);
+#if 1
+			//ここのコンテキクストを登録
+			if (setjmp(task_ctx[tskpri]) == 0)
+			{
+				/*登録した場合*/
+				longjmp(disp_ctx,1);			//sta_kerの続きに行く
+			}
+			else
+			{
+				// タスク復帰した場合
+				ipl_maskClear();
+				//t_unlock_cpu();
+				//return(ercd);
+			}	
+#endif
+			//run_task(tskpri);
 		}
 		ercd = E_OK;
 	}
