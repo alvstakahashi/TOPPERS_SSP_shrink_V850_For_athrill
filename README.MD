@@ -1,70 +1,70 @@
-DockerHubバージョン対応
-issue1の指摘対応
+DockerHubバージョン対応<br>
+issue1の指摘対応<br>
 
-athrill での動作確認済み
+athrill での動作確認済み<br>
 
-#athrill -i -d device_config.txt -m memory.txt test_main.elf
+#athrill -i -d device_config.txt -m memory.txt test_main.elf<br>
 で起動してください。
 
-手順について
-Windows10Pro64bit にて確認したためその手順の記載しています。
+手順について<br>
+Windows10Pro64bit にて確認したためその手順の記載しています。<br>
 
-1.以下のサイトで、athrillを起動してみてください
-　TOPPERS/athrillをdockerで利用できるようにするまで
-　https://qiita.com/kanetugu2018/items/f1368a6da7bdc773cfd9
+1.以下のサイトで、athrillを起動してみてください<br>
+　TOPPERS/athrillをdockerで利用できるようにするまで<br>
+　https://qiita.com/kanetugu2018/items/f1368a6da7bdc773cfd9 <br>
 
-　DockerHUbにてビルド環境およびathrill本体さらにサンプルアプリケーションが
-　ビルド済みで組み込まれています。　上記サイトの手順のとおりに
-　WSLとDockerのセットアップを行う必要があります。
+　DockerHUbにてビルド環境およびathrill本体さらにサンプルアプリケーションが<br>
+　ビルド済みで組み込まれています。　上記サイトの手順のとおりに<br>
+　WSLとDockerのセットアップを行う必要があります。<br>
 
 
-2.本ソースを取り込んで実行方法
-　本ソースをクローンもしくはダウンロードし、例えば
-　D:/usr2/
-  にダウンロードしておきます。
+2.本ソースを取り込んで実行方法<br>
+　本ソースをクローンもしくはダウンロードし、例えば<br>
+　D:/usr2/  <br>
+  にダウンロードしておきます。<br>
 
-　PowerShellから以下を実行
+　PowerShellから以下を実行<br>
 　
-　PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0
+　PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0 <br>
   
-  #cd /usr2/TOPPERS_SSP_shrink_V850_For_athrill\V850-SSP-SHR
-  #make
-  #athrill -i -d device_config.txt -m memory.txt test_main.elf
+  #cd /usr2/TOPPERS_SSP_shrink_V850_For_athrill\V850-SSP-SHR <br>
+  #make <br>
+  #athrill -i -d device_config.txt -m memory.txt test_main.elf <br>
 
-例)
-PS C:\WINDOWS\system32>
-PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0
-root@a6b478c50e79:/# cd /usr2
-root@a6b478c50e79:/usr2# cd V850-SSP-SHR
-root@a6b478c50e79:/usr2/V850-SSP-SHR# athrill -i -d device_config.txt -m memory.txt test_main.elf
-core id num=0
-ROM : START=0x0 SIZE=512
-RAM : START=0x6ff7000 SIZE=512
-Elf loading was succeeded:0x0 - 0x32e7 : 12.743 KB
-Elf loading was succeeded:0x32e8 - 0x41fc : 0.0 KB
-Elf loading was succeeded:0x41fc - 0x4afc : 2.256 KB
-ELF SYMBOL SECTION LOADED:index=16
-ELF SYMBOL SECTION LOADED:sym_num=195
-ELF STRING TABLE SECTION LOADED:index=17
-[DBG>[NEXT> pc=0x0 vector.S 9
-c
-[CPU>WARNING: Found invalid data write on not variable region(addr=0x6ff75f2 size=1) : bss_clear(0x166a)@_kernel_stack
-WARNING: Found invalid data write on not variable region(addr=0x6ff75f3 size=1) : bss_clear(0x166a)@_kernel_stack
-WARNING: Found invalid data write on not variable region(addr=0x6ff7efe size=1) : bss_clear(0x166a)@_kernel_stack
-WARNING: Found invalid data write on not variable region(addr=0x6ff7eff size=1) : bss_clear(0x166a)@_kernel_stack
-task1-----------------
-task2 RUNNING-----------------------------------------------------
-TASK2
-task1-----------------
-^C
-root@a6b478c50e79:/usr2/V850-SSP-SHR#
+例)<br>
+PS C:\WINDOWS\system32><br>
+PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0 <br>
+root@a6b478c50e79:/# cd /usr2 <br>
+root@a6b478c50e79:/usr2# cd V850-SSP-SHR <br>
+root@a6b478c50e79:/usr2/V850-SSP-SHR# athrill -i -d device_config.txt -m memory.txt  test_main.elf <br>
+core id num=0<br>
+ROM : START=0x0 SIZE=512<br>
+RAM : START=0x6ff7000 SIZE=512<br>
+Elf loading was succeeded:0x0 - 0x32e7 : 12.743 KB<br>
+Elf loading was succeeded:0x32e8 - 0x41fc : 0.0 KB<br>
+Elf loading was succeeded:0x41fc - 0x4afc : 2.256 KB<br>
+ELF SYMBOL SECTION LOADED:index=16<br>
+ELF SYMBOL SECTION LOADED:sym_num=195<br>
+ELF STRING TABLE SECTION LOADED:index=17<br>
+[DBG>[NEXT> pc=0x0 vector.S 9<br>
+c<br>
+[CPU>WARNING: Found invalid data write on not variable region(addr=0x6ff75f2 size=1) : bss_clear(0x166a)@_kernel_stack <br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff75f3 size=1) : bss_clear(0x166a)@_kernel_stack <br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff7efe size=1) : bss_clear(0x166a)@_kernel_stack <br>
+WARNING: Found invalid data write on not variable region(addr=0x6ff7eff size=1) : bss_clear(0x166a)@_kernel_stack <br>
+task1----------------- <br>
+task2 RUNNING----------------------------------------------------- <br>
+TASK2 <br>
+task1----------------- <br>
+^C <br>
+root@a6b478c50e79:/usr2/V850-SSP-SHR# <br>
 
-そのほか：
-PCの環境設定は、
-Windows10pro64bitの環境設定の説明.txt 
-を参照ください。
+そのほか：<br>
+PCの環境設定は、<br>
+Windows10pro64bitの環境設定の説明.txt <br>
+を参照ください。<br>
 
-以上　2020.8.12追記
+以上　2020.8.12追記 <br>
 
 
 
