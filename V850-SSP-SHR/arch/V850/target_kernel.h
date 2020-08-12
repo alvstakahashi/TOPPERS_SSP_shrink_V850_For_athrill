@@ -247,6 +247,9 @@ x_clear_int(INTNO intno)
 #define t_lock_cpu()	disable_IRQ()
 #define i_lock_cpu()	disable_IRQ()
 
+#define  halt_cpu()		__asm__("halt")
+#define  nop_cpu()		__asm__("nop")
+
 /*
  *  CPUロック状態の解除
  *
@@ -286,6 +289,13 @@ extern uint32_t	DEFAULT_ISTACK[];
 
 Inline void idle_loop(void)
 {
+	halt_cpu();
+	nop_cpu();
+	nop_cpu();
+	nop_cpu();
+	nop_cpu();
+	nop_cpu();
+
 	t_unlock_cpu();
 	t_lock_cpu();
 }

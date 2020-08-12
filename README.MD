@@ -1,3 +1,73 @@
+DockerHubバージョン対応
+issue1の指摘対応
+
+athrill での動作確認済み
+
+#athrill -i -d device_config.txt -m memory.txt test_main.elf
+で起動してください。
+
+手順について
+Windows10Pro64bit にて確認したためその手順の記載しています。
+
+1.以下のサイトで、athrillを起動してみてください
+　TOPPERS/athrillをdockerで利用できるようにするまで
+　https://qiita.com/kanetugu2018/items/f1368a6da7bdc773cfd9
+
+　DockerHUbにてビルド環境およびathrill本体さらにサンプルアプリケーションが
+　ビルド済みで組み込まれています。　上記サイトの手順のとおりに
+　WSLとDockerのセットアップを行う必要があります。
+
+
+2.本ソースを取り込んで実行方法
+　本ソースをクローンもしくはダウンロードし、例えば
+　D:/usr2/
+  にダウンロードしておきます。
+
+　PowerShellから以下を実行
+　
+　PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0
+  
+  #cd /usr2/TOPPERS_SSP_shrink_V850_For_athrill\V850-SSP-SHR
+  #make
+  #athrill -i -d device_config.txt -m memory.txt test_main.elf
+
+例)
+PS C:\WINDOWS\system32>
+PS C:\WINDOWS\system32> docker run -v /D/usr2:/usr2 -it kanetugu2015/athrill_asp3:ver3.0
+root@a6b478c50e79:/# cd /usr2
+root@a6b478c50e79:/usr2# cd V850-SSP-SHR
+root@a6b478c50e79:/usr2/V850-SSP-SHR# athrill -i -d device_config.txt -m memory.txt test_main.elf
+core id num=0
+ROM : START=0x0 SIZE=512
+RAM : START=0x6ff7000 SIZE=512
+Elf loading was succeeded:0x0 - 0x32e7 : 12.743 KB
+Elf loading was succeeded:0x32e8 - 0x41fc : 0.0 KB
+Elf loading was succeeded:0x41fc - 0x4afc : 2.256 KB
+ELF SYMBOL SECTION LOADED:index=16
+ELF SYMBOL SECTION LOADED:sym_num=195
+ELF STRING TABLE SECTION LOADED:index=17
+[DBG>[NEXT> pc=0x0 vector.S 9
+c
+[CPU>WARNING: Found invalid data write on not variable region(addr=0x6ff75f2 size=1) : bss_clear(0x166a)@_kernel_stack
+WARNING: Found invalid data write on not variable region(addr=0x6ff75f3 size=1) : bss_clear(0x166a)@_kernel_stack
+WARNING: Found invalid data write on not variable region(addr=0x6ff7efe size=1) : bss_clear(0x166a)@_kernel_stack
+WARNING: Found invalid data write on not variable region(addr=0x6ff7eff size=1) : bss_clear(0x166a)@_kernel_stack
+task1-----------------
+task2 RUNNING-----------------------------------------------------
+TASK2
+task1-----------------
+^C
+root@a6b478c50e79:/usr2/V850-SSP-SHR#
+
+そのほか：
+PCの環境設定は、
+Windows10pro64bitの環境設定の説明.txt 
+を参照ください。
+
+以上　2020.8.12追記
+
+
+
 TOPPERS_SSPシュリンク版　V850移植
 
 TOPPERS_SSP_shrink_V850_For_athrill

@@ -20,7 +20,6 @@ volatile int count = 0;
 
 unsigned char stack_data[STACK_SIZE] __attribute__ ((section(".bss_noclr")));
 
-unsigned char mmap_data[1024] __attribute__ ((section(".mmap_section")));
 
 static int gl_variable;
 
