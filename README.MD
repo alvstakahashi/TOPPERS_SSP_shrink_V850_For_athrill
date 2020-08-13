@@ -59,6 +59,14 @@ task1----------------- <br>
 ^C <br>
 root@a6b478c50e79:/usr2/V850-SSP-SHR# <br>
 
+3.Visual Studio Code のリモートコンテナでの実行例<br>
+VScodeのremote Contenerを組み込んでいれば<br>
+V850-SSP-SHR フォルダを　<br>
+Remote-Containers:Open Folder in Container...<br>
+で読みこむことでDockerに接続されそのまま実行可能です。<br>
+
+kanetugu2015/athrill_asp3:ver3.0 をDockerfileに記載しています。<br>
+
 そのほか：<br>
 PCの環境設定は、<br>
 Windows10pro64bitの環境設定の説明.txt <br>
