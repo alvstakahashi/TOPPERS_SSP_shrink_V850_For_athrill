@@ -67,9 +67,13 @@ Remote-Containers:Open Folder in Container...<br>
 
 kanetugu2015/athrill_asp3:ver3.0 をDockerfileに記載しています。<br>
 
+手順について詳しく説明を以下の資料を参照ください。<br>
+VSCodeを利用した仮想化リアルタイムOS実演.pptx<br>
+
+
 そのほか：<br>
 PCの環境設定は、<br>
-Windows10pro64bitの環境設定の説明.txt <br>
+Athrill 実行環境事前設定の説明.docx <br>
 を参照ください。<br>
 
 以上　2020.8.12追記 <br>
